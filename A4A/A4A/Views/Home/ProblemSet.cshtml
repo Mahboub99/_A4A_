@@ -1,4 +1,4 @@
-﻿@model List<DataController.DataAccess.SqlDataAccess>
+﻿@model IEnumerable<A4A.Models.ProblemSetModel>
 
 @{
     ViewBag.Title = "ProblemSet";
@@ -12,13 +12,13 @@
 <table class="table">
     <tr>
         <th>
-            ProblemName
+            @Html.DisplayNameFor(model => model.ProblemName)
         </th>
         <th>
-            ProblemTopic
+            @Html.DisplayNameFor(model => model.ProblemTopic)
         </th>
         <th>
-            ProblemDifficulty
+            @Html.DisplayNameFor(model => model.ProblemDifficulty)
         </th>
         <th></th>
     </tr>
@@ -35,7 +35,9 @@
             @Html.DisplayFor(modelItem => item.ProblemDifficulty)
         </td>
         <td>
-        
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
         </td>
     </tr>
 }

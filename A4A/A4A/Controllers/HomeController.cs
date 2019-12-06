@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data;
 using System.Web.Mvc;
+using A4A.Models;
 using DataController;
 
 namespace A4A.Controllers
@@ -33,7 +34,17 @@ namespace A4A.Controllers
         {
 
             var Model = DataController.BussinessLogic.ProblemSet.LoadProblems();
-            return View(Model);
+            List<ProblemSetModel> list = new List<ProblemSetModel>();
+            foreach(var row in Model)
+            {
+                list.Add(new ProblemSetModel
+                {
+                    ProblemName = row.ProblemName,
+                    ProblemTopic = row.ProblemTopic,
+                    ProblemDifficulty = row.ProblemDifficulty
+                });
+            }
+            return View(list);
         }
 
     }
