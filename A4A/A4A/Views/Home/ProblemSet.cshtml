@@ -1,0 +1,43 @@
+﻿@model List<DataController.DataAccess.SqlDataAccess>
+
+@{
+    ViewBag.Title = "ProblemSet";
+}
+
+<h2>ProblemSet</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            ProblemName
+        </th>
+        <th>
+            ProblemTopic
+        </th>
+        <th>
+            ProblemDifficulty
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProblemName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProblemTopic)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProblemDifficulty)
+        </td>
+        <td>
+        
+        </td>
+    </tr>
+}
+
+</table>
