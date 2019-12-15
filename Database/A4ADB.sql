@@ -1,7 +1,7 @@
 USE [master]
 GO
 
-/****** Object:  Database [A4A]    Script Date: 07-Dec-19 1:50:22 AM ******/
+/****** Object:  Database [A4A]    Script Date: 15-Dec-19 9:00:50 PM ******/
 CREATE DATABASE [A4A]
  CONTAINMENT = NONE
  ON  PRIMARY 
