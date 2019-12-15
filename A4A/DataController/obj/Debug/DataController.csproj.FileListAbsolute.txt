@@ -1,9 +1,0 @@
-C:\Users\aashr\source\repos\A4A\DataController\bin\Debug\DataController.dll
-C:\Users\aashr\source\repos\A4A\DataController\bin\Debug\DataController.pdb
-C:\Users\aashr\source\repos\A4A\DataController\bin\Debug\Dapper.dll
-C:\Users\aashr\source\repos\A4A\DataController\bin\Debug\Dapper.xml
-C:\Users\aashr\source\repos\A4A\DataController\obj\Debug\DataController.csprojAssemblyReference.cache
-C:\Users\aashr\source\repos\A4A\DataController\obj\Debug\DataController.csproj.CoreCompileInputs.cache
-C:\Users\aashr\source\repos\A4A\DataController\obj\Debug\DataController.csproj.CopyComplete
-C:\Users\aashr\source\repos\A4A\DataController\obj\Debug\DataController.dll
-C:\Users\aashr\source\repos\A4A\DataController\obj\Debug\DataController.pdb

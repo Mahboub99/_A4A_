@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using A4A.DataAccess;
 using System.Linq;
 using System.Web;
 using System.Data;
 using System.Web.Mvc;
 using A4A.Models;
-using DataController;
+using System.IO;
+using System.Data.SqlClient;
 
 namespace A4A.Controllers
 {
@@ -32,20 +34,34 @@ namespace A4A.Controllers
 
         public ActionResult ProblemSet()
         {
-
-            var Model = DataController.BussinessLogic.ProblemSet.LoadProblems();
+            DBController dbController = new DBController();
+            DataTable dt = dbController.SelectProblems();
             List<ProblemSetModel> list = new List<ProblemSetModel>();
-            foreach(var row in Model)
+            for(int i=0; i<dt.Rows.Count; ++i)
             {
-                list.Add(new ProblemSetModel
-                {
-                    ProblemName = row.ProblemName,
-                    ProblemTopic = row.ProblemTopic,
-                    ProblemDifficulty = row.ProblemDifficulty
-                });
+                ProblemSetModel problem = new ProblemSetModel();
+                problem.ProblemName = Convert.ToString(dt.Rows[i]["ProblemName"]);
+                problem.ProblemTopic = Convert.ToString(dt.Rows[i]["ProblemTopic"]);
+                problem.ProblemLink = Convert.ToString(dt.Rows[i]["ProblemLink"]);
+                problem.ProblemDifficulty = int.Parse(Convert.ToString(dt.Rows[i]["ProblemDifficulty"]));
+                list.Add(problem);
             }
+
             return View(list);
         }
+
+
+
+        //public ActionResult GetPdf(string fileName = "1A.pdf")
+        //{
+        //    //SqlCommand cmd;
+        //    var fileStream = new FileStream("C:/Users/aashr/source/repos/A4A/codeforces/" + fileName,
+        //                                     FileMode.Open,
+        //                                     FileAccess.Read
+        //                                   );
+        //    //var fsResult = new FileStreamResult(fileStream, "application/pdf");   //what is application/pdf ?
+        //    return View(fileStream);
+        //}
 
     }
 }

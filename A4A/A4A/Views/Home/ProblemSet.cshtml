@@ -6,9 +6,6 @@
 
 <h2>ProblemSet</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -35,9 +32,12 @@
             @Html.DisplayFor(modelItem => item.ProblemDifficulty)
         </td>
         <td>
+            
+            <a href=@item.ProblemLink target="_blank">View</a>
+            @*@Html.ActionLink("View", )
             @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
             @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
         </td>
     </tr>
 }

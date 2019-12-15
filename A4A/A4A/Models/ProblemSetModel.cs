@@ -9,6 +9,7 @@ namespace A4A.Models
     {
         public string ProblemName { get; set; }
         public string ProblemTopic { get; set; }
+        public string ProblemLink { get; set; }
         public int ProblemDifficulty { get; set; }
     }
 }
