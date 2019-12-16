@@ -13,6 +13,14 @@ namespace A4A
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.MapMvcAttributeRoutes();
+
+            routes.MapRoute(
+                "ProblemView",
+                "{controller}/{action}/{id}",
+                new { Controller = "ProblemController", action = "ViewProblem" }
+            );
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

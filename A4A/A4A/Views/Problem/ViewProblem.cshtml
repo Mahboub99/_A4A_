@@ -1,0 +1,13 @@
+﻿@model A4A.Models.ProblemModel
+
+@{
+    ViewBag.Title = "ViewProblem";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ViewProblem</h2>
+
+@*<iframe src= target="_blank" width= "800" height="905">View Problem</iframe>*@
+<div class="embed-responsive embed-responsive-16by9">
+    <iframe class="embed-responsive-item" src= @Model.ProblemLink></iframe>
+</div>
