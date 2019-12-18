@@ -245,6 +245,7 @@ button,
 select,
 optgroup,
 textarea {
+   
   margin: 0;
   font-family: inherit;
   font-size: inherit;
@@ -303,7 +304,7 @@ input[type="month"] {
 
 textarea {
   overflow: auto;
-  resize: vertical;
+  resize: both;
 }
 
 fieldset {
@@ -2356,6 +2357,7 @@ select.form-control[size], select.form-control[multiple] {
 
 textarea.form-control {
   height: auto;
+  width: auto;
 }
 
 .form-group {

@@ -4,10 +4,26 @@
     ViewBag.Title = "ViewProblem";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+    <style>
+        form textarea {
+            min-width: 60vw !important;
+        }
+    </style>
 
-<h2>ViewProblem</h2>
+    <h2>ViewProblem</h2>
 
-@*<iframe src= target="_blank" width= "800" height="905">View Problem</iframe>*@
-<div class="embed-responsive embed-responsive-16by9">
-    <iframe class="embed-responsive-item" src= @Model.ProblemLink></iframe>
-</div>
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src=@Model.ProblemLink></iframe>
+    </div>
+
+    <br />
+
+    @using (Html.BeginForm("Submit", "Problem", FormMethod.Post))
+    {
+        <form>
+            <div class="form-group">
+                @Html.TextAreaFor(model => model.ProblemCode, htmlAttributes: new { @class = "form-control", @id = "exampleFormControlTextarea1", @rows = "3", @placeholder = "Write your code here...", @name = "Code" })
+            </div>
+            <button type="submit" class="btn btn-primary mb-2" name="Submit">Submit Code</button>
+        </form>
+    }

@@ -3,43 +3,38 @@
 @{
     ViewBag.Title = "ProblemSet";
 }
-
 <h2>ProblemSet</h2>
+<script>$('table').DataTable();</script>
 
-<table class="table">
+<table id="dtBasicExample" class="table table-hover table-bordered " cellspacing="0" width="100%">
     <tr>
-        <th>
+        <th class="th-sm">
             @Html.DisplayNameFor(model => model.ProblemName)
         </th>
-        <th>
+        <th class="th-sm">
             @Html.DisplayNameFor(model => model.ProblemTopic)
         </th>
-        <th>
+        <th class="th-sm">
             @Html.DisplayNameFor(model => model.ProblemDifficulty)
         </th>
-        <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProblemName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProblemTopic)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProblemDifficulty)
-        </td>
-        <td>
-            
-            @*<a href=@item.ProblemLink target="_blank">View</a>*@
-            @Html.ActionLink("View", "ViewProblem", "Problem", new { ProblemLink = item.ProblemLink }, null);
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProblemName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProblemTopic)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProblemDifficulty)
+            </td>
+            <td>
+                @Html.ActionLink("View", "ViewProblem", "Problem", new { ProblemLink = item.ProblemLink }, null)
+            </td>
+        </tr>
+    }
 
 </table>
