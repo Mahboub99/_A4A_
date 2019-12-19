@@ -126,6 +126,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ContestController.cs" />
     <Compile Include="Controllers\ProblemController.cs" />
     <Compile Include="DataAccess\DBController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -133,6 +134,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ContestModel.cs" />
     <Compile Include="Models\ProblemModel.cs" />
     <Compile Include="Models\ProblemSetModel.cs" />
     <Compile Include="Models\SubmissionModel.cs" />
@@ -180,6 +182,10 @@
     <Content Include="Views\Home\GetPdf.cshtml" />
     <Content Include="Views\Problem\ViewProblem.cshtml" />
     <Content Include="Views\Problem\WriteCode.cshtml" />
+    <Content Include="Views\Contest\ViewContests.cshtml" />
+    <Content Include="Views\Contest\ContestProblems.cshtml" />
+    <Content Include="Views\Contest\ViewMyContests.cshtml" />
+    <Content Include="Views\Contest\InsertContest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -198,7 +204,7 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\AutoCodeforces\AutoCodeforces\AutoCodeforces.csproj">
+    <ProjectReference Include="..\..\AutoCodeforces\AutoCodeforces\AutoCodeforces.csproj">
       <Project>{c9948fd2-65f0-468c-8243-84024b0472ca}</Project>
       <Name>AutoCodeforces</Name>
     </ProjectReference>

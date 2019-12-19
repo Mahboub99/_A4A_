@@ -50,18 +50,5 @@ namespace A4A.Controllers
             return View(list);
         }
 
-
-
-        //public ActionResult GetPdf(string fileName = "1A.pdf")
-        //{
-        //    //SqlCommand cmd;
-        //    var fileStream = new FileStream("C:/Users/aashr/source/repos/A4A/codeforces/" + fileName,
-        //                                     FileMode.Open,
-        //                                     FileAccess.Read
-        //                                   );
-        //    //var fsResult = new FileStreamResult(fileStream, "application/pdf");   //what is application/pdf ?
-        //    return View(fileStream);
-        //}
-
     }
 }

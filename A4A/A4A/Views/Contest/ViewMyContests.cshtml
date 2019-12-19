@@ -1,0 +1,62 @@
+﻿@model IEnumerable<A4A.Models.ContestModel>
+
+@{
+    ViewBag.Title = "ViewMyContests";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ViewMyContests</h2>
+
+<p>
+    @Html.ActionLink("Create New", "ViewMyContests")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ContestID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContestName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContestDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContestLength)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContestWriterID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContestWriterName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContestID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContestName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContestDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContestLength)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContestWriterID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContestWriterName)
+        </td>
+        <td>
+            @Html.ActionLink("View", "ContestProblems", "Contest", new { ContestID = item.ContestID }, null)
+        </td>
+    </tr>
+}
+
+</table>
