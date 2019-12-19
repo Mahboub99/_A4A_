@@ -1,0 +1,70 @@
+﻿@model IEnumerable<A4A.Models.SubmissionModel>
+
+@{
+    ViewBag.Title = "ViewSubmission";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ViewSubmission</h2>
+
+<p>
+    @Html.ActionLink("Create New", "ViewSubmission")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            ContestantName
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SubmissionVerdict)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SubmissionMemory)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SubmissionTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SubmissionDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SubmissionLang)
+        </th>
+        <th>
+            ProblemName
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ViewBag.ContestantName
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SubmissionVerdict)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SubmissionMemory)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SubmissionTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SubmissionDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SubmissionLang)
+        </td>
+        <td>
+            @Html.ViewBag.ProblemName
+        </td>
+        @*<td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>*@
+    </tr>
+}
+
+</table>

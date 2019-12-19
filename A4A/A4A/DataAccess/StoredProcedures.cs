@@ -15,5 +15,8 @@ namespace A4A.DataAccess
         public static string InsertContestProblem = "InsertContestProblem";
         public static string SelectContestProblems = "SelectContestProblems";
         public static string LoadMyContests = "LoadMyContests";
+        public static string InsertSubmission = "InsertSubmission";
+        public static string GetSubmissionByID = "GetSubmissionByID";
+        public static string GetProblemNameByID = "GetProblemNameByID";
     }
 }

@@ -134,6 +134,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\UnixTimeConverter.cs" />
     <Compile Include="Models\ContestModel.cs" />
     <Compile Include="Models\ProblemModel.cs" />
     <Compile Include="Models\ProblemSetModel.cs" />
@@ -186,6 +187,7 @@
     <Content Include="Views\Contest\ContestProblems.cshtml" />
     <Content Include="Views\Contest\ViewMyContests.cshtml" />
     <Content Include="Views\Contest\InsertContest.cshtml" />
+    <Content Include="Views\Problem\ViewSubmission.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

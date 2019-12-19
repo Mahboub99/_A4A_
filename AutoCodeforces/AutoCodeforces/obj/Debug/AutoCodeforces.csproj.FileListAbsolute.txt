@@ -1,0 +1,17 @@
+C:\Users\adelr\Desktop\Database Project\A4A\AutoCodeforces\AutoCodeforces\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\adelr\Desktop\Database Project\A4A\AutoCodeforces\AutoCodeforces\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\adelr\Desktop\Database Project\A4A\AutoCodeforces\AutoCodeforces\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\adelr\Desktop\Database Project\A4A\AutoCodeforces\AutoCodeforces\bin\Debug\AutoCodeforces.exe.config
+C:\Users\adelr\Desktop\Database Project\A4A\AutoCodeforces\AutoCodeforces\bin\Debug\AutoCodeforces.exe
+C:\Users\adelr\Desktop\Database Project\A4A\AutoCodeforces\AutoCodeforces\bin\Debug\AutoCodeforces.pdb
+C:\Users\adelr\Desktop\Database Project\A4A\AutoCodeforces\AutoCodeforces\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\Users\adelr\Desktop\Database Project\A4A\AutoCodeforces\AutoCodeforces\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Users\adelr\Desktop\Database Project\A4A\AutoCodeforces\AutoCodeforces\bin\Debug\WebDriver.dll
+C:\Users\adelr\Desktop\Database Project\A4A\AutoCodeforces\AutoCodeforces\bin\Debug\WebDriver.Support.dll
+C:\Users\adelr\Desktop\Database Project\A4A\AutoCodeforces\AutoCodeforces\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+C:\Users\adelr\Desktop\Database Project\A4A\AutoCodeforces\AutoCodeforces\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\Users\adelr\Desktop\Database Project\A4A\AutoCodeforces\AutoCodeforces\bin\Debug\WebDriver.xml
+C:\Users\adelr\Desktop\Database Project\A4A\AutoCodeforces\AutoCodeforces\bin\Debug\WebDriver.Support.xml
+C:\Users\adelr\Desktop\Database Project\A4A\AutoCodeforces\AutoCodeforces\obj\Debug\AutoCodeforces.csprojResolveAssemblyReference.cache
+C:\Users\adelr\Desktop\Database Project\A4A\AutoCodeforces\AutoCodeforces\obj\Debug\AutoCodeforces.exe
+C:\Users\adelr\Desktop\Database Project\A4A\AutoCodeforces\AutoCodeforces\obj\Debug\AutoCodeforces.pdb

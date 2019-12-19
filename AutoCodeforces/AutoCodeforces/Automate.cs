@@ -49,7 +49,7 @@ namespace AutoCodeforces
         }
 
 
-        public string SubmissionJsonFile(string handle = "Adel_Rizq", int ContestID = 1271, int SumbissionCounter = 1)
+        public string SubmissionJsonFile(string handle = "Adel_Rizq", int ContestID = 102, int SumbissionCounter = 1)
         {
             string ApiUrl =
                 string.Format("https://" + "codeforces.com/api/contest.status?contestId={0}&handle={1}&from=1&count={2}", ContestID, handle, SumbissionCounter);
