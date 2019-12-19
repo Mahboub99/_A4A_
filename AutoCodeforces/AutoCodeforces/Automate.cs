@@ -18,7 +18,7 @@ namespace AutoCodeforces
     [TestClass]
     public class Automate
     {
-        IWebDriver chromeDriver = new ChromeDriver();
+        public IWebDriver chromeDriver = new ChromeDriver();
         [TestMethod]
         public void OpenCodeforces(string code, string ProblemID, string handle = "A4A_A4A", 
             string password = "team_A4A", string LangValue = "54")
@@ -55,6 +55,10 @@ namespace AutoCodeforces
                 string.Format("https://" + "codeforces.com/api/contest.status?contestId={0}&handle={1}&from=1&count={2}", ContestID, handle, SumbissionCounter);
             chromeDriver.Navigate().GoToUrl(ApiUrl);
             string s = chromeDriver.FindElement(By.TagName("pre")).Text;
+
+            chromeDriver.Close();
+            chromeDriver.Quit();
+
             return s;
         }
 

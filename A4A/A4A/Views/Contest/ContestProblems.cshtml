@@ -1,0 +1,44 @@
+﻿@model List<A4A.Models.ProblemSetModel>
+
+@{
+    ViewBag.Title = "ContestProblems";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ContestProblems</h2>
+
+<p>
+    @Html.ActionLink("Create New", "ContestProblems")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            ProblemID
+        </th>
+        <th>
+            ProblemLink
+        </th>
+        <th>
+            ProblemCode
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProblemName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProblemTopic)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProblemDifficulty)
+        </td>
+        <td>
+            @Html.ActionLink("View", "ViewProblem", "Problem", new { ProblemLink = item.ProblemLink }, null)
+        </td>
+    </tr>
+}
+
+</table>

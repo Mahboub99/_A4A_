@@ -35,7 +35,6 @@ namespace A4A.Controllers
             public int Rating;
             public string[] Tags;
         }
-
         public class AuthorObject
         {
             public int ContestId;
