@@ -115,5 +115,12 @@ namespace A4A.DataAccess
 
             return dbMan.ExecuteReader(StoredProcedureName, Parameters);
         }
+
+        public DataTable SelectUsers()
+        {
+            string StoredProcedureName = StoredProcedures.ViewAllUsers;
+            return dbMan.ExecuteReader(StoredProcedureName, null);
+
+        }
     }
 }
