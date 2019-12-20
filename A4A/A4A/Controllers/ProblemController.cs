@@ -24,15 +24,49 @@ namespace A4A.Controllers
             {
                 ProblemLink = ProblemLink,
             };
-
-            //Just for Debugging
+            
             //Automate au = new Automate();
-            //ParseAndInsertSubmission(au.SubmissionJsonFile());
-            //return RedirectToAction("ViewSubmission");
-
-
+            //ParseSubmission(au.SubmissionJsonFile());
+                
             return View(Problem);
         }
+
+        public class ProblemObject
+        {
+            public int ContestId;
+            public char Index;
+
+            public string Name;
+            public string Type;
+            public double Points;
+            public int Rating;
+            public string[] Tags;
+        }
+        public class AuthorObject
+        {
+            public int ContestId;
+            public List<MembersHandle> Members = new List<MembersHandle>();
+            public string ParticipateType;
+            public bool Ghost;
+            public int Room;
+            public int StartTimeSeconds;
+        }
+        public class SubmissionObject
+        {
+            public int Id;
+            public int ContestId;
+            public int creationTimeSeconds;
+            public int relativeTimeSeconds;
+            public ProblemObject Problem;
+            public AuthorObject Author;
+            public string ProgrammingLanguage;
+            public string Verdict;
+            public string TestSet;
+            public int PassedTestCount;
+            public int TimeConsumedMillis;
+            public int MemoryConsumedBytes;
+        }
+
 
         public ActionResult ParseAndInsertSubmission(string SubmissionJson)
         {
@@ -84,7 +118,7 @@ namespace A4A.Controllers
                 SubmissionModel Submission = new SubmissionModel();
                 Submission.SubmissionID = Convert.ToInt32(dt.Rows[i]["SubmissionID"]);
 
-                DataTable ContestantName = db.GetUserNameByID(Convert.ToInt32(dt.Rows[i]["ContestantID"]));
+                DataTable ContestantName = db.SelectUserNameByID(Convert.ToInt32(dt.Rows[i]["ContestantID"]));
                 ViewBag.ContestantName = Convert.ToString(ContestantName.Rows[0]["Fname"]) + " " +
                                             Convert.ToString(ContestantName.Rows[0]["Lname"]);
 

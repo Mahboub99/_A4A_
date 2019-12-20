@@ -37,7 +37,7 @@ namespace A4A.Controllers
             DBController dbController = new DBController();
             DataTable dt = dbController.SelectProblems();
             List<ProblemSetModel> list = new List<ProblemSetModel>();
-            for(int i=0; i<dt.Rows.Count; ++i)
+            for (int i = 0; i < dt.Rows.Count; ++i)
             {
                 ProblemSetModel problem = new ProblemSetModel();
                 problem.ProblemName = Convert.ToString(dt.Rows[i]["ProblemName"]);
@@ -49,26 +49,4 @@ namespace A4A.Controllers
 
             return View(list);
         }
-
-
-        //public ActionResult ViewAllUsers()
-        //{
-        //    DBController dbController = new DBController();
-        //    DataTable dt = dbController.SelectUsers();
-
-        //    List<UsersModel> list = new List<UsersModel>();
-        //    for (int i = 0; i < dt.Rows.Count; ++i)
-        //    {
-        //        UsersModel User = new UsersModel();
-
-        //        User.FName = Convert.ToString(dt.Rows[i]["Fname"]);
-        //        User.LName = Convert.ToString(dt.Rows[i]["Lname"]);
-
-        //        User.Rating = int.Parse(Convert.ToString(dt.Rows[i]["Rating"]));
-        //        list.Add(User);
-        //    }
-
-        //    return View(list);
-        //}
     }
-}
