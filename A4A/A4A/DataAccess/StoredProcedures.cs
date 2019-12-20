@@ -28,5 +28,8 @@ namespace A4A.DataAccess
         public static string InsertGroup = "InsertGroup";
         public static string CountGroups = "CountGroups";
 
+        public static string InsertSubmission = "InsertSubmission";
+        public static string GetSubmissionByID = "GetSubmissionByID";
+        public static string GetProblemNameByID = "GetProblemNameByID";
     }
 }

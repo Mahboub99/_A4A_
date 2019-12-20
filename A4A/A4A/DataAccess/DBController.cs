@@ -93,6 +93,45 @@ namespace A4A.DataAccess
             string StoredProcedureName = StoredProcedures.LoadContests;
             return dbMan.ExecuteReader(StoredProcedureName, null);
         }
+        public int InsertSubmission(SubmissionModel SM)
+        {
+            string StoredProcedureName = StoredProcedures.InsertSubmission;
+
+            Dictionary<string, object> Parameters = new Dictionary<string, object>();
+            Parameters.Add("@SubmissionID", SM.SubmissionID);
+            Parameters.Add("@ContestantID", SM.ContestantID);
+            Parameters.Add("@SubmissionVerdict", SM.SubmissionVerdict);
+            Parameters.Add("@SubmissionMemory", SM.SubmissionMemory);
+            Parameters.Add("@SubmissionTime", SM.SubmissionTime);
+            Parameters.Add("@SubmissionDate", SM.SubmissionDate);
+            Parameters.Add("@SubmissionLang", SM.SubmissionLang);
+            Parameters.Add("@ProblemID", SM.ProblemID);
+
+
+            return dbMan.ExecuteNonQuery(StoredProcedureName, Parameters);
+        }
+
+        public DataTable GetSubmissionByID(int SubmissionID)
+        {
+            string StoredProcedureName = StoredProcedures.GetSubmissionByID;
+
+            Dictionary<string, object> Parameters = new Dictionary<string, object>();
+            Parameters.Add("@SubmissionID", SubmissionID);
+
+            return dbMan.ExecuteReader(StoredProcedureName, Parameters);
+        }
+
+        public string GetProblemNameByID(string ProblemID)
+        {
+            string StoredProcedureName = StoredProcedures.GetProblemNameByID;
+
+            Dictionary<string, object> Parameters = new Dictionary<string, object>();
+            Parameters.Add("@ProblemID", ProblemID);
+
+            return Convert.ToString(dbMan.ExecuteScalar(StoredProcedureName, Parameters));
+        }
+
+
         public DataTable SelectMyContests(int UserID)
         {
             string StoredProcedureName = StoredProcedures.LoadMyContests;

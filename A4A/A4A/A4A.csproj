@@ -137,6 +137,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModel.cs" />
+    <Compile Include="Helpers\UnixTimeConverter.cs" />
     <Compile Include="Models\ContestModel.cs" />
     <Compile Include="Models\GroupModel.cs" />
     <Compile Include="Models\ProblemModel.cs" />
@@ -196,6 +197,7 @@
     <Content Include="Views\Group\ViewAllGroups.cshtml" />
     <Content Include="Views\Group\ViewMyGroups.cshtml" />
     <Content Include="Views\Group\CreateGroup.cshtml" />
+    <Content Include="Views\Problem\ViewSubmission.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
