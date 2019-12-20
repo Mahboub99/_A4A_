@@ -67,14 +67,6 @@ namespace A4A.Controllers
             public int MemoryConsumedBytes;
         }
 
-            //Just for Debugging
-            //Automate au = new Automate();
-            //ParseAndInsertSubmission(au.SubmissionJsonFile());
-            //return RedirectToAction("ViewSubmission");
-
-
-            return View(Problem);
-        }
 
         public ActionResult ParseAndInsertSubmission(string SubmissionJson)
         {
@@ -126,7 +118,7 @@ namespace A4A.Controllers
                 SubmissionModel Submission = new SubmissionModel();
                 Submission.SubmissionID = Convert.ToInt32(dt.Rows[i]["SubmissionID"]);
 
-                DataTable ContestantName = db.GetUserNameByID(Convert.ToInt32(dt.Rows[i]["ContestantID"]));
+                DataTable ContestantName = db.SelectUserNameByID(Convert.ToInt32(dt.Rows[i]["ContestantID"]));
                 ViewBag.ContestantName = Convert.ToString(ContestantName.Rows[0]["Fname"]) + " " +
                                             Convert.ToString(ContestantName.Rows[0]["Lname"]);
 
