@@ -22,17 +22,6 @@ namespace A4A.DataAccess
             dbMan.CloseConnection();
         }
 
-        public DataTable SelectProblems()
-        {
-            string StoredProcedureName = StoredProcedures.LoadProblems;
-            return dbMan.ExecuteReader(StoredProcedureName, null);
-        }
-        public DataTable SelectContests()
-        {
-            string StoredProcedureName = StoredProcedures.LoadContests;
-            return dbMan.ExecuteReader(StoredProcedureName, null);
-        }
-
         public int InsertContest(ContestModel CM)
         {
             string StoredProcedureName = StoredProcedures.InsertContest;
@@ -65,26 +54,25 @@ namespace A4A.DataAccess
             return dbMan.ExecuteNonQuery(StoredProcedureName, Parameters);
         }
 
-        public DataTable GetSubmissionByID(int SubmissionID)
+
+        public DataTable SelectUsers()
         {
-            string StoredProcedureName = StoredProcedures.GetSubmissionByID;
+            string StoredProcedureName = StoredProcedures.ViewAllUsers;
+            return dbMan.ExecuteReader(StoredProcedureName, null);
 
-            Dictionary<string, object> Parameters = new Dictionary<string, object>();
-            Parameters.Add("@SubmissionID", SubmissionID);
-
-            return dbMan.ExecuteReader(StoredProcedureName, Parameters);
         }
 
-        public string GetProblemNameByID(string ProblemID)
+        public DataTable SelectProblems()
         {
-            string StoredProcedureName = StoredProcedures.GetProblemNameByID;
-
-            Dictionary<string, object> Parameters = new Dictionary<string, object>();
-            Parameters.Add("@ProblemID", ProblemID);
-
-            return Convert.ToString(dbMan.ExecuteScalar(StoredProcedureName, Parameters));
+            string StoredProcedureName = StoredProcedures.LoadProblems;
+            return dbMan.ExecuteReader(StoredProcedureName, null);
         }
 
+        public DataTable SelectContests()
+        {
+            string StoredProcedureName = StoredProcedures.LoadContests;
+            return dbMan.ExecuteReader(StoredProcedureName, null);
+        }
 
         public DataTable SelectMyContests(int UserID)
         {
@@ -106,6 +94,27 @@ namespace A4A.DataAccess
             return dbMan.ExecuteReader(StoredProcedureName, Parameters);
         }
 
+
+        public DataTable GetSubmissionByID(int SubmissionID)
+        {
+            string StoredProcedureName = StoredProcedures.GetSubmissionByID;
+
+            Dictionary<string, object> Parameters = new Dictionary<string, object>();
+            Parameters.Add("@SubmissionID", SubmissionID);
+
+            return dbMan.ExecuteReader(StoredProcedureName, Parameters);
+        }
+
+        public string GetProblemNameByID(string ProblemID)
+        {
+            string StoredProcedureName = StoredProcedures.GetProblemNameByID;
+
+            Dictionary<string, object> Parameters = new Dictionary<string, object>();
+            Parameters.Add("@ProblemID", ProblemID);
+
+            return Convert.ToString(dbMan.ExecuteScalar(StoredProcedureName, Parameters));
+        }
+
         public DataTable GetUserNameByID(int id)
         {
             string StoredProcedureName = StoredProcedures.GetUserNameByID;
@@ -114,13 +123,6 @@ namespace A4A.DataAccess
             Parameters.Add("@UserID", id);
 
             return dbMan.ExecuteReader(StoredProcedureName, Parameters);
-        }
-
-        public DataTable SelectUsers()
-        {
-            string StoredProcedureName = StoredProcedures.ViewAllUsers;
-            return dbMan.ExecuteReader(StoredProcedureName, null);
-
         }
     }
 }
