@@ -120,18 +120,6 @@ namespace A4A.DataAccess
 
         }
 
-        public DataTable SelectProblems()
-        {
-            string StoredProcedureName = StoredProcedures.LoadProblems;
-            return dbMan.ExecuteReader(StoredProcedureName, null);
-        }
-
-        public DataTable SelectContests()
-        {
-            string StoredProcedureName = StoredProcedures.LoadContests;
-            return dbMan.ExecuteReader(StoredProcedureName, null);
-        }
-
         public DataTable SelectMyContests(int UserID)
         {
             string StoredProcedureName = StoredProcedures.LoadMyContests;
@@ -179,14 +167,9 @@ namespace A4A.DataAccess
             return Convert.ToString(dbMan.ExecuteScalar(StoredProcedureName, Parameters));
         }
 
-        public DataTable SelectUsers()
-        {
-            string StoredProcedureName = StoredProcedures.ViewAllUsers;
-            return dbMan.ExecuteReader(StoredProcedureName, null);
-        }
         public DataTable SelectUser(int id)
         {
-            string StoredProcedureName = StoredProcedures.Select_User;
+            string StoredProcedureName = StoredProcedures.Select_User_By_ID;
 
             Dictionary<string, object> Parameters = new Dictionary<string, object>();
             Parameters.Add("@UserID", id);
@@ -204,7 +187,7 @@ namespace A4A.DataAccess
             string StoredProcedureName = StoredProcedures.LoadGroupsOfUser;
 
             Dictionary<string, object> Parameters = new Dictionary<string, object>();
-            Parameters.Add("@AdminID", ID);
+            Parameters.Add("@UserID", ID);
 
             return dbMan.ExecuteReader(StoredProcedureName, Parameters);
         }
