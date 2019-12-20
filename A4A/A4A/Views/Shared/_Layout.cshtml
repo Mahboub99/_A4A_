@@ -19,7 +19,7 @@
                     @Html.ActionLink("Home", "Index", "Home")
                 </li>
                 <li class="nav-item active nav-link">
-                    @Html.ActionLink("Users", "ViewAllUsers", "Home")
+                    @Html.ActionLink("Users", "ViewAllUsers", "User")
                 </li>
                 <li class="nav-item nav-link">
                     @Html.ActionLink("Problem Set", "ProblemSet", "Home")
@@ -28,10 +28,19 @@
                     @Html.ActionLink("Contest", "ViewContests", "Contest")
                 </li>
                 <li class="nav-item nav-link">
+                    @Html.ActionLink("Group", "ViewAllGroups", "Group")
+                </li>
+                <li class="nav-item nav-link">
                     @Html.ActionLink("About", "About", "Home")
                 </li>
                 <li class="nav-item nav-link">
                     @Html.ActionLink("Contact", "Contact", "Home")
+                </li>
+                <li class="nav-item nav-link" style= "margin-left:800px">
+                    @Html.ActionLink("Login", "Login", "User")
+                </li>
+                <li class="nav-item nav-link">
+                    @Html.ActionLink("Register", "CreateUser", "User")
                 </li>
             </ul>
         </div>

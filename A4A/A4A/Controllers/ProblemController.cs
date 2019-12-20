@@ -19,8 +19,9 @@ namespace A4A.Controllers
             {
                 ProblemLink = ProblemLink,
             };
-            Automate au = new Automate();
-            ParseSubmission(au.SubmissionJsonFile());
+            
+            //Automate au = new Automate();
+            //ParseSubmission(au.SubmissionJsonFile());
                 
             return View(Problem);
         }
@@ -29,6 +30,7 @@ namespace A4A.Controllers
         {
             public int ContestId;
             public char Index;
+
             public string Name;
             public string Type;
             public double Points;

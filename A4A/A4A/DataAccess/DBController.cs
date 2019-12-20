@@ -22,17 +22,32 @@ namespace A4A.DataAccess
             dbMan.CloseConnection();
         }
 
-        public DataTable SelectProblems()
+        public int InsertUser(AccountModel AM)
         {
-            string StoredProcedureName = StoredProcedures.LoadProblems;
-            return dbMan.ExecuteReader(StoredProcedureName, null);
-        }
-        public DataTable SelectContests()
-        {
-            string StoredProcedureName = StoredProcedures.LoadContests;
-            return dbMan.ExecuteReader(StoredProcedureName, null);
-        }
+            string StoredProcedureName = StoredProcedures.Insert_User;
 
+            Dictionary<string, object> Parameters = new Dictionary<string, object>();
+            Parameters.Add("@UserID", AM.ID);
+            Parameters.Add("@Fname", AM.Fname);
+            Parameters.Add("@Lname", AM.Lname);
+            Parameters.Add("@Email", AM.Email);
+            Parameters.Add("@Rating", AM.Rating);
+            Parameters.Add("@Password", AM.Password);
+            Parameters.Add("@Type", AM.Type);
+
+            return dbMan.ExecuteNonQuery(StoredProcedureName, Parameters);
+        }
+        public int InsertGroup(GroupModel GM)
+        {
+            string StoredProcedureName = StoredProcedures.InsertGroup;
+
+            Dictionary<string, object> Parameters = new Dictionary<string, object>();
+            Parameters.Add("@GroupID", GM.GroupID);
+            Parameters.Add("@GroupName", GM.GroupName);
+            Parameters.Add("@AdminID", GM.AdminID);
+
+            return dbMan.ExecuteNonQuery(StoredProcedureName, Parameters);
+        }
         public int InsertContest(ContestModel CM)
         {
             string StoredProcedureName = StoredProcedures.InsertContest;
@@ -47,6 +62,37 @@ namespace A4A.DataAccess
             return dbMan.ExecuteNonQuery(StoredProcedureName, Parameters);
         }
 
+        public int Count_Users()
+        {
+            string StoredProcedureName = StoredProcedures.Count_Users;
+            return Convert.ToInt32(dbMan.ExecuteScalar(StoredProcedureName, null));
+        }
+        public int CountGroups()
+        {
+            string StoredProcedureName = StoredProcedures.CountGroups;
+            return Convert.ToInt32(dbMan.ExecuteScalar(StoredProcedureName, null));
+        }
+
+        public int Select_User_ID(string Email, string Password)
+        {
+            string StoredProcedureName = StoredProcedures.Check_Email_And_Password;
+
+            Dictionary<string, object> Parameters = new Dictionary<string, object>();
+            Parameters.Add("@Email", Email);
+            Parameters.Add("@Password", Password);
+
+            return Convert.ToInt32(dbMan.ExecuteScalar(StoredProcedureName, Parameters));
+        }
+        public DataTable SelectProblems()
+        {
+            string StoredProcedureName = StoredProcedures.LoadProblems;
+            return dbMan.ExecuteReader(StoredProcedureName, null);
+        }
+        public DataTable SelectContests()
+        {
+            string StoredProcedureName = StoredProcedures.LoadContests;
+            return dbMan.ExecuteReader(StoredProcedureName, null);
+        }
         public DataTable SelectMyContests(int UserID)
         {
             string StoredProcedureName = StoredProcedures.LoadMyContests;
@@ -56,7 +102,6 @@ namespace A4A.DataAccess
 
             return dbMan.ExecuteReader(StoredProcedureName, Parameters);
         }
-
         public DataTable SelectContestProblems(int ContestID)
         {
             string StoredProcedureName = StoredProcedures.SelectContestProblems;
@@ -66,22 +111,43 @@ namespace A4A.DataAccess
 
             return dbMan.ExecuteReader(StoredProcedureName, Parameters);
         }
-
-        public DataTable GetUserNameByID(int id)
+        public DataTable SelectUserNameByID(int id)
         {
-            string StoredProcedureName = StoredProcedures.GetUserNameByID;
+            string StoredProcedureName = StoredProcedures.SelectUserNameByID;
 
             Dictionary<string, object> Parameters = new Dictionary<string, object>();
             Parameters.Add("@UserID", id);
 
             return dbMan.ExecuteReader(StoredProcedureName, Parameters);
         }
-
         public DataTable SelectUsers()
         {
             string StoredProcedureName = StoredProcedures.ViewAllUsers;
             return dbMan.ExecuteReader(StoredProcedureName, null);
+        }
+        public DataTable SelectUser(int id)
+        {
+            string StoredProcedureName = StoredProcedures.Select_User;
 
+            Dictionary<string, object> Parameters = new Dictionary<string, object>();
+            Parameters.Add("@UserID", id);
+
+            return dbMan.ExecuteReader(StoredProcedureName, Parameters);
+
+        }
+        public DataTable SelectAllGroups()
+        {
+            string StoredProcedureName = StoredProcedures.LoadGroups;
+            return dbMan.ExecuteReader(StoredProcedureName, null);
+        }
+        public DataTable SelectMyGroups(int ID)
+        {
+            string StoredProcedureName = StoredProcedures.LoadGroupsOfUser;
+
+            Dictionary<string, object> Parameters = new Dictionary<string, object>();
+            Parameters.Add("@AdminID", ID);
+
+            return dbMan.ExecuteReader(StoredProcedureName, Parameters);
         }
     }
 }

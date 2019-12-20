@@ -1,0 +1,60 @@
+﻿@model A4A.Models.AccountModel
+
+@{
+    ViewBag.Title = "ViewUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ViewUser</h2>
+
+<div>
+    <h4>AccountModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fname) 
+            @Html.DisplayFor(model => model.Lname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rating)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rating)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Solved)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Solved)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Binding)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Binding)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "ViewAllUsers")
+</p>

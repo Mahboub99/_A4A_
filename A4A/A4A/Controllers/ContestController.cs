@@ -26,7 +26,7 @@ namespace A4A.Controllers
                 Contest.ContestLength = int.Parse(Convert.ToString(dt.Rows[i]["ContestLength"]));
 
                 Contest.ContestWriterID = int.Parse(Convert.ToString(dt.Rows[i]["ContestWriter"]));
-                DataTable WriterName = dbController.GetUserNameByID(Contest.ContestWriterID);
+                DataTable WriterName = dbController.SelectUserNameByID(Contest.ContestWriterID);
                 Contest.ContestWriterName = Convert.ToString(WriterName.Rows[0]["Fname"]) + " " +
                                             Convert.ToString(WriterName.Rows[0]["Lname"]);
 
@@ -51,7 +51,7 @@ namespace A4A.Controllers
                 Contest.ContestLength = int.Parse(Convert.ToString(dt.Rows[i]["ContestLength"]));
 
                 Contest.ContestWriterID = int.Parse(Convert.ToString(dt.Rows[i]["ContestWriter"]));
-                DataTable WriterName = dbController.GetUserNameByID(Contest.ContestWriterID);
+                DataTable WriterName = dbController.SelectUserNameByID(Contest.ContestWriterID);
                 Contest.ContestWriterName = Convert.ToString(WriterName.Rows[0]["Fname"]) + " " +
                                             Convert.ToString(WriterName.Rows[0]["Lname"]);
 
