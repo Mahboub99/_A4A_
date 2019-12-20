@@ -9,8 +9,8 @@ namespace A4A.DataAccess
     class StoredProcedures
     {
         public static string SelectUserNameByID = "SelectUserNameByID";
-        public static string ViewAllUsers = "SelectAll_Users";
-        public static string Select_User = "Select_User";
+        public static string ViewAllUsers = "Select_All_Users";
+        public static string Select_User = "Select_User_By_ID";
         public static string Insert_User = "Insert_User";
         public static string Count_Users = "Count_Users";
         public static string Check_Email_And_Password = "Check_Email_And_Password";

@@ -113,24 +113,7 @@ namespace A4A.DataAccess
         }
 
 
-        public DataTable SelectUsers()
-        {
-            string StoredProcedureName = StoredProcedures.ViewAllUsers;
-            return dbMan.ExecuteReader(StoredProcedureName, null);
-
-        }
-
-        public DataTable SelectProblems()
-        {
-            string StoredProcedureName = StoredProcedures.LoadProblems;
-            return dbMan.ExecuteReader(StoredProcedureName, null);
-        }
-
-        public DataTable SelectContests()
-        {
-            string StoredProcedureName = StoredProcedures.LoadContests;
-            return dbMan.ExecuteReader(StoredProcedureName, null);
-        }
+      
 
         public DataTable SelectMyContests(int UserID)
         {
