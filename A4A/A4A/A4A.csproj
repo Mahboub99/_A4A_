@@ -128,7 +128,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ContestController.cs" />
     <Compile Include="Controllers\GroupController.cs" />
+    <Compile Include="Controllers\OrgController.cs" />
     <Compile Include="Controllers\ProblemController.cs" />
+    <Compile Include="Controllers\TeamController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DataAccess\DBController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -140,9 +142,11 @@
     <Compile Include="Helpers\UnixTimeConverter.cs" />
     <Compile Include="Models\ContestModel.cs" />
     <Compile Include="Models\GroupModel.cs" />
+    <Compile Include="Models\OrgModel.cs" />
     <Compile Include="Models\ProblemModel.cs" />
     <Compile Include="Models\ProblemSetModel.cs" />
     <Compile Include="Models\SubmissionModel.cs" />
+    <Compile Include="Models\TeamModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DataAccess\StoredProcedures.cs" />
   </ItemGroup>
@@ -198,6 +202,12 @@
     <Content Include="Views\Group\ViewMyGroups.cshtml" />
     <Content Include="Views\Group\CreateGroup.cshtml" />
     <Content Include="Views\Problem\ViewSubmission.cshtml" />
+    <Content Include="Views\Org\CreateOrg.cshtml" />
+    <Content Include="Views\Org\ViewAllOrgs.cshtml" />
+    <Content Include="Views\Org\ViewGroupOrgs.cshtml" />
+    <Content Include="Views\Team\CreateTeam.cshtml" />
+    <Content Include="Views\Team\ViewAllTeams.cshtml" />
+    <Content Include="Views\Team\ViewGroupTeams.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

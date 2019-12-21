@@ -21,15 +21,32 @@ namespace A4A.DataAccess
         public static string LoadContests = "SelectAllOfContests";
         public static string InsertContestProblem = "InsertContestProblem";
         public static string SelectContestProblems = "SelectContestProblems";
+        public static string Count_Contests = "CountContests";
         public static string LoadMyContests = "LoadMyContests";
 
         public static string LoadGroups = "SelectAllOfGroups"; 
         public static string LoadGroupsOfUser = "SelectAllOfGroupsOfUser";
         public static string InsertGroup = "InsertGroup";
-        public static string CountGroups = "CountGroups";
+        public static string Count_OrgsCountGroups = "CountGroups";
+        public static string Count_Groups = "CountGroups";
 
         public static string InsertSubmission = "InsertSubmission";
         public static string GetSubmissionByID = "GetSubmissionByID";
         public static string GetProblemNameByID = "GetProblemNameByID";
+        public static string Count_Submissions = "CountSubmissions";
+
+        public static string InsertOrg = "InsertOrg";
+        public static string Select_All_Orgs = "Select_All_Orgs";
+        public static string Select_Orgs_of_Group = "Select_Orgs_of_Group";
+        public static string InsertOrgGroups = "InsertOrgGroups";
+        public static string Count_Orgs = "CountOrgs";
+
+        public static string InsertTeam = "InsertTeam";
+        public static string Select_All_Teams = "Select_All_Teams";
+        public static string Select_Teams_of_Member = "Select_Teams_of_Member";
+        public static string InsertTeamMembers = "InsertTeamMembers";
+        public static string Count_Teams = "CountTeams";
+
+
     }
 }

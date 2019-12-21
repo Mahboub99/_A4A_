@@ -70,7 +70,7 @@ namespace A4A.DataAccess
         }
         public int CountGroups()
         {
-            string StoredProcedureName = StoredProcedures.CountGroups;
+            string StoredProcedureName = StoredProcedures.Count_Groups;
             return Convert.ToInt32(dbMan.ExecuteScalar(StoredProcedureName, null));
         }
 
@@ -190,6 +190,99 @@ namespace A4A.DataAccess
             Parameters.Add("@AdminID", ID);
 
             return dbMan.ExecuteReader(StoredProcedureName, Parameters);
+        }
+
+        public int InsertOrg(OrgModel OM)
+        {
+            string StoredProcedureName = StoredProcedures.InsertOrg;
+
+            Dictionary<string, object> Parameters = new Dictionary<string, object>();
+            Parameters.Add("@OrgID", OM.OrgID);
+            Parameters.Add("@OrgName", OM.OrgName);
+            Parameters.Add("@AdminID", OM.AdminID);
+
+            return dbMan.ExecuteNonQuery(StoredProcedureName, Parameters);
+        }
+        public DataTable SelectOrgs()
+        {
+            string StoredProcedureName = StoredProcedures.Select_All_Orgs;
+            return dbMan.ExecuteReader(StoredProcedureName, null);
+        }
+        public DataTable Select_Orgs_of_Group(int GroupID)
+        {
+            string StoredProcedureName = StoredProcedures.Select_Orgs_of_Group;
+
+            Dictionary<string, object> Parameters = new Dictionary<string, object>();
+            Parameters.Add("@GroupID", GroupID);
+
+            return dbMan.ExecuteReader(StoredProcedureName, Parameters);
+        }
+        public int InsertOrgGroups(int OrgID, int GroupID)
+        {
+            string StoredProcedureName = StoredProcedures.InsertOrgGroups;
+
+            Dictionary<string, object> Parameters = new Dictionary<string, object>();
+            Parameters.Add("@OrgID", OrgID);
+            Parameters.Add("@GroupID", GroupID);
+
+            return dbMan.ExecuteNonQuery(StoredProcedureName, Parameters);
+        }
+
+        public int InsertTeam(TeamModel TM)
+        {
+            string StoredProcedureName = StoredProcedures.InsertTeam;
+
+            Dictionary<string, object> Parameters = new Dictionary<string, object>();
+            Parameters.Add("@TeamID", TM.TeamID);
+            Parameters.Add("@TeamName", TM.TeamName);
+            Parameters.Add("@LeaderID", TM.LeaderID);
+
+            return dbMan.ExecuteNonQuery(StoredProcedureName, Parameters);
+        }
+        public DataTable SelectTeams()
+        {
+            string StoredProcedureName = StoredProcedures.Select_All_Teams;
+            return dbMan.ExecuteReader(StoredProcedureName, null);
+        }
+        public DataTable Select_Teams_of_Member(int MemberID)
+        {
+            string StoredProcedureName = StoredProcedures.Select_Teams_of_Member;
+
+            Dictionary<string, object> Parameters = new Dictionary<string, object>();
+            Parameters.Add("@MemberID", MemberID);
+
+            return dbMan.ExecuteReader(StoredProcedureName, Parameters);
+        }
+        public int InsertTeamMembers(int TeamID, int MemberID)
+        {
+            string StoredProcedureName = StoredProcedures.InsertTeamMembers;
+
+            Dictionary<string, object> Parameters = new Dictionary<string, object>();
+            Parameters.Add("@TeamID", TeamID);
+            Parameters.Add("@MemberID", MemberID);
+
+            return dbMan.ExecuteNonQuery(StoredProcedureName, Parameters);
+        }
+
+        public int Count_Contests()
+        {
+            string StoredProcedureName = StoredProcedures.Count_Contests;
+            return Convert.ToInt32(dbMan.ExecuteScalar(StoredProcedureName, null));
+        }
+        public int Count_Orgs()
+        {
+            string StoredProcedureName = StoredProcedures.Count_Orgs;
+            return Convert.ToInt32(dbMan.ExecuteScalar(StoredProcedureName, null));
+        }
+        public int Count_Teams()
+        {
+            string StoredProcedureName = StoredProcedures.Count_Teams;
+            return Convert.ToInt32(dbMan.ExecuteScalar(StoredProcedureName, null));
+        }
+        public int Count_Submissions()
+        {
+            string StoredProcedureName = StoredProcedures.Count_Submissions;
+            return Convert.ToInt32(dbMan.ExecuteScalar(StoredProcedureName, null));
         }
     }
 }

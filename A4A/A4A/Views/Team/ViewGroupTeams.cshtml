@@ -1,0 +1,34 @@
+﻿@model IEnumerable<A4A.Models.TeamModel>
+
+@{
+    ViewBag.Title = "ViewGroupTeams";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ViewGroupTeams</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreateTeam")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TeamName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TeamName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>
