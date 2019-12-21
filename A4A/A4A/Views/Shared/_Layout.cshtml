@@ -7,7 +7,7 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body>
+<body style="padding-top: unset; padding-bottom:  unset">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand">@Html.ActionLink("A4A", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -16,22 +16,22 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item active nav-link">
-                    @Html.ActionLink("Home", "Index", "Home")
+                    @Html.ActionLink("HOME", "Index", "Home")
                 </li>
                 <li class="nav-item active nav-link">
-                    @Html.ActionLink("User", "ViewAllUsers", "User")
+                    @Html.ActionLink("USER", "ViewAllUsers", "User")
                 </li>
                 <li class="nav-item nav-link">
-                    @Html.ActionLink("Problem Set", "ProblemSet", "Home")
+                    @Html.ActionLink("PROBLEMSET", "ProblemSet", "Home")
                 </li>
                 <li class="nav-item nav-link">
-                    @Html.ActionLink("Contest", "ViewContests", "Contest")
+                    @Html.ActionLink("CONTEST", "ViewContests", "Contest")
                 </li>
                 <li class="nav-item nav-link">
-                    @Html.ActionLink("Group", "ViewAllGroups", "Group")
+                    @Html.ActionLink("GROUP", "ViewAllGroups", "Group")
                 </li>
                 <li class="nav-item nav-link">
-                    @Html.ActionLink("Org", "ViewAllOrgs", "Org")
+                    @Html.ActionLink("ORGANIZATION", "ViewAllOrgs", "Org")
                 </li>
                 <li class="nav-item nav-link">
                     @Html.ActionLink("Team", "ViewAllTeams", "Team")
@@ -42,7 +42,7 @@
                 <li class="nav-item nav-link">
                     @Html.ActionLink("Contact", "Contact", "Home")
                 </li>
-                <li class="nav-item nav-link" style= "margin-left:500px">
+                <li class="nav-item nav-link" style= "margin-left:320px">
                     @Html.ActionLink("Login", "Login", "User")
                 </li>
                 <li class="nav-item nav-link">

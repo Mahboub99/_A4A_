@@ -2,10 +2,31 @@
 
 @{
     ViewBag.Title = "InsertContest";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    if (ViewBag.ID == 0 || ViewBag.ID == null)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/User_LayoutPage1.cshtml";
+    }
+    string UserName = ViewBag.UserName;
+    int id = 0;
+    int.TryParse(Convert.ToString(ViewBag.ID), out id);
 }
 
 <h2>InsertContest</h2>
+<tr>
+    <th>
+        @Html.ActionLink("Contests", "ViewContests", new { id, UserName })
+    </th>
+    <th>
+        @Html.ActionLink("MyContests", "ViewMyContests", new { id, UserName })
+    </th>
+    <th>
+        @Html.ActionLink("Create Contest", "InsertContest", new { id, UserName })
+    </th>
+</tr>
 
 
 @using (Html.BeginForm()) 
@@ -66,7 +87,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </div>
     </div>

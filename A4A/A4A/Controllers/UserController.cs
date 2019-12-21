@@ -31,8 +31,10 @@ namespace A4A.Controllers
                 User.Rating = int.Parse(Convert.ToString(dt.Rows[i]["Rating"]));
                 list.Add(User);
             }
+
             return View(list);
         }
+
         public ActionResult ViewUser(int ID)
         {
             DBController dbController = new DBController();
@@ -51,6 +53,7 @@ namespace A4A.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public ActionResult CreateUser(AccountModel accountModel)
         {
@@ -78,6 +81,7 @@ namespace A4A.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public ActionResult Login(string Email, string Password)
         {
@@ -94,9 +98,14 @@ namespace A4A.Controllers
                 //view of user (home page)
                 DataRow dr = db.SelectUserNameByID(id).Rows[0];
                 string UserName = Convert.ToString(dr["Fname"]) + Convert.ToString(dr["Lname"]);
-                return RedirectToAction("Index", "Home", new { UserName = UserName, id = id });
+                return RedirectToAction("Index", "Home", new {UserName = UserName, id = id});
             }
         }
 
+        public ActionResult Logout()
+        {
+            ViewBag.ID = 0;
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

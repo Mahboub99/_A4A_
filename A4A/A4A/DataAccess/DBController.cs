@@ -187,7 +187,7 @@ namespace A4A.DataAccess
             string StoredProcedureName = StoredProcedures.LoadGroupsOfUser;
 
             Dictionary<string, object> Parameters = new Dictionary<string, object>();
-            Parameters.Add("@AdminID", ID);
+            Parameters.Add("@UserID", ID);
 
             return dbMan.ExecuteReader(StoredProcedureName, Parameters);
         }
@@ -282,6 +282,12 @@ namespace A4A.DataAccess
         public int Count_Submissions()
         {
             string StoredProcedureName = StoredProcedures.Count_Submissions;
+            return Convert.ToInt32(dbMan.ExecuteScalar(StoredProcedureName, null));
+        }
+
+        public int Select_Id_by_Email(string email)
+        {
+            string StoredProcedureName = StoredProcedures.Select_Id_by_Email;
             return Convert.ToInt32(dbMan.ExecuteScalar(StoredProcedureName, null));
         }
     }

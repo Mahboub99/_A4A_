@@ -10,5 +10,6 @@ namespace A4A.Models
         public int TeamID { get; set; }
         public string TeamName { get; set; }
         public int LeaderID { get; set; }
+        public string[] TeamMembers = new string[3];
     }
 }

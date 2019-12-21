@@ -1,19 +1,44 @@
-﻿@model IEnumerable<A4A.Models.TeamModel>
+﻿@using System.Data
+@using A4A.DataAccess
+@model IEnumerable<A4A.Models.TeamModel>
 
 @{
     ViewBag.Title = "ViewAllTeams";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    if (ViewBag.ID == 0 || ViewBag.ID == null)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/User_LayoutPage1.cshtml";
+    }
+    string UserName = ViewBag.UserName;
+    int id = 0;
+    int.TryParse(Convert.ToString(ViewBag.ID), out id);
 }
 
-<h2>ViewAllTeams</h2>
-
+<h2>Teams</h2>
+<tr>
+    <th>
+        @Html.ActionLink("Teams", "ViewAllTeams", new { id, UserName })
+    </th>
+    <th>
+        @Html.ActionLink("My Teams", "ViewGroupTeams", new { id, UserName })
+    </th>
+    <th>
+        @Html.ActionLink("Create Team", "CreateTeam", new { id, UserName })
+    </th>
+</tr>
 <p>
     @Html.ActionLink("Create New", "CreateTeam")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.TeamName)
+            <p>Team Name</p>
+        </th>
+        <th>
+            <p>Team Leader</p>
         </th>
         <th></th>
     </tr>
@@ -24,10 +49,20 @@
             @Html.DisplayFor(modelItem => item.TeamName)
         </td>
         <td>
+            @{
+                DBController db = new DBController();
+                DataTable dt = db.SelectUserNameByID(Convert.ToInt32(item.LeaderID));
+                UserName = Convert.ToString(dt.Rows[0]["Fname"]) + Convert.ToString(dt.Rows[0]["Lname"]);
+                @Html.DisplayFor(modelItem => UserName);
+            }
+            
+        </td>
+
+        @*<td>
             @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
             @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
             @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
+        </td>*@
     </tr>
 }
 

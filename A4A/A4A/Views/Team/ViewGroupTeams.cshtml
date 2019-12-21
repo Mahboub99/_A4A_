@@ -2,11 +2,31 @@
 
 @{
     ViewBag.Title = "ViewGroupTeams";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    if (ViewBag.ID == 0 || ViewBag.ID == null)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/User_LayoutPage1.cshtml";
+    }
+    string UserName = ViewBag.UserName;
+    int id = 0;
+    int.TryParse(Convert.ToString(ViewBag.ID), out id);
 }
 
-<h2>ViewGroupTeams</h2>
-
+<h2>Team Groups</h2>
+<tr>
+    <th>
+        @Html.ActionLink("Teams", "ViewAllTeams", new { id, UserName })
+    </th>
+    <th>
+        @Html.ActionLink("My Teams", "ViewGroupTeams", new { id, UserName })
+    </th>
+    <th>
+        @Html.ActionLink("Create Team", "CreateTeam", new { id, UserName })
+    </th>
+</tr>
 <p>
     @Html.ActionLink("Create New", "CreateTeam")
 </p>

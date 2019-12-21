@@ -46,6 +46,7 @@ namespace A4A.DataAccess
         public static string Select_Teams_of_Member = "Select_Teams_of_Member";
         public static string InsertTeamMembers = "InsertTeamMembers";
         public static string Count_Teams = "CountTeams";
+        public static string Select_Id_by_Email = "Select_Id_by_Email";
 
 
     }

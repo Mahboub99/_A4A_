@@ -15,8 +15,10 @@ namespace A4A.Controllers
         {
             return RedirectToAction("ViewAllGroups");
         }
-        public ActionResult CreateGroup()
+        public ActionResult CreateGroup(int id = 0, string UserName = "")
         {
+            ViewBag.id = id;
+            ViewBag.UserName = UserName;
             return View();
         }
         [HttpPost]
@@ -32,7 +34,7 @@ namespace A4A.Controllers
             db.InsertGroup(GM);
             return View();
         }
-        public ActionResult ViewAllGroups()
+        public ActionResult ViewAllGroups(int id = 0, string UserName="")
         {
             DBController dbController = new DBController();
             DataTable dt = dbController.SelectAllGroups();
@@ -47,12 +49,19 @@ namespace A4A.Controllers
                 
                 Groups.Add(group);
             }
+
+            ViewBag.id = id;
+            ViewBag.UserName = UserName;
             return View(Groups);
         }
-        public ActionResult ViewMyGroups(int UserID)
+        public ActionResult ViewMyGroups(int id = 0, string UserName = "")
         {
             DBController dbController = new DBController();
-            DataTable dt = dbController.SelectMyGroups(UserID);
+            DataTable dt = dbController.SelectMyGroups(id);
+            if (dt == null)
+            {
+                return RedirectToAction("EmptyGroups");
+            }
             List<GroupModel> MyGroups = new List<GroupModel>();
             for (int i = 0; i < dt.Rows.Count; ++i)
             {
@@ -62,6 +71,9 @@ namespace A4A.Controllers
                 group.AdminID = int.Parse(Convert.ToString(dt.Rows[i]["GroupAdmin"]));
                 MyGroups.Add(group);
             }
+
+            ViewBag.id = id;
+            ViewBag.UserName = UserName;
             return View(MyGroups);
         }
         public ActionResult About()
@@ -81,6 +93,11 @@ namespace A4A.Controllers
             return View();
         }      
         public ActionResult SuccessfulCreationOfGroup()
+        {
+            return View();
+        }
+
+        public ActionResult EmptyGroups()
         {
             return View();
         }

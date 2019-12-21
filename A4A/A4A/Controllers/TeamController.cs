@@ -15,8 +15,10 @@ namespace A4A.Controllers
         {
             return RedirectToAction("ViewAllTeams");
         }
-        public ActionResult CreateTeam()
+        public ActionResult CreateTeam(int id, string UserName)
         {
+            ViewBag.id = id;
+            ViewBag.UserName = UserName;
             return View();
         }
         [HttpPost]
@@ -27,13 +29,13 @@ namespace A4A.Controllers
 
             TM.TeamID = db.Count_Teams() + 1;
 
-            //TODO 
-            TM.LeaderID = 2;
-
             db.InsertTeam(TM);
+            db.InsertTeamMembers(TM.TeamID, db.Select_Id_by_Email(TM.TeamMembers[1]));
+            db.InsertTeamMembers(TM.TeamID, db.Select_Id_by_Email(TM.TeamMembers[2]));
+
             return View();
         }
-        public ActionResult ViewAllTeams()
+        public ActionResult ViewAllTeams(int id, string UserName)
         {
             DBController dbController = new DBController();
             DataTable dt = dbController.SelectTeams();
@@ -48,6 +50,10 @@ namespace A4A.Controllers
 
                 Teams.Add(Team);
             }
+
+            ViewBag.id = id;
+            ViewBag.UserName = UserName;
+
             return View(Teams);
         }
         public ActionResult ViewGroupTeams(int GroupID)
