@@ -74,10 +74,10 @@ namespace A4A.Controllers
         {
             DBController dbController = new DBController();
             DataTable dt = dbController.SelectContestProblems(ContestID);
-            List<ProblemSetModel> list = new List<ProblemSetModel>();
+            List<ProblemModel> list = new List<ProblemModel>();
             for (int i = 0; i < dt.Rows.Count; ++i)
             {
-                ProblemSetModel problem = new ProblemSetModel();
+                ProblemModel problem = new ProblemModel();
                 problem.ProblemName = Convert.ToString(dt.Rows[i]["ProblemName"]);
                 problem.ProblemTopic = Convert.ToString(dt.Rows[i]["ProblemTopic"]);
                 problem.ProblemLink = Convert.ToString(dt.Rows[i]["ProblemLink"]);

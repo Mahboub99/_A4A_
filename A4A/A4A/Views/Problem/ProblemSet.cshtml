@@ -1,7 +1,15 @@
-﻿@model IEnumerable<A4A.Models.ProblemSetModel>
+﻿@model IEnumerable<A4A.Models.ProblemModel>
 
 @{
-    ViewBag.Title = "ProblemSet";
+    ViewBag.Title = "Problem Set";
+    if (ViewBag.ID == 0)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/User_LayoutPage1.cshtml";
+    }
 }
 <h2>ProblemSet</h2>
 <script>$('table').DataTable();</script>
@@ -32,7 +40,7 @@
                 @Html.DisplayFor(modelItem => item.ProblemDifficulty)
             </td>
             <td>
-                @Html.ActionLink("View", "ViewProblem", "Problem", new { ProblemLink = item.ProblemLink }, null)
+                @Html.ActionLink("View", "ViewProblem", "Problem", new { ProblemLink = item.ProblemLink, UserName = ViewBag.UserName, id = ViewBag.ID, ProblemID = item.ProblemID }, null)
             </td>
         </tr>
     }

@@ -1,29 +1,47 @@
 ﻿@model A4A.Models.ProblemModel
 
 @{
-    ViewBag.Title = "ViewProblem";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "View Problem";
+    if (ViewBag.ID == 0)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/User_LayoutPage1.cshtml";
+    }
+
 }
-    <style>
-        form textarea {
-            min-width: 60vw !important;
-        }
-    </style>
+<style>
+    form textarea {
+        min-width: 60vw !important;
+    }
+</style>
 
-    <h2>ViewProblem</h2>
+<h2>ViewProblem</h2>
 
-    <div class="embed-responsive embed-responsive-16by9">
-        <iframe class="embed-responsive-item" src=@Model.ProblemLink></iframe>
+<div class="embed-responsive embed-responsive-16by9">
+    <iframe class="embed-responsive-item" src=@Model.ProblemLink></iframe>
+</div>
+
+<br />
+
+@using (Html.BeginForm("Submit", "Problem", new { ProblemID = Model.ProblemID, id = ViewBag.ID, UserName = ViewBag.UserName },FormMethod.Post))
+{
+<form>
+
+    <div class="form-group">
+        @Html.TextAreaFor(model => model.ProblemCode, htmlAttributes: new { @class = "form-control", @id = "exampleFormControlTextarea1", @rows = "3", @placeholder = "Write your code here...", @name = "Code" })
     </div>
 
-    <br />
-
-    @using (Html.BeginForm("Submit", "Problem", FormMethod.Post))
+    @if (ViewBag.ID == 0)
     {
-        <form>
-            <div class="form-group">
-                @Html.TextAreaFor(model => model.ProblemCode, htmlAttributes: new { @class = "form-control", @id = "exampleFormControlTextarea1", @rows = "3", @placeholder = "Write your code here...", @name = "Code" })
-            </div>
-            <button type="submit" class="btn btn-primary mb-2" name="Submit">Submit Code</button>
-        </form>
+        <button type="submit" class="btn btn-primary mb-2" name="Submit" disabled>Submit Code</button>
+        <p>You have to log in to submit a solution</p>
     }
+    else
+    {
+        <button type="submit" class="btn btn-primary mb-2" name="Submit">Submit Code</button>
+    }
+</form>
+}

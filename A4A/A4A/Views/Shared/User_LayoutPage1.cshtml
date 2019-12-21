@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Solve it or Leave it</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -28,8 +28,9 @@
                 <li class="nav-item active nav-link">
                     @Html.ActionLink("USER", "ViewAllUsers", "User")
                 </li>
-                <li class="nav-item nav-link">
-                    @Html.ActionLink("PROBLEMSET", "ProblemSet", "Home")
+                <li class="nav-item nav-link">                                          
+                    @Html.ActionLink("Problem Set", "ProblemSet", "Problem", new { id = id, UserName = s }, null);                    
+
                 </li>
                 <li class="nav-item nav-link">
                     @Html.ActionLink("CONTEST", "ViewContests", "Contest", new {id = id, UserName = s}, null)

@@ -138,13 +138,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\SubmissionHelper.cs" />
     <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Helpers\UnixTimeConverter.cs" />
     <Compile Include="Models\ContestModel.cs" />
     <Compile Include="Models\GroupModel.cs" />
     <Compile Include="Models\OrgModel.cs" />
     <Compile Include="Models\ProblemModel.cs" />
-    <Compile Include="Models\ProblemSetModel.cs" />
     <Compile Include="Models\SubmissionModel.cs" />
     <Compile Include="Models\TeamModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -187,7 +187,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\ProblemSet.cshtml" />
+    <Content Include="Views\Problem\ProblemSet.cshtml" />
     <Content Include="Views\Problem\ViewProblem.cshtml" />
     <Content Include="Views\Problem\WriteCode.cshtml" />
     <Content Include="Views\Contest\ViewContests.cshtml" />
@@ -208,6 +208,7 @@
     <Content Include="Views\Team\CreateTeam.cshtml" />
     <Content Include="Views\Team\ViewAllTeams.cshtml" />
     <Content Include="Views\Team\ViewGroupTeams.cshtml" />
+    <Content Include="Views\Shared\User_LayoutPage1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

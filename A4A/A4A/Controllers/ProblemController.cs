@@ -5,7 +5,6 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Web;
 using System.Web.Mvc;
-
 using A4A.DataAccess;
 using A4A.Models;
 using AutoCodeforces;
@@ -16,98 +15,46 @@ namespace A4A.Controllers
 {
     public class ProblemController : Controller
     {
+        public ActionResult ProblemSet(int id = 0, string UserName = "Login")
+        {
+            DBController dbController = new DBController();
+            DataTable dt = dbController.SelectProblems();
+            List<ProblemModel> list = new List<ProblemModel>();
+            for (int i = 0; i < dt.Rows.Count; ++i)
+            {
+                ProblemModel problem = new ProblemModel();
+                problem.ProblemName = Convert.ToString(dt.Rows[i]["ProblemName"]);
+                problem.ProblemTopic = Convert.ToString(dt.Rows[i]["ProblemTopic"]);
+                problem.ProblemLink = Convert.ToString(dt.Rows[i]["ProblemLink"]);
+                problem.ProblemID = Convert.ToString(dt.Rows[i]["ProblemID"]);
+                problem.ProblemDifficulty = int.Parse(Convert.ToString(dt.Rows[i]["ProblemDifficulty"]));
+                list.Add(problem);
+            }
+
+            ViewBag.UserName = UserName;
+            ViewBag.ID = id;
+            return View(list);
+        }
+
         // GET: Problem
         [Route("Problem/ViewProblem")]
-        public ActionResult ViewProblem(string ProblemLink)
+        public ActionResult ViewProblem(string ProblemID, string ProblemLink, string UserName = "Login", int id = 0)
         {
             ProblemModel Problem = new ProblemModel
             {
                 ProblemLink = ProblemLink,
+                ProblemID = ProblemID,
             };
-            
+
             //Automate au = new Automate();
             //ParseSubmission(au.SubmissionJsonFile());
-                
+
+            ViewBag.ID = id;
+            ViewBag.UserName = UserName;
             return View(Problem);
         }
 
-        public class ProblemObject
-        {
-            public int ContestId;
-            public char Index;
-
-            public string Name;
-            public string Type;
-            public double Points;
-            public int Rating;
-            public string[] Tags;
-        }
-        public class AuthorObject
-        {
-            public int ContestId;
-            public List<MembersHandle> Members = new List<MembersHandle>();
-            public string ParticipateType;
-            public bool Ghost;
-            public int Room;
-            public int StartTimeSeconds;
-        }
-        public class SubmissionObject
-        {
-            public int Id;
-            public int ContestId;
-            public int creationTimeSeconds;
-            public int relativeTimeSeconds;
-            public ProblemObject Problem;
-            public AuthorObject Author;
-            public string ProgrammingLanguage;
-            public string Verdict;
-            public string TestSet;
-            public int PassedTestCount;
-            public int TimeConsumedMillis;
-            public int MemoryConsumedBytes;
-        }
-
-
-        public ActionResult ParseAndInsertSubmission(string SubmissionJson)
-        {
-            SubmissionJsonObject SubmissionJsonDes =
-                JsonConvert.DeserializeObject<SubmissionJsonObject>(SubmissionJson);
-                
-            if (SubmissionJsonDes.Status == "OK")
-            {
-                List<SubmissionModel> SubmissionArr = new List<SubmissionModel>();
-                SubmissionJsonDes.SubmissionList.ForEach(s =>
-                {
-                    SubmissionModel sub = new SubmissionModel()
-                    {
-                        SubmissionID = s.Id,
-                        
-                        //TODO (we must get the ContestantID from Our DataBase)
-                        ContestantID = 2,
-
-                        SubmissionVerdict = s.Verdict,
-                        SubmissionMemory = s.MemoryConsumedBytes,
-                        SubmissionTime = s.TimeConsumedMillis,
-                        SubmissionDate = UnixTime.ToDateTime(s.creationTimeSeconds),
-                        SubmissionLang = s.ProgrammingLanguage,
-                        ProblemID = string.Format("{0}{1}", s.Problem.ContestId ,s.Problem.Index)
-                    };
-
-                    //SubmissionArr.Add(sub);
-                    DBController db = new DBController();
-                    db.InsertSubmission(sub);
-                }
-                );
-            }
-            else
-            {
-                Console.Write("Request to Submission Json Failed");
-            }
-
-            return View();
-        }
-
-        public ActionResult ViewSubmission(int SubmissionID = 52454088 /*Internal ID*/)
+        public ActionResult ViewSubmission(int SubmissionID, int id, string UserName)
         {
             DBController db = new DBController();
             DataTable dt = db.GetSubmissionByID(SubmissionID);
@@ -119,8 +66,7 @@ namespace A4A.Controllers
                 Submission.SubmissionID = Convert.ToInt32(dt.Rows[i]["SubmissionID"]);
 
                 DataTable ContestantName = db.SelectUserNameByID(Convert.ToInt32(dt.Rows[i]["ContestantID"]));
-                ViewBag.ContestantName = Convert.ToString(ContestantName.Rows[0]["Fname"]) + " " +
-                                            Convert.ToString(ContestantName.Rows[0]["Lname"]);
+                ViewBag.ContestantName = UserName;
 
 
                 Submission.SubmissionVerdict = Convert.ToString(dt.Rows[i]["SubmissionVerdict"]);
@@ -135,15 +81,30 @@ namespace A4A.Controllers
                 list.Add(Submission);
             }
 
+            ViewBag.ID = id;
+            ViewBag.UserName = UserName;
             return View(list);
         }
 
         [HttpPost]
-        public ActionResult Submit(ProblemModel Problem)
+        public ActionResult Submit(ProblemModel Problem, string ProblemID, int id, string UserName)
         {
+            int pos, ContestID;
+            bool isTwoChars = int.TryParse(ProblemID.Substring(ProblemID.Length - 1), out pos);
+            if (isTwoChars)
+            {
+                ContestID = int.Parse(ProblemID.Substring(0, ProblemID.Length - 2));
+            }
+            else
+            {
+                ContestID = int.Parse(ProblemID.Substring(0, ProblemID.Length - 1));
+            }
             Automate Judge = new Automate();
-            Judge.OpenCodeforces(Problem.ProblemCode, "4A"/*Problem.ProblemID*/);
-            return View("WriteCode", Problem);
+            Judge.OpenCodeforces(Problem.ProblemCode, ProblemID);
+            string SubmissionJson = Judge.SubmissionJsonFile("A4A_A4A", ContestID);
+            Helpers.SubmissionHelper helper = new Helpers.SubmissionHelper();
+            int SubmissionID = helper.ParseSubmission(SubmissionJson);
+            return RedirectToAction("ViewSubmission", new { SubmissionID = SubmissionID, id = id, UserName = UserName });
         }
     }
 }
