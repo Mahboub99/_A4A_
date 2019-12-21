@@ -236,6 +236,7 @@ namespace A4A.DataAccess
             Parameters.Add("@TeamID", TM.TeamID);
             Parameters.Add("@TeamName", TM.TeamName);
             Parameters.Add("@LeaderID", TM.LeaderID);
+            Parameters.Add("@Rating", 0);
 
             return dbMan.ExecuteNonQuery(StoredProcedureName, Parameters);
         }
@@ -288,7 +289,9 @@ namespace A4A.DataAccess
         public int Select_Id_by_Email(string email)
         {
             string StoredProcedureName = StoredProcedures.Select_Id_by_Email;
-            return Convert.ToInt32(dbMan.ExecuteScalar(StoredProcedureName, null));
+            Dictionary<string, object> Parameters = new Dictionary<string, object>();
+            Parameters.Add("@Email", email);
+            return Convert.ToInt32(dbMan.ExecuteScalar(StoredProcedureName, Parameters));
         }
     }
 }

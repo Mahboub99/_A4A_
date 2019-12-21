@@ -42,7 +42,7 @@
                     @Html.ActionLink("ORGANIZATION", "ViewAllOrgs", "Org")
                 </li>
                 <li class="nav-item nav-link">
-                    @Html.ActionLink("TEAM", "ViewAllTeams", "Team")
+                    @Html.ActionLink("TEAM", "ViewAllTeams", "Team", new {id = id, UserName = s}, null)
                 </li>
                 <li class="nav-item nav-link">
                     @Html.ActionLink("ABOUT", "About", "Home")

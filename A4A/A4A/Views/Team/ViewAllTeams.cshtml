@@ -23,15 +23,13 @@
         @Html.ActionLink("Teams", "ViewAllTeams", new { id, UserName })
     </th>
     <th>
-        @Html.ActionLink("My Teams", "ViewGroupTeams", new { id, UserName })
+        @Html.ActionLink("My Teams", "ViewMyTeams", new { id, UserName })
     </th>
     <th>
         @Html.ActionLink("Create Team", "CreateTeam", new { id, UserName })
     </th>
 </tr>
-<p>
-    @Html.ActionLink("Create New", "CreateTeam")
-</p>
+
 <table class="table">
     <tr>
         <th>

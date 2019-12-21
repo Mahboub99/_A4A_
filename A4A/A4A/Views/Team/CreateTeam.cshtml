@@ -1,4 +1,5 @@
-﻿@model A4A.Models.TeamModel
+﻿@using A4A.Models
+@model A4A.Models.TeamModel
 
 @{
     ViewBag.Title = "CreateTeam";
@@ -13,10 +14,7 @@
     string UserName = ViewBag.UserName;
     int id = 0;
     int.TryParse(Convert.ToString(ViewBag.ID), out id);
-    if (id != 0)
-    {
-        Model.LeaderID = id;
-    }
+    ViewBag.LeaderID = id;
 }
 
 <h2>Create Team</h2>
@@ -25,14 +23,14 @@
         @Html.ActionLink("Teams", "ViewAllTeams", new { id, UserName })
     </th>
     <th>
-        @Html.ActionLink("My Teams", "ViewGroupTeams", new { id, UserName })
+        @Html.ActionLink("My Teams", "ViewMyTeams", new { id, UserName })
     </th>
     <th>
         @Html.ActionLink("Create Team", "CreateTeam", new { id, UserName })
     </th>
 </tr>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("CreateTeam", "Team", new { LeaderId = id }, FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     
@@ -49,20 +47,19 @@
             </div>
         </div>
         <div class="form-group">
-            @*@Html.LabelFor(model => model.TeamMembers[1], htmlAttributes: new { @class = "control-label col-md-2" })*@
             <div class="col-md-10">
-                <p> Member 2 Email</p>
-                @Html.EditorFor(model => model.TeamMembers[1], new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TeamMembers[1], "", new { @class = "text-danger" })
+                <p> Member2 Email</p>
+                @Html.EditorFor(model => model.Member2, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Member2, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
             @*@Html.LabelFor(model => model.TeamMembers[2], htmlAttributes: new { @class = "control-label col-md-2" })*@
             
             <div class="col-md-10">
-                <p> Member 3 Email</p>
-                @Html.EditorFor(model => model.TeamMembers[2], new {htmlAttributes = new {@class = "form-control"}})
-                @Html.ValidationMessageFor(model => model.TeamMembers[2], "", new {@class = "text-danger"})
+                <p> Member3 Email</p>
+                @Html.EditorFor(model => model.Member3, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.Member3, "", new {@class = "text-danger"})
             </div>
         </div>
 

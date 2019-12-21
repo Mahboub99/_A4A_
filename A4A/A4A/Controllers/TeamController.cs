@@ -21,21 +21,25 @@ namespace A4A.Controllers
             ViewBag.UserName = UserName;
             return View();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateTeam(TeamModel TM)
+        public ActionResult CreateTeam(TeamModel TM, int LeaderId)
         {
             DBController db = new DBController();
 
             TM.TeamID = db.Count_Teams() + 1;
+            TM.LeaderID = LeaderId;
 
             db.InsertTeam(TM);
-            db.InsertTeamMembers(TM.TeamID, db.Select_Id_by_Email(TM.TeamMembers[1]));
-            db.InsertTeamMembers(TM.TeamID, db.Select_Id_by_Email(TM.TeamMembers[2]));
+            db.InsertTeamMembers(TM.TeamID, TM.LeaderID);
+            db.InsertTeamMembers(TM.TeamID, db.Select_Id_by_Email(TM.Member2));
+            db.InsertTeamMembers(TM.TeamID, db.Select_Id_by_Email(TM.Member3));
 
             return View();
         }
-        public ActionResult ViewAllTeams(int id, string UserName)
+
+        public ActionResult ViewAllTeams(int id = 0, string UserName = "")
         {
             DBController dbController = new DBController();
             DataTable dt = dbController.SelectTeams();
@@ -56,20 +60,24 @@ namespace A4A.Controllers
 
             return View(Teams);
         }
-        public ActionResult ViewGroupTeams(int GroupID)
+        public ActionResult ViewMyTeams(int id = 0, string UserName = "")
         {
             DBController dbController = new DBController();
-            DataTable dt = dbController.SelectMyGroups(GroupID);
+            DataTable dt = dbController.Select_Teams_of_Member(id);
             List<TeamModel> Teams = new List<TeamModel>();
             for (int i = 0; i < dt.Rows.Count; ++i)
             {
                 TeamModel Team = new TeamModel();
                 Team.TeamName = Convert.ToString(dt.Rows[i]["TeamName"]);
                 Team.TeamID = int.Parse(Convert.ToString(dt.Rows[i]["TeamID"]));
+                Team.Rating = Convert.ToInt32(dt.Rows[i]["Rating"]);
                 Team.LeaderID = Convert.ToInt32(dt.Rows[i]["LeaderID"]);
 
                 Teams.Add(Team);
             }
+
+            ViewBag.id = id;
+            ViewBag.UserName = UserName;
             return View(Teams);
         }
         public ActionResult About()

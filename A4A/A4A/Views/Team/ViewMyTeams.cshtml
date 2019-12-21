@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<A4A.Models.TeamModel>
 
 @{
-    ViewBag.Title = "ViewGroupTeams";
+    ViewBag.Title = "ViewMyTeams";
     if (ViewBag.ID == 0 || ViewBag.ID == null)
     {
         Layout = "~/Views/Shared/_Layout.cshtml";
@@ -15,26 +15,28 @@
     int.TryParse(Convert.ToString(ViewBag.ID), out id);
 }
 
-<h2>Team Groups</h2>
+<h2>Teams</h2>
 <tr>
     <th>
         @Html.ActionLink("Teams", "ViewAllTeams", new { id, UserName })
     </th>
     <th>
-        @Html.ActionLink("My Teams", "ViewGroupTeams", new { id, UserName })
+        @Html.ActionLink("My Teams", "ViewMyTeams", new { id, UserName })
     </th>
     <th>
         @Html.ActionLink("Create Team", "CreateTeam", new { id, UserName })
     </th>
 </tr>
-<p>
-    @Html.ActionLink("Create New", "CreateTeam")
-</p>
+
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.TeamName)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rating)
+        </th>
+        
         <th></th>
     </tr>
 
@@ -43,6 +45,10 @@
         <td>
             @Html.DisplayFor(modelItem => item.TeamName)
         </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rating)
+        </td>
+        
         <td>
             @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
             @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
