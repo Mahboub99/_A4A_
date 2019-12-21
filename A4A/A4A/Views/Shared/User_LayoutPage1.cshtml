@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Solve it or Leave it</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -17,14 +17,20 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
+                @{
+                    string s = ViewBag.UserName;
+                    int id = 0;
+                    bool Done = int.TryParse(Convert.ToString(ViewBag.ID), out id);
+                }
                 <li class="nav-item active nav-link">
                     @Html.ActionLink("Home", "Index", "Home")
                 </li>
                 <li class="nav-item active nav-link">
                     @Html.ActionLink("User", "ViewAllUsers", "User")
                 </li>
-                <li class="nav-item nav-link">
-                    @Html.ActionLink("Problem Set", "ProblemSet", "Home")
+                <li class="nav-item nav-link">                                          
+                    @Html.ActionLink("Problem Set", "ProblemSet", "Problem", new { id = id, UserName = s }, null);                    
+
                 </li>
                 <li class="nav-item nav-link">
                     @Html.ActionLink("Contest", "ViewContests", "Contest")
@@ -45,14 +51,10 @@
                     @Html.ActionLink("Contact", "Contact", "Home")
                 </li>
                 <li class="nav-item nav-link" style="margin-left:500px" id="User">
-                    @{
-                        string s = ViewBag.UserName;
-                        int id = ViewBag.ID;
-                        @Html.ActionLink(s, "ViewUser", "User", new { ID = id }, null);
-                    }
+                     @Html.ActionLink(s, "ViewUser", "User", new { ID = id }, null);                    
                 </li>
                 <li class="nav-item nav-link">
-                    @Html.ActionLink(s, "Logout", "User", new { ID = id }, null);
+                    @Html.ActionLink("Logout", "Logout", "User", new { ID = id }, null);
                 </li>
             </ul>
 

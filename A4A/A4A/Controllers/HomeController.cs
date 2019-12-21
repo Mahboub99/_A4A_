@@ -33,23 +33,5 @@ namespace A4A.Controllers
 
             return View();
         }
-
-        public ActionResult ProblemSet()
-        {
-            DBController dbController = new DBController();
-            DataTable dt = dbController.SelectProblems();
-            List<ProblemSetModel> list = new List<ProblemSetModel>();
-            for (int i = 0; i < dt.Rows.Count; ++i)
-            {
-                ProblemSetModel problem = new ProblemSetModel();
-                problem.ProblemName = Convert.ToString(dt.Rows[i]["ProblemName"]);
-                problem.ProblemTopic = Convert.ToString(dt.Rows[i]["ProblemTopic"]);
-                problem.ProblemLink = Convert.ToString(dt.Rows[i]["ProblemLink"]);
-                problem.ProblemDifficulty = int.Parse(Convert.ToString(dt.Rows[i]["ProblemDifficulty"]));
-                list.Add(problem);
-            }
-
-            return View(list);
-        }
     }
 }
