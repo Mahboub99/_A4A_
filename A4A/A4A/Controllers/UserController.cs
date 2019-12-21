@@ -4,8 +4,11 @@ using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.HtmlControls;
 using A4A.DataAccess;
 using A4A.Models;
+using Microsoft.Ajax.Utilities;
+using OpenQA.Selenium.Internal;
 
 namespace A4A.Controllers
 {
@@ -62,7 +65,15 @@ namespace A4A.Controllers
 
             return RedirectToAction("ViewAllUsers");
         }
-        
+
+        //[HttpPost]
+        //public ActionResult Login(FormCollection form)
+        //{
+        //    string UserName = form.Get("UserName");
+        //    ViewBag.UserName = UserName;
+        //    return View();
+        //}
+
         public ActionResult Login()
         {
             return View();
@@ -80,9 +91,10 @@ namespace A4A.Controllers
             }
             else
             {
-
                 //view of user (home page)
-                return RedirectToAction("Index", "Home");
+                DataRow dr = db.SelectUserNameByID(id).Rows[0];
+                string UserName = Convert.ToString(dr["Fname"]) + Convert.ToString(dr["Lname"]);
+                return RedirectToAction("Index", "Home", new { UserName = UserName, id = id });
             }
         }
 
