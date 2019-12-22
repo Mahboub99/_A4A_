@@ -17,14 +17,20 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
+                @{ 
+                    string s = ViewBag.UserName ;
+                    int id = 0;
+                    
+                    bool Done = int.TryParse(Convert.ToString(ViewBag.ID), out id);
+                }
                 <li class="nav-item active nav-link">
                     @Html.ActionLink("Home", "Index", "Home")
                 </li>
                 <li class="nav-item active nav-link">
-                    @Html.ActionLink("User", "ViewAllUsers", "User")
+                    @Html.ActionLink("User"  , "ViewAllUsers", "User", new { id = id, UserName = s }, null)
                 </li>
                 <li class="nav-item nav-link">
-                    @Html.ActionLink("Problem Set", "ProblemSet", "Home")
+                    @Html.ActionLink("Problem Set", "ProblemSet", "Home" )
                 </li>
                 <li class="nav-item nav-link">
                     @Html.ActionLink("Contest", "ViewContests", "Contest")
@@ -45,14 +51,10 @@
                     @Html.ActionLink("Contact", "Contact", "Home")
                 </li>
                 <li class="nav-item nav-link" style="margin-left:500px" id="User">
-                    @{
-                        string s = ViewBag.UserName;
-                        int id = ViewBag.ID;
-                        @Html.ActionLink(s, "ViewUser", "User", new { ID = id }, null);
-                    }
+                    @Html.ActionLink(s , "ViewUser", "User", new { id = id, IV =id, UserName = s}, null)
                 </li>
                 <li class="nav-item nav-link">
-                    @Html.ActionLink("Register", "CreateUser", "User")
+                    @Html.ActionLink("Logout", "Logout", "User")
                 </li>
             </ul>
 
