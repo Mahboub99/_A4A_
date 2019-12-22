@@ -323,21 +323,5 @@ namespace A4A.DataAccess
             Parameters.Add("@Email", email);
             return Convert.ToInt32(dbMan.ExecuteScalar(StoredProcedureName, Parameters));
         }
-        public int Solved(int UserID)
-        {
-            string StoredProcedureName = StoredProcedures.Solved;
-            Dictionary<string, object> Parameters = new Dictionary<string, object>();
-            Parameters.Add("@UserID", UserID);
-
-            return Convert.ToInt32(dbMan.ExecuteScalar(StoredProcedureName, Parameters));
-        }
-        public int Binding(int UserID)
-        {
-            string StoredProcedureName = StoredProcedures.Binding;
-            Dictionary<string, object> Parameters = new Dictionary<string, object>();
-            Parameters.Add("@UserID", UserID);
-
-            return Convert.ToInt32(dbMan.ExecuteScalar(StoredProcedureName, Parameters));
-        }
     }
 }

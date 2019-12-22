@@ -1,4 +1,10 @@
-﻿namespace A4A.DataAccess
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace A4A.DataAccess
 {
     class StoredProcedures
     {
@@ -11,9 +17,7 @@
         public static string Friends = "User_Friends";
         public static string Select_UserID_By_Email = "Select_UserID_By_Email";
         public static string InsertFriends = "InsertFriends";
-        public static string Solved = "Solved";
-        public static string Binding = "Binding";
-        public static string GetType = "GetType";
+
 
         public static string LoadProblems = "selectAllOfProblems";
 

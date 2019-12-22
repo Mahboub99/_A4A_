@@ -42,15 +42,13 @@ namespace A4A.Controllers
             DataTable dt = dbController.SelectUser(ID);
             AccountModel User = new AccountModel();
 
-            User.ID = int.Parse(Convert.ToString(dt.Rows[0]["UserID"]));
             User.Fname = Convert.ToString(dt.Rows[0]["Fname"]);
             User.Lname = Convert.ToString(dt.Rows[0]["Lname"]);
             User.Email = Convert.ToString(dt.Rows[0]["Email"]);
             User.Rating = int.Parse(Convert.ToString(dt.Rows[0]["Rating"]));
-            User.Binding = dbController.Binding(User.ID);
-            User.Solved = dbController.Solved(User.ID);
 
-                
+
+
             ViewBag.ID = IV;
             ViewBag.UserName = UserName;
             ViewBag.ShowFriends = ShowFriends;
@@ -103,6 +101,11 @@ namespace A4A.Controllers
                 return RedirectToAction("Index", "Home", new {UserName = UserName, id = id});
             }
         }
+        public ActionResult Logout()
+        {
+            ViewBag.id = 0;
+            return RedirectToAction("Index", "Home");
+        }
 
         public ActionResult Friends(int ID = 0, string UserName = "")
         {
@@ -142,7 +145,7 @@ namespace A4A.Controllers
             return View();
         }
 
-        public ActionResult AddFriend(int ID = 0, string UserName="")
+        public ActionResult AddFriend(int ID = 0,string UserName="")
         {
             ViewBag.ID = ID;
             ViewBag.UserName = UserName;
@@ -156,9 +159,6 @@ namespace A4A.Controllers
             DBController db = new DBController();
             int FriendID = db.Select_UserID_By_Email(Email);
 
-            ViewBag.ID = UserID;
-            ViewBag.UserName = UserName;
-
             if (FriendID == 0 ) // not found
             {
                 //TODO uncorrect email or Password
@@ -166,8 +166,14 @@ namespace A4A.Controllers
             }
             else
             {
-                int ins = db.InsertFriend(UserID, FriendID);
-                return RedirectToAction("ViewUser" ,"User" ,new {ID = FriendID ,IV = UserID , UserName = UserName});
+               
+               int ins = db.InsertFriend(UserID, FriendID);
+            
+                ViewBag.ID = UserID;
+                ViewBag.UserName = UserName;
+                
+                return RedirectToAction("ViewUser" ,"User" ,new {ID =FriendID ,IV =UserID , UserName = UserName});
+                //return RedirectToAction("ViewUser", "User", new {ID =FriendID , IV = FriendID ,UserName =UserName });
             }
 
 
