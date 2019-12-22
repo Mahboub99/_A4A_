@@ -61,7 +61,7 @@ namespace A4A.Helpers
     public class SubmissionHelper
     {
         public int ParseSubmission(string SubmissionJson)
-        {
+        {            
             bool isLastSubmission = false;
             int LastSubmission = 0;
             SubmissionJsonObject SubmissionJsonDes =

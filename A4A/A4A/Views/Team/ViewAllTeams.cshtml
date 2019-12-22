@@ -16,9 +16,18 @@
     int id = 0;
     int.TryParse(Convert.ToString(ViewBag.ID), out id);
 }
+<br />
+<h2>🏆 Teams</h2>
 
-<h2>Teams</h2>
-<tr>
+
+<p>
+	<br />
+	@*<button style="margin-right:6px;" class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewAllTeams", "Team", new { id, UserName })';return false;">View All Teams &raquo;</button>*@
+	<button style="margin-right:6px;" class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewGroupTeams", "Team", new { id, UserName })';return false;">View My Teams &raquo;</button>
+	<button style="margin-right:6px;" class="btn btn-outline-primary" onclick="location.href='@Url.Action("CreateTeam", "Team", new { id, UserName })';return false;">Create Team &raquo;</button>
+</p>
+
+@*<tr>
     <th>
         @Html.ActionLink("Teams", "ViewAllTeams", new { id, UserName })
     </th>
@@ -28,7 +37,7 @@
     <th>
         @Html.ActionLink("Create Team", "CreateTeam", new { id, UserName })
     </th>
-</tr>
+</tr>*@
 
 <table class="table">
     <tr>
@@ -55,7 +64,9 @@
             }
             
         </td>
-
+        <td>
+            @Html.ActionLink("View", "ViewTeam", "Team", new { TeamID = item.TeamID, id = id, UserName = UserName }, null)
+        </td>
         @*<td>
             @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
             @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
@@ -65,3 +76,7 @@
 }
 
 </table>
+<br />
+<div>
+	@Html.ActionLink("Back to Home Page", "Index", "Home")
+</div>

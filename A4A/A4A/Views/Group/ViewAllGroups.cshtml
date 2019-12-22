@@ -14,9 +14,16 @@
     int id = 0;
     int.TryParse(Convert.ToString(ViewBag.ID), out id);
 }
+<br />
+<h2>🎥 View Groups</h2>
 
-<h2>View Groups</h2>
-<tr>
+<p>
+	<br />
+	@*<button style="margin-right:6px;" class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewAllGroups", "Group")';return false;">Groups &raquo;</button>*@
+	<button style="margin-right:6px;"class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewMyGroups", "Group")';return false;">My Groups &raquo;</button>
+	<button class="btn btn-outline-primary" onclick="location.href='@Url.Action("CreateGroup", "Group")';return false;">Create Group &raquo;</button>
+</p>
+@*<tr>
     <th>
         @Html.ActionLink("Groups", "ViewAllGroups", new {id, UserName})
     </th>
@@ -26,10 +33,10 @@
     <th>
         @Html.ActionLink("Create Group", "CreateGroup", new {id, UserName})
     </th>
-</tr>
+</tr>*@
 
-<table class="table">
-    <tr>
+<table id="dtBasicExample" class="table table-hover table-bordered " cellspacing="0">
+    <tr class="table-primary">
         <th>
             @Html.DisplayNameFor(model => model.GroupID)
         </th>
@@ -39,7 +46,9 @@
         <th>
             @Html.DisplayNameFor(model => model.AdminID)
         </th>
-        <th></th>
+        <th>
+			🔎Explore
+		</th>
     </tr>
 
 @foreach (var item in Model) {
@@ -54,11 +63,17 @@
             @Html.DisplayFor(modelItem => item.AdminID)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("View", "ViewGroupContests", new { GroupId = item.GroupID, id = id, UserName = UserName })
+            @Html.ActionLink("Edit", "Edit", new {/* id=item.PrimaryKey */}) |
+            @Html.ActionLink("Details", "Details", new {/* id=item.PrimaryKey */}) |
+            @Html.ActionLink("Delete", "Delete", new {/* id=item.PrimaryKey */})
         </td>
     </tr>
 }
 
 </table>
+
+<br />
+<div>
+	@Html.ActionLink("Back to Home Page", "Index", "Home")
+</div>

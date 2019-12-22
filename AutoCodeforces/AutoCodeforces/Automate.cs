@@ -51,12 +51,14 @@ namespace AutoCodeforces
 
         public string SubmissionJsonFile(string handle = "A4A_A4A", int ContestID = 102, int SumbissionCounter = 1)
         {
+            //Dummy wait
+            for (Int64 i = 0; i < 10000000000; i++) { }
             string ApiUrl =
                 string.Format("https://" + "codeforces.com/api/contest.status?contestId={0}&handle={1}&from=1&count={2}", ContestID, handle, SumbissionCounter);
             chromeDriver.Navigate().GoToUrl(ApiUrl);
             string s = chromeDriver.FindElement(By.TagName("pre")).Text;
 
-            //chromeDriver.Close();
+            chromeDriver.Close();
             //chromeDriver.Quit();
 
             return s;

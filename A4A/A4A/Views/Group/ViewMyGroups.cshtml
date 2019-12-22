@@ -53,11 +53,17 @@
             @Html.DisplayFor(modelItem => item.AdminID)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("View", "ViewGroupContests", new { GroupId = item.GroupID, id = id, UserName = UserName })
+            @Html.ActionLink("Edit", "Edit", new {/* id=item.PrimaryKey */}) |
+            @Html.ActionLink("Details", "Details", new {/* id=item.PrimaryKey */}) |
+            @Html.ActionLink("Delete", "Delete", new {/* id=item.PrimaryKey */})
         </td>
     </tr>
 }
 
 </table>
+
+<br /><br /><br />
+<div>
+	@Html.ActionLink("Back to Home Page", "Index", "Home")
+</div>

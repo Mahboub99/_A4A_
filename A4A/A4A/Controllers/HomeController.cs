@@ -13,7 +13,7 @@ namespace A4A.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index(string UserName, int id = 0)
+        public ActionResult Index(string UserName = "", int id = 0)
         {
             ViewBag.ID = id;
             ViewBag.UserName = UserName;
