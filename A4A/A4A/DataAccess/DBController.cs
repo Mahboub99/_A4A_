@@ -289,9 +289,70 @@ namespace A4A.DataAccess
         public int Select_Id_by_Email(string email)
         {
             string StoredProcedureName = StoredProcedures.Select_Id_by_Email;
+
             Dictionary<string, object> Parameters = new Dictionary<string, object>();
             Parameters.Add("@Email", email);
+
             return Convert.ToInt32(dbMan.ExecuteScalar(StoredProcedureName, Parameters));
+        }
+
+        public DataTable Select_Team_By_ID(int TeamID)
+        {
+            string StoredProcedureName = StoredProcedures.Select_Team_By_ID;
+
+            Dictionary<string, object> Parameters = new Dictionary<string, object>();
+            Parameters.Add("@TeamID", TeamID);
+
+            return dbMan.ExecuteReader(StoredProcedureName, Parameters);
+        }
+        public DataTable Select_Team_members_Names(int TeamID)
+        {
+            string StoredProcedureName = StoredProcedures.Select_Team_members_Names;
+
+            Dictionary<string, object> Parameters = new Dictionary<string, object>();
+            Parameters.Add("@TeamID", TeamID);
+
+            return dbMan.ExecuteReader(StoredProcedureName, Parameters);
+        }
+
+        public int SelectOrgGroups(int OrgID)
+        {
+            string StoredProcedureName = StoredProcedures.SelectOrgGroups;
+
+            Dictionary<string, object> Parameters = new Dictionary<string, object>();
+            Parameters.Add("@OrgID", OrgID);
+
+            return Convert.ToInt32(dbMan.ExecuteScalar(StoredProcedureName, Parameters));
+        }
+
+        public DataTable SelectGroupMembers(int GroupID)
+        {
+            string StoredProcedureName = StoredProcedures.SelectGroupMembers;
+
+            Dictionary<string, object> Parameters = new Dictionary<string, object>();
+            Parameters.Add("@GroupID", GroupID);
+
+            return dbMan.ExecuteReader(StoredProcedureName, Parameters);
+        }
+
+        public int SelectTypeById(int UserID)
+        {
+            string StoredProcedureName = StoredProcedures.SelectTypeById;
+
+            Dictionary<string, object> Parameters = new Dictionary<string, object>();
+            Parameters.Add("@UserID", UserID);
+
+            return Convert.ToInt32(dbMan.ExecuteScalar(StoredProcedureName, Parameters));
+        }
+
+        public DataTable SelectGroupContests(int GroupID)
+        {
+            string StoredProcedureName = StoredProcedures.SelectGroupContests;
+
+            Dictionary<string, object> Parameters = new Dictionary<string, object>();
+            Parameters.Add("@GroupID", GroupID);
+
+            return dbMan.ExecuteReader(StoredProcedureName, Parameters);
         }
     }
 }

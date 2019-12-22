@@ -27,7 +27,6 @@ namespace A4A.DataAccess
         public static string LoadGroups = "SelectAllOfGroups"; 
         public static string LoadGroupsOfUser = "SelectAllOfGroupsOfUser";
         public static string InsertGroup = "InsertGroup";
-        public static string Count_OrgsCountGroups = "CountGroups";
         public static string Count_Groups = "CountGroups";
 
         public static string InsertSubmission = "InsertSubmission";
@@ -48,6 +47,12 @@ namespace A4A.DataAccess
         public static string Count_Teams = "CountTeams";
         public static string Select_Id_by_Email = "Select_Id_by_Email";
 
+        public static string Select_Team_By_ID = "Select_Team_By_ID";
+        public static string Select_Team_members_Names = "Select_Team_members_Names";
 
+        public static string SelectOrgGroups = "SelectOrgGroups";
+        public static string SelectGroupMembers = "SelectGroupMembers";
+        public static string SelectTypeById = "SelectTypeById";
+        public static string SelectGroupContests = "SelectGroupContests";
     }
 }

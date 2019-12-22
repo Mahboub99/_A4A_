@@ -30,7 +30,7 @@
     </th>
 </tr>
 
-@using (Html.BeginForm("CreateTeam", "Team", new { LeaderId = id }, FormMethod.Post))
+@using (Html.BeginForm("CreateTeam", "Team", new { LeaderId = id, UserName = UserName }, FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     

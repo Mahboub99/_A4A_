@@ -108,5 +108,11 @@ namespace A4A.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        public string GetType(int id = 0, string UserName = "")
+        {
+            DBController db = new DBController();
+            return Convert.ToString(db.SelectTypeById(id));
+        }
+
     }
 }
