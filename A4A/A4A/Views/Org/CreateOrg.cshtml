@@ -4,8 +4,8 @@
     ViewBag.Title = "CreateOrg";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>CreateOrg</h2>
+<br />
+<h2>🔧 Create Organization</h2>
 
 
 @using (Html.BeginForm()) 
@@ -13,14 +13,13 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>OrgModel</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
        
 
         <div class="form-group">
-            @Html.LabelFor(model => model.OrgName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
+				<label style="color:#000000;font-size:20px;">Organization Name</label>
                 @Html.EditorFor(model => model.OrgName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.OrgName, "", new { @class = "text-danger" })
             </div>
@@ -28,14 +27,15 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-outline-primary" />
             </div>
         </div>
     </div>
 }
 
+<br /><br /><br />
 <div>
-    @Html.ActionLink("Back to List", "Index")
+	@Html.ActionLink("Back to Home Page", "Index", "Home")
 </div>
 
 @section Scripts {

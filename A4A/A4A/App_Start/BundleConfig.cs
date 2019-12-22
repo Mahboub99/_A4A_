@@ -23,7 +23,7 @@ namespace A4A
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/Minty.css",
+                      "~/Content/bootstrap.css",
                       "~/Content/site.css"));
         }
     }

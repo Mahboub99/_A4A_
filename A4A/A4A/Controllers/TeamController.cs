@@ -35,7 +35,7 @@ namespace A4A.Controllers
 
             return View();
         }
-        public ActionResult ViewAllTeams(int id, string UserName)
+        public ActionResult ViewAllTeams(int id=0, string UserName="")
         {
             DBController dbController = new DBController();
             DataTable dt = dbController.SelectTeams();

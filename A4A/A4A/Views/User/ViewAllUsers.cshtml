@@ -4,21 +4,25 @@
     ViewBag.Title = "ViewAllUsers";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>ViewAllUsers</h2>
+<br />
+<h2>👨‍💻 Users</h2>
 
 <p>
-    @Html.ActionLink("Create New", "CreateUser")
+	<br />
+	<button style="margin-right:6px;" class="btn btn-outline-primary" onclick="location.href='@Url.Action("CreateUser", "User")';return false;">Add Friend &raquo;</button>
+	<button class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewUser", "User")';return false;">View My Friends &raquo;</button>
 </p>
-<table class="table">
-    <tr>
-        <th>
+<table id="dtBasicExample" class="table table-hover table-bordered " cellspacing="0">
+    <tr class="table-primary">
+        <th style="font-style:inherit">
             @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Rating)
         </th>
-        <th></th>
+        <th>
+			Explore
+		</th>
     </tr>
 
 @foreach (var item in Model) {
@@ -36,3 +40,8 @@
 }
 
 </table>
+
+<br />
+<div>
+	@Html.ActionLink("Back to Home Page", "Index", "Home")
+</div>
