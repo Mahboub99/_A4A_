@@ -39,7 +39,6 @@ namespace A4A.Controllers
             return View(list);
         }
 
-        //TODO (the parameters)
         public ActionResult ViewMyContests(int id = 0, string UserName = "") 
         {
             DBController dbController = new DBController();

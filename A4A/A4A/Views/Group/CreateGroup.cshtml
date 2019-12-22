@@ -35,7 +35,7 @@
     </th>
 </tr>*@
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("CreateGroup", "Group", new { AdminID = id }, FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     

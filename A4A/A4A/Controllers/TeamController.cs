@@ -24,7 +24,7 @@ namespace A4A.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateTeam(TeamModel TM, int LeaderId)
+        public ActionResult CreateTeam(TeamModel TM, int LeaderId, string UserName = "")
         {
             DBController db = new DBController();
 
@@ -36,7 +36,9 @@ namespace A4A.Controllers
             db.InsertTeamMembers(TM.TeamID, db.Select_Id_by_Email(TM.Member2));
             db.InsertTeamMembers(TM.TeamID, db.Select_Id_by_Email(TM.Member3));
 
-            return View();
+            ViewBag.id = LeaderId;
+            ViewBag.UserName = UserName;
+            return RedirectToAction("ViewMyTeams", "Team", new {id = LeaderId, UserName = UserName});
         }
 
         public ActionResult ViewAllTeams(int id = 0, string UserName = "")
@@ -64,6 +66,15 @@ namespace A4A.Controllers
         {
             DBController dbController = new DBController();
             DataTable dt = dbController.Select_Teams_of_Member(id);
+
+            if (dt == null && id == 0)
+            {
+                return RedirectToAction("MustSignIn");
+            }
+            else if (dt == null)
+            {
+                return RedirectToAction("EmptyTeams");
+            }
             List<TeamModel> Teams = new List<TeamModel>();
             for (int i = 0; i < dt.Rows.Count; ++i)
             {
@@ -80,6 +91,48 @@ namespace A4A.Controllers
             ViewBag.UserName = UserName;
             return View(Teams);
         }
+
+        public ActionResult ViewTeam(int TeamID, int id = 0, string UserName = "")
+        {
+            DBController db = new DBController();
+            DataTable TeamRow = db.Select_Team_By_ID(TeamID);
+            DataTable TeamMembers = db.Select_Team_members_Names(TeamID);
+
+            TeamModel TM = new TeamModel
+            {
+                TeamName = Convert.ToString(TeamRow.Rows[0]["TeamName"]),
+                Rating = Convert.ToInt32(TeamRow.Rows[0]["Rating"]),
+                TeamID = TeamID,
+                LeaderID = Convert.ToInt32(TeamRow.Rows[0]["LeaderID"])
+            };
+
+            List<int> MembersIDS = new List<int>();
+            MembersIDS.Add(Convert.ToInt32(TeamMembers.Rows[0]["MemberID"]));
+            MembersIDS.Add(Convert.ToInt32(TeamMembers.Rows[1]["MemberID"]));
+            MembersIDS.Add(Convert.ToInt32(TeamMembers.Rows[2]["MemberID"]));
+
+            if (MembersIDS[1] == TM.LeaderID)
+            {
+                MembersIDS[1] = MembersIDS[0];
+            }
+            else if (MembersIDS[2] == TM.LeaderID)
+            {
+                MembersIDS[2] = MembersIDS[0];
+            }
+            MembersIDS[0] = TM.LeaderID;
+
+            ViewBag.Leader  = Convert.ToString(db.SelectUserNameByID(MembersIDS[0]).Rows[0]["Fname"]) +
+                              Convert.ToString(db.SelectUserNameByID(MembersIDS[0]).Rows[0]["Lname"]);
+            ViewBag.Member2 = Convert.ToString(db.SelectUserNameByID(MembersIDS[1]).Rows[0]["Fname"]) +
+                              Convert.ToString(db.SelectUserNameByID(MembersIDS[1]).Rows[0]["Lname"]);
+            ViewBag.Member3 = Convert.ToString(db.SelectUserNameByID(MembersIDS[2]).Rows[0]["Fname"]) +
+                              Convert.ToString(db.SelectUserNameByID(MembersIDS[2]).Rows[0]["Lname"]);
+
+            ViewBag.id = id;
+            ViewBag.UserName = UserName;
+            return View(TM);
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -97,6 +150,14 @@ namespace A4A.Controllers
             return View();
         }
         public ActionResult SuccessfulCreationOfTeam()
+        {
+            return View();
+        }
+        public ActionResult EmptyTeams()
+        {
+            return View();
+        }
+        public ActionResult MustSignIn()
         {
             return View();
         }
