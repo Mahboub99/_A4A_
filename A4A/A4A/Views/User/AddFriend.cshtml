@@ -1,4 +1,4 @@
-﻿@model A4A.Models.AddFriendModel
+﻿﻿@model A4A.Models.AddFriendModel
 
 @{
     ViewBag.Title = "AddFriend";
@@ -17,7 +17,7 @@
 
 <h2>AddFriend</h2>
 
-@using (Html.BeginForm("AddFriend", "User", new { UserID = IV, UserName = s}))
+@using (Html.BeginForm("AddFriend", "User", new { UserID = IV, UserName = s }))
 {
     @Html.AntiForgeryToken()
 
