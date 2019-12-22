@@ -2,14 +2,32 @@
 
 @{
     ViewBag.Title = "ViewAllGroups";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    if (ViewBag.ID == 0 || ViewBag.ID == null)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/User_LayoutPage1.cshtml";
+    }
+    string UserName = ViewBag.UserName;
+    int id = 0;
+    int.TryParse(Convert.ToString(ViewBag.ID), out id);
 }
 
-<h2>ViewAllGroups</h2>
+<h2>View Groups</h2>
+<tr>
+    <th>
+        @Html.ActionLink("Groups", "ViewAllGroups", new {id, UserName})
+    </th>
+    <th>
+        @Html.ActionLink("My Groups", "ViewMyGroups", new {id, UserName})
+    </th>
+    <th>
+        @Html.ActionLink("Create Group", "CreateGroup", new {id, UserName})
+    </th>
+</tr>
 
-<p>
-    @Html.ActionLink("Create New", "CreateGroup")
-</p>
 <table class="table">
     <tr>
         <th>

@@ -44,20 +44,20 @@ namespace AutoCodeforces
 
             chromeDriver.FindElement(By.ClassName("submit")).Click();
 
-            chromeDriver.Close();
-            chromeDriver.Quit();
+            //chromeDriver.Close();
+            //chromeDriver.Quit();
         }
 
 
-        public string SubmissionJsonFile(string handle = "Adel_Rizq", int ContestID = 102, int SumbissionCounter = 1)
+        public string SubmissionJsonFile(string handle = "A4A_A4A", int ContestID = 102, int SumbissionCounter = 1)
         {
             string ApiUrl =
                 string.Format("https://" + "codeforces.com/api/contest.status?contestId={0}&handle={1}&from=1&count={2}", ContestID, handle, SumbissionCounter);
             chromeDriver.Navigate().GoToUrl(ApiUrl);
             string s = chromeDriver.FindElement(By.TagName("pre")).Text;
 
-            chromeDriver.Close();
-            chromeDriver.Quit();
+            //chromeDriver.Close();
+            //chromeDriver.Quit();
 
             return s;
         }

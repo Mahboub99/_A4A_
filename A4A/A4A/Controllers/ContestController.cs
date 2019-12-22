@@ -12,7 +12,7 @@ namespace A4A.Controllers
     public class ContestController : Controller
     {
         [Route("Contest/ViewContest")]
-        public ActionResult ViewContests()
+        public ActionResult ViewContests(int id = 0, string UserName = "")
         {
             DBController dbController = new DBController();
             DataTable dt = dbController.SelectContests();
@@ -33,15 +33,22 @@ namespace A4A.Controllers
                 list.Add(Contest);
             }
 
+            
+            ViewBag.ID = id;
+            ViewBag.UserName = UserName;
             return View(list);
         }
 
         //TODO (the parameters)
-        public ActionResult ViewMyContests(int User_ID = 1) 
+        public ActionResult ViewMyContests(int id = 0, string UserName = "") 
         {
             DBController dbController = new DBController();
-            DataTable dt = dbController.SelectMyContests(User_ID);
+            DataTable dt = dbController.SelectMyContests(id);
             List<ContestModel> list = new List<ContestModel>();
+            if (dt == null)
+            {
+                return RedirectToAction("EmptyContests");
+            }
             for (int i = 0; i < dt.Rows.Count; ++i)
             {
                 Models.ContestModel Contest = new ContestModel();
@@ -58,6 +65,8 @@ namespace A4A.Controllers
                 list.Add(Contest);
             }
 
+            ViewBag.id = id;
+            ViewBag.UserName = UserName;
             return View(list);
         }
 
@@ -65,10 +74,10 @@ namespace A4A.Controllers
         {
             DBController dbController = new DBController();
             DataTable dt = dbController.SelectContestProblems(ContestID);
-            List<ProblemSetModel> list = new List<ProblemSetModel>();
+            List<ProblemModel> list = new List<ProblemModel>();
             for (int i = 0; i < dt.Rows.Count; ++i)
             {
-                ProblemSetModel problem = new ProblemSetModel();
+                ProblemModel problem = new ProblemModel();
                 problem.ProblemName = Convert.ToString(dt.Rows[i]["ProblemName"]);
                 problem.ProblemTopic = Convert.ToString(dt.Rows[i]["ProblemTopic"]);
                 problem.ProblemLink = Convert.ToString(dt.Rows[i]["ProblemLink"]);
@@ -79,11 +88,24 @@ namespace A4A.Controllers
             return View(list);
         }
 
-        //TODO (wait for Mahboub)
+        [HttpPost]
         public ActionResult InsertContest(ContestModel CM)
         {
             DBController dbController = new DBController();
             int InsertionVerdict = dbController.InsertContest(CM);
+            return View();
+        }
+
+        public ActionResult InsertContest(int id, string UserName)
+        {
+            ViewBag.id = id;
+            ViewBag.UserName = UserName;
+            return View();
+
+        }
+
+        public ActionResult EmptyContests()
+        {
             return View();
         }
     }
