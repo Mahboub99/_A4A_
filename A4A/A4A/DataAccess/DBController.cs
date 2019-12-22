@@ -53,14 +53,67 @@ namespace A4A.DataAccess
         {
             string StoredProcedureName = StoredProcedures.InsertContest;
 
-            Dictionary<string, object> Parameters = new Dictionary<string, object>();
+            Dictionary<string, object> Parameters = new Dictionary<string, object>();            
+            CM.ContestID = Count_Contests() + 1; ;
             Parameters.Add("@ContestID", CM.ContestID);
             Parameters.Add("@ContestName", CM.ContestName);
             Parameters.Add("@ContestDate", CM.ContestDate);
             Parameters.Add("@ContestLength", CM.ContestLength);
             Parameters.Add("@ContestWriterID", CM.ContestWriterID);
 
-            return dbMan.ExecuteNonQuery(StoredProcedureName, Parameters);
+            int contest = dbMan.ExecuteNonQuery(StoredProcedureName, Parameters);
+            int problem = InsertProblem(CM);
+            return problem;
+        }
+
+        public int InsertProblem(ContestModel CM)
+        {
+            string StoredProcedureName = StoredProcedures.InsertProblem;
+            List<string> Topics = new List<string>();
+            Topics.Add("Math");
+            Topics.Add("Graphs");
+            Topics.Add("Adhok");
+            Topics.Add("Implementation");
+            Topics.Add("Greedy");
+            int done = 1;
+            for (int i = 1; i <= 5; ++i)
+            {
+                Dictionary<string, object> Parameters = new Dictionary<string, object>();
+                //int ContestID = int.Parse(Guid.NewGuid().ToString());
+                Parameters.Add("@ProblemWriter", CM.ContestWriterID);
+                Parameters.Add("@ProblemName", CM.ContestName + " P" + i.ToString());
+                Parameters.Add("@ProblemTopic", Topics[i-1]);
+                string problem = "";
+                switch (i)
+                {
+                    case 1:
+                        problem = CM.Problem1;
+                        break;
+                    case 2:
+                        problem = CM.Problem2;
+                        break;
+                    case 3:
+                        problem = CM.Problem3;
+                        break;
+                    case 4:
+                        problem = CM.Problem4;
+                        break;
+                    case 5:
+                        problem = CM.Problem5;
+                        break;
+                    default:
+                        break;
+
+                }
+                Parameters.Add("@ProblemLink", "https://codeforces.s3.amazonaws.com/" + problem + ".pdf");
+                Parameters.Add("@ProblemDifficulty", 800+(i-1)*200);
+                Parameters.Add("@ProblemContest", CM.ContestID);
+                Parameters.Add("@ProblemID", problem);
+                done = dbMan.ExecuteNonQuery(StoredProcedureName, Parameters);
+            }
+
+
+            return done;
         }
 
         public int Count_Users()
@@ -68,6 +121,7 @@ namespace A4A.DataAccess
             string StoredProcedureName = StoredProcedures.Count_Users;
             return Convert.ToInt32(dbMan.ExecuteScalar(StoredProcedureName, null));
         }
+
         public int CountGroups()
         {
             string StoredProcedureName = StoredProcedures.Count_Groups;
@@ -292,6 +346,12 @@ namespace A4A.DataAccess
             Dictionary<string, object> Parameters = new Dictionary<string, object>();
             Parameters.Add("@Email", email);
             return Convert.ToInt32(dbMan.ExecuteScalar(StoredProcedureName, Parameters));
+        }
+
+        public DataTable GetAvailableProblems()
+        {
+            string StoredProcedureName = StoredProcedures.GetvailableProblems;
+            return dbMan.ExecuteReader(StoredProcedureName, null);
         }
     }
 }

@@ -89,18 +89,30 @@ namespace A4A.Controllers
         }
 
         [HttpPost]
-        public ActionResult InsertContest(ContestModel CM)
+        public ActionResult InsertContest(ContestModel CM, int id, string UserName)
         {
+            CM.ContestWriterID = id;
             DBController dbController = new DBController();
             int InsertionVerdict = dbController.InsertContest(CM);
-            return View();
+            return RedirectToAction("ViewContests", new { id, UserName });
         }
 
         public ActionResult InsertContest(int id, string UserName)
         {
+            ContestModel CM = new ContestModel();
+            DBController dbController = new DBController();
+            DataTable dt = dbController.GetAvailableProblems();
+            string AvailableProblems = dt.Rows[1]["Names"].ToString();                      
+
+            ViewBag.Problem1 = new SelectList(AvailableProblems.Split(',').ToList(), "Problem1");
+            ViewBag.Problem2 = new SelectList(AvailableProblems.Split(',').ToList(), "Problem2");
+            ViewBag.Problem3 = new SelectList(AvailableProblems.Split(',').ToList(), "Problem3");
+            ViewBag.Problem4 = new SelectList(AvailableProblems.Split(',').ToList(), "Problem4");
+            ViewBag.Problem5 = new SelectList(AvailableProblems.Split(',').ToList(), "Problem5");
+
             ViewBag.id = id;
             ViewBag.UserName = UserName;
-            return View();
+            return View(CM);
 
         }
 
