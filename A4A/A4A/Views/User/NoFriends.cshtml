@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "NoFriends";
+    if (ViewBag.id == 0 || ViewBag.id == null)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/User_LayoutPage1.cshtml";
+    }
+}
+
+<h2 style="color:#ff0000">✖No Friends Found</h2>
+

@@ -42,7 +42,7 @@
                     @Html.ActionLink("ORGANIZATION", "ViewAllOrgs", "Org")
                 </li>
                 <li class="nav-item nav-link">
-                    @Html.ActionLink("TEAM", "ViewAllTeams", "Team")
+                    @Html.ActionLink("TEAM", "ViewAllTeams", "Team", new {id = id, UserName = s}, null)
                 </li>
                 <li class="nav-item nav-link">
                     @Html.ActionLink("ABOUT", "About", "Home")
@@ -50,8 +50,8 @@
                 <li class="nav-item nav-link">
                     @Html.ActionLink("CONTACT", "Contact", "Home")
                 </li>
-                <li class="nav-item nav-link" style="margin-left:320px" id="User">
-                    @Html.ActionLink(s, "ViewUser", "User", new { ID = id }, null);
+                <li class="nav-item nav-link" style="margin-left:500px" id="User">
+                    @Html.ActionLink(s , "ViewUser", "User", new { id = id, IV =id, UserName = s}, null)
                 </li>
                 <li class="nav-item nav-link">
                     @Html.ActionLink("Logout", "Logout", "User", new { ID = id }, null);
