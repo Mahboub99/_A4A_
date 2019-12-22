@@ -221,6 +221,15 @@ namespace A4A.DataAccess
             string StoredProcedureName = StoredProcedures.ViewAllUsers;
             return dbMan.ExecuteReader(StoredProcedureName, null);
         }
+        public DataTable SelectFriends(int UserID)
+        {
+            string StoredProcedureName = StoredProcedures.Friends;
+
+            Dictionary<string, object> Parameters = new Dictionary<string, object>();
+            Parameters.Add("@ID", UserID);
+
+            return dbMan.ExecuteReader(StoredProcedureName, Parameters);
+        }
         public DataTable SelectUser(int id)
         {
             string StoredProcedureName = StoredProcedures.Select_User;
@@ -246,6 +255,17 @@ namespace A4A.DataAccess
             return dbMan.ExecuteReader(StoredProcedureName, Parameters);
         }
 
+        public int Select_UserID_By_Email(string Email)
+        {
+
+            string StoredProcedureName = StoredProcedures.Select_UserID_By_Email;
+
+            Dictionary<string, object> Parameters = new Dictionary<string, object>();
+            Parameters.Add("@Email", Email );
+
+            return Convert.ToInt32(dbMan.ExecuteScalar(StoredProcedureName, Parameters));
+        }
+        
         public int InsertOrg(OrgModel OM)
         {
             string StoredProcedureName = StoredProcedures.InsertOrg;
@@ -254,6 +274,16 @@ namespace A4A.DataAccess
             Parameters.Add("@OrgID", OM.OrgID);
             Parameters.Add("@OrgName", OM.OrgName);
             Parameters.Add("@AdminID", OM.AdminID);
+
+            return dbMan.ExecuteNonQuery(StoredProcedureName, Parameters);
+        }
+        public int InsertFriend(int ID , int FriendID)
+        {
+            string StoredProcedureName = StoredProcedures.InsertFriends;
+
+            Dictionary<string, object> Parameters = new Dictionary<string, object>();
+            Parameters.Add("@UserID", ID);
+            Parameters.Add("@FriendID", FriendID);
 
             return dbMan.ExecuteNonQuery(StoredProcedureName, Parameters);
         }

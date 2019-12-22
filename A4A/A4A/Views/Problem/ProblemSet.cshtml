@@ -11,11 +11,12 @@
         Layout = "~/Views/Shared/User_LayoutPage1.cshtml";
     }
 }
-<h2>ProblemSet</h2>
+<br />
+<h2>📃 ProblemSet</h2>
 <script>$('table').DataTable();</script>
-
-<table id="dtBasicExample" class="table table-hover table-bordered " cellspacing="0" width="100%">
-    <tr>
+<br />
+<table id="dtBasicExample" class="table table-hover table-bordered " cellspacing="0">
+    <tr class="table-primary">
         <th class="th-sm">
             @Html.DisplayNameFor(model => model.ProblemName)
         </th>
@@ -25,6 +26,9 @@
         <th class="th-sm">
             @Html.DisplayNameFor(model => model.ProblemDifficulty)
         </th>
+		<th>
+			Explore
+		</th>
     </tr>
 
     @foreach (var item in Model)
@@ -46,3 +50,8 @@
     }
 
 </table>
+
+<br /><br /><br />
+<div>
+	@Html.ActionLink("Back to Home Page", "Index", "Home")
+</div>

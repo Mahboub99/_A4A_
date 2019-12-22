@@ -4640,13 +4640,18 @@ input[type="button"].btn-block {
 }
 
 .navbar-brand {
-  display: inline-block;
+  /*display: inline-block;
   padding-top: 0.3125rem;
   padding-bottom: 0.3125rem;
   margin-right: 1rem;
   font-size: 1.25rem;
   line-height: inherit;
-  white-space: nowrap;
+  white-space: nowrap;*/
+  float: left;  
+  padding: 15px 15px;  
+  font-size: 35px;  
+  line-height: 20px;  
+  font-family:'Facebook Letter Faces'  
 }
 
 .navbar-brand:hover, .navbar-brand:focus {

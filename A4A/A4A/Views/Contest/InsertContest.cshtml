@@ -14,58 +14,50 @@
     int id = 0;
     int.TryParse(Convert.ToString(ViewBag.ID), out id);
 }
+<br />
+<h2>🔗 Add Contest</h2>
 
-<h2>InsertContest</h2>
-<tr>
-    <th>
-        @Html.ActionLink("Contests", "ViewContests", new { id, UserName })
-    </th>
-    <th>
-        @Html.ActionLink("MyContests", "ViewMyContests", new { id, UserName })
-    </th>
-    <th>
-        @Html.ActionLink("Create Contest", "InsertContest", new { id, UserName })
-    </th>
-</tr>
+<p>
+	<br />
+	<button style="margin-right:6px;" class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewContests", "Contest")';return false;">View All Contests &raquo;</button>
+	<button class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewMyContests", "Contest")';return false;">My Contests &raquo;</button>
+</p>
 
 
 @using (Html.BeginForm(new { id, UserName }))
 {
     @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
-    <h4>ContestModel</h4>
-    <hr />
-    @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.ContestID, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+		@*<div class="form-group">*@
+            @*@Html.LabelFor(model => model.ContestID, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            @*<div class="col-md-10">
+				<label style="color:#000000;font-size:20px;">Contest ID</label>
                 @Html.EditorFor(model => model.ContestID, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ContestID, "", new { @class = "text-danger" })
+            </div>*@
+        @*</div>*@
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.ContestName, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="col-md-10">
+				<label style="color:#000000;font-size:20px;">Contest Name</label>
+				@Html.EditorFor(model => model.ContestName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ContestName, "", new { @class = "text-danger" })
             </div>
-        </div>*@
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.ContestName, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.ContestName, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.ContestName, "", new { @class = "text-danger" })
         </div>
     </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.ContestDate, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.ContestDate, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.ContestDate, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.ContestLength, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.ContestLength, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.ContestLength, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.ContestLength, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="col-md-10">
+				<label style="color:#000000;font-size:20px;">Contest Length</label>
+                @Html.EditorFor(model => model.ContestLength, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ContestLength, "", new { @class = "text-danger" })
+            </div>
         </div>
     </div>
 
