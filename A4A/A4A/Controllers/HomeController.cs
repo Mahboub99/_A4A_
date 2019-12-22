@@ -20,14 +20,14 @@ namespace A4A.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult About(string UserName = "", int id = 0)
         {
             ViewBag.Message = "Your application description page.";
 
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Contact(string UserName = "", int id = 0)
         {
             ViewBag.Message = "Your contact page.";
 

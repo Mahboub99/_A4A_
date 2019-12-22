@@ -23,10 +23,10 @@
                     bool Done = int.TryParse(Convert.ToString(ViewBag.ID), out id);
                 }
                 <li class="nav-item active nav-link">
-                    @Html.ActionLink("HOME", "Index", "Home")
+                    @Html.ActionLink("HOME", "Index", "Home", new { id = id, UserName = s }, null)
                 </li>
                 <li class="nav-item active nav-link">
-                    @Html.ActionLink("USER", "ViewAllUsers", "User")
+                    @Html.ActionLink("USER", "ViewAllUsers", "User", new { id = id, UserName = s }, null)
                 </li>
                 <li class="nav-item nav-link">
                     @Html.ActionLink("Problem Set", "ProblemSet", "Problem", new { id = id, UserName = s }, null);
@@ -48,10 +48,10 @@
                     @Html.ActionLink("TEAM", "ViewAllTeams", "Team", new { id = id, UserName = s }, null)
                 </li>
                 <li class="nav-item nav-link">
-                    @Html.ActionLink("ABOUT", "About", "Home")
+                    @Html.ActionLink("ABOUT", "About", "Home", new { id = id, UserName = s }, null)
                 </li>
                 <li class="nav-item nav-link">
-                    @Html.ActionLink("CONTACT", "Contact", "Home")
+                    @Html.ActionLink("CONTACT", "Contact", "Home", new { id = id, UserName = s })
                 </li>
                 <li class="nav-item nav-link" style="margin-left:500px" id="User">
                     @Html.ActionLink(s, "ViewUser", "User", new { id = id, IV = id, UserName = s }, null)

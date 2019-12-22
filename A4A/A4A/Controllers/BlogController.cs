@@ -76,11 +76,20 @@ namespace A4A.Controllers
             ViewBag.UserName = UserName;
             return View(Blog);
         }
+        [HttpPost]
         public ActionResult InsertBlog(BlogModel Blog, int id = 0, string UserName = "")
         {
             DBController dbController = new DBController();
             int done = dbController.InsertBlog(Blog.BlogTitle, id, 1, Blog.BlogContent);
-            return RedirectToAction("ViewMyBlogs", new { id, UserName });
+            return RedirectToAction("ViewAllBlogs", new { id, UserName });
+        }
+
+        public ActionResult InsertBlog(int id = 0, string UserName = "")
+        {
+            ViewBag.id = id;
+            ViewBag.UserName = UserName;
+            return View();
+
         }
     }
 }
