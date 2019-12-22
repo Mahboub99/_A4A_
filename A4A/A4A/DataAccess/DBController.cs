@@ -359,6 +359,11 @@ namespace A4A.DataAccess
             string StoredProcedureName = StoredProcedures.Count_Orgs;
             return Convert.ToInt32(dbMan.ExecuteScalar(StoredProcedureName, null));
         }
+        public int Count_Blogs()
+        {
+            string StoredProcedureName = StoredProcedures.Count_Blogs;
+            return Convert.ToInt32(dbMan.ExecuteScalar(StoredProcedureName, null));
+        }
         public int Count_Teams()
         {
             string StoredProcedureName = StoredProcedures.Count_Teams;
@@ -383,5 +388,39 @@ namespace A4A.DataAccess
             string StoredProcedureName = StoredProcedures.GetvailableProblems;
             return dbMan.ExecuteReader(StoredProcedureName, null);
         }
+
+        public int InsertBlog(string BlogTitle, int BlogWriter, int GroupID, string BlogContent)
+        {
+            string StoredProcedureName = StoredProcedures.InsertBlog;
+            int BlogID = Count_Blogs() + 1;
+            Dictionary<string, object> Parameters = new Dictionary<string, object>();
+            Parameters.Add("@BlogID", BlogID);
+            Parameters.Add("@BlogTitle", BlogTitle);
+            Parameters.Add("@BlogWriter", BlogWriter);
+            Parameters.Add("@GroupID", GroupID);
+            Parameters.Add("@BlogContent", BlogContent);
+
+            return dbMan.ExecuteNonQuery(StoredProcedureName, Parameters);
+        }
+        public DataTable SelectBlogs()
+        {
+            string StoredProcedureName = StoredProcedures.GetAllBlogs;
+            return dbMan.ExecuteReader(StoredProcedureName, null);
+        }
+        public DataTable SelectMyBlogs(int UserID)
+        {
+            string StoredProcedureName = StoredProcedures.GetMyBlogs;
+            Dictionary<string, object> Parameters = new Dictionary<string, object>();
+            Parameters.Add("@UserID", UserID);
+            return dbMan.ExecuteReader(StoredProcedureName, Parameters);
+        }
+        public DataTable SelectABlogs(int BlogID)
+        {
+            string StoredProcedureName = StoredProcedures.GetABlog;
+            Dictionary<string, object> Parameters = new Dictionary<string, object>();
+            Parameters.Add("@BlogID", BlogID);
+            return dbMan.ExecuteReader(StoredProcedureName, Parameters);
+        }
+
     }
 }

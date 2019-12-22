@@ -28,12 +28,15 @@
                 <li class="nav-item active nav-link">
                     @Html.ActionLink("USER", "ViewAllUsers", "User")
                 </li>
-                <li class="nav-item nav-link">                                          
-                    @Html.ActionLink("Problem Set", "ProblemSet", "Problem", new { id = id, UserName = s }, null);                    
+                <li class="nav-item nav-link">
+                    @Html.ActionLink("Problem Set", "ProblemSet", "Problem", new { id = id, UserName = s }, null);
 
                 </li>
                 <li class="nav-item nav-link">
-                    @Html.ActionLink("CONTEST", "ViewContests", "Contest", new {id = id, UserName = s}, null)
+                    @Html.ActionLink("CONTEST", "ViewContests", "Contest", new { id = id, UserName = s }, null)
+                </li>
+                <li class="nav-item nav-link">
+                    @Html.ActionLink("BLOG", "ViewAllBlogs", "Blog", new { id = id, UserName = s }, null)
                 </li>
                 <li class="nav-item nav-link">
                     @Html.ActionLink("GROUP", "ViewAllGroups", "Group", new { id = id, UserName = s }, null)
@@ -42,7 +45,7 @@
                     @Html.ActionLink("ORGANIZATION", "ViewAllOrgs", "Org")
                 </li>
                 <li class="nav-item nav-link">
-                    @Html.ActionLink("TEAM", "ViewAllTeams", "Team", new {id = id, UserName = s}, null)
+                    @Html.ActionLink("TEAM", "ViewAllTeams", "Team", new { id = id, UserName = s }, null)
                 </li>
                 <li class="nav-item nav-link">
                     @Html.ActionLink("ABOUT", "About", "Home")
@@ -51,7 +54,7 @@
                     @Html.ActionLink("CONTACT", "Contact", "Home")
                 </li>
                 <li class="nav-item nav-link" style="margin-left:500px" id="User">
-                    @Html.ActionLink(s , "ViewUser", "User", new { id = id, IV =id, UserName = s}, null)
+                    @Html.ActionLink(s, "ViewUser", "User", new { id = id, IV = id, UserName = s }, null)
                 </li>
                 <li class="nav-item nav-link">
                     @Html.ActionLink("Logout", "Logout", "User", new { ID = id }, null);

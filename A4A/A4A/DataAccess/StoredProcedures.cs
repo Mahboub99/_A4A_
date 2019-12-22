@@ -54,5 +54,11 @@ namespace A4A.DataAccess
 
         public static string GetvailableProblems = "GetvailableProblems";
         public static string InsertProblem = "InsertProblem";
+
+        public static string InsertBlog = "InsertBlog";
+        public static string GetAllBlogs = "GetAllBlogs";
+        public static string GetMyBlogs = "GetMyBlogs";
+        public static string GetABlog = "GetABlog";
+        public static string Count_Blogs = "Count_Blogs";
     }
 }

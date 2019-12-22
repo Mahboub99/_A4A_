@@ -126,6 +126,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\ContestController.cs" />
     <Compile Include="Controllers\GroupController.cs" />
     <Compile Include="Controllers\OrgController.cs" />
@@ -141,6 +142,7 @@
     <Compile Include="Helpers\SubmissionHelper.cs" />
     <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Helpers\UnixTimeConverter.cs" />
+    <Compile Include="Models\BlogModel.cs" />
     <Compile Include="Models\ContestModel.cs" />
     <Compile Include="Models\GroupModel.cs" />
     <Compile Include="Models\OrgModel.cs" />
@@ -209,6 +211,10 @@
     <Content Include="Views\Team\ViewAllTeams.cshtml" />
     <Content Include="Views\Team\ViewGroupTeams.cshtml" />
     <Content Include="Views\Shared\User_LayoutPage1.cshtml" />
+    <Content Include="Views\Blog\ViewAllBlogs.cshtml" />
+    <Content Include="Views\Blog\ViewBlog.cshtml" />
+    <Content Include="Views\Blog\ViewMyBlogs.cshtml" />
+    <Content Include="Views\Blog\InsertBlog.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

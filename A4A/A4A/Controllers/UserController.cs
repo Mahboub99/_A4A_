@@ -178,11 +178,6 @@ namespace A4A.Controllers
 
 
         }
-        public ActionResult Logout()
-        {
-            ViewBag.ID = 0;
-            return RedirectToAction("Index", "Home");
-        }
 
     }
 }
