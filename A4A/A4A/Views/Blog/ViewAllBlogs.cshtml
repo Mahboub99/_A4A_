@@ -53,6 +53,9 @@
         <td>
             @Html.ActionLink("View", "ViewBlog", new { BlogID = item.BlogID, id = ViewBag.ID, UserName = ViewBag.UserName, Blog = item })
         </td>
+        <td>
+            @Html.ActionLink("Delete", "DeleteBlog", new { BlogID = item.BlogID, id = ViewBag.ID, UserName = ViewBag.UserName })
+        </td>
     </tr>
 }
 

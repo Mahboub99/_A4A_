@@ -91,5 +91,15 @@ namespace A4A.Controllers
             return View();
 
         }
+
+        public ActionResult DeleteBlog(int BlogId, int id = 0, string UserName = "")
+        {
+            DBController db = new DBController();
+            //db.DeleteBlog(BlogId);
+
+            ViewBag.Id = id;
+            ViewBag.UserName = UserName;
+            return RedirectToAction("ViewAllBlogs");
+        }
     }
 }

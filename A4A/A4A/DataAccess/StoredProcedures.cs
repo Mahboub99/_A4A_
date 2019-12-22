@@ -66,5 +66,12 @@ namespace A4A.DataAccess
         public static string GetMyBlogs = "GetMyBlogs";
         public static string GetABlog = "GetABlog";
         public static string Count_Blogs = "Count_Blogs";
+
+        public static string DeleteBlog = "DeleteBlog";
+        public static string DeleteProblem = "DeleteProblem";
+        public static string DeleteContest = "DeleteContest";
+        public static string DeleteGroup = "DeleteGroup";
+        public static string DeleteOrg = "DeleteOrg";
+        //public static string DeleteUser = "DeleteUser"
     }
 }
