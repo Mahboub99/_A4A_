@@ -17,8 +17,18 @@
     ViewBag.LeaderID = id;
 }
 
-<h2>Create Team</h2>
-<tr>
+<br />
+<h2>🔧 Create Team</h2>
+
+
+<p>
+	<br />
+	<button style="margin-right:6px;" class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewAllTeams", "Team", new { id, UserName })';return false;">All Teams &raquo;</button>
+	<button style="margin-right:6px;" class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewGroupTeams", "Team", new { id, UserName })';return false;">View My Teams &raquo;</button>
+	@*<button style="margin-right:6px;" class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewMyGroups", "Group")';return false;">My Groups &raquo;</button>*@
+	@*<button class="btn btn-outline-primary" onclick="location.href='@Url.Action("CreateGroup", "Group")';return false;">Create Group &raquo;</button>*@
+</p>
+@*<tr>
     <th>
         @Html.ActionLink("Teams", "ViewAllTeams", new { id, UserName })
     </th>
@@ -28,27 +38,27 @@
     <th>
         @Html.ActionLink("Create Team", "CreateTeam", new { id, UserName })
     </th>
-</tr>
+</tr>*@
 
 @using (Html.BeginForm("CreateTeam", "Team", new { LeaderId = id, UserName = UserName }, FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>TeamModel</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <div class="form-group">
-            @Html.LabelFor(model => model.TeamName, htmlAttributes: new { @class = "control-label col-md-2" })
+            @*@Html.LabelFor(model => model.TeamName, htmlAttributes: new { @class = "control-label col-md-2" })*@
             <div class="col-md-10">
+				<label style="color:#000000;font-size:20px;">Team Name</label>
                 @Html.EditorFor(model => model.TeamName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.TeamName, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
             <div class="col-md-10">
-                <p> Member2 Email</p>
+				<label style="color:#000000;font-size:20px;">Member 2 Email</label>
                 @Html.EditorFor(model => model.Member2, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Member2, "", new { @class = "text-danger" })
             </div>
@@ -57,7 +67,7 @@
             @*@Html.LabelFor(model => model.TeamMembers[2], htmlAttributes: new { @class = "control-label col-md-2" })*@
             
             <div class="col-md-10">
-                <p> Member3 Email</p>
+				<label style="color:#000000;font-size:20px;">Member 3 Email</label>
                 @Html.EditorFor(model => model.Member3, new {htmlAttributes = new {@class = "form-control"}})
                 @Html.ValidationMessageFor(model => model.Member3, "", new {@class = "text-danger"})
             </div>
@@ -65,14 +75,14 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-outline-primary" />
             </div>
         </div>
     </div>
 }
-
+<br />
 <div>
-    @Html.ActionLink("Back to List", "ViewAllTeams")
+	@Html.ActionLink("Back to Home Page", "Index", "Home")
 </div>
 
 @section Scripts {

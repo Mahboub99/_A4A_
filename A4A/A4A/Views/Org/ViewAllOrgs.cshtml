@@ -5,18 +5,25 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>ViewAllOrgs</h2>
+<br />
+<h2>🏫 All Organizations</h2>
 
 <p>
-    @Html.ActionLink("Create New", "CreateOrg")
+	<br />
+	<button style="margin-right:6px;" class="btn btn-outline-primary" onclick="location.href='@Url.Action("CreateOrg", "Org")';return false;">Create Org &raquo;</button>
 </p>
-<table class="table">
-    <tr>
-       
+
+@*<p>
+    @Html.ActionLink("Create New", "CreateOrg")
+</p>*@
+<table id="dtBasicExample" class="table table-hover table-bordered " cellspacing="0">
+    <tr  class="table-primary">
         <th>
-            @Html.DisplayNameFor(model => model.OrgName)
+            Organization Name
         </th>
-        <th></th>
+        <th>
+			🔎Explore
+		</th>
     </tr>
 
 @foreach (var item in Model) {
@@ -34,3 +41,8 @@
 }
 
 </table>
+
+<br /><br /><br />
+<div>
+	@Html.ActionLink("Back to Home Page", "Index", "Home")
+</div>

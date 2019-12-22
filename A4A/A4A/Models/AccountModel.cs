@@ -26,4 +26,9 @@ namespace A4A.Models
         public int ID { get; set; }
         public int Rating { get; set; }
     }
+
+    public class AddFriendModel
+    {
+        public string Email { get; set; }
+    }
 }

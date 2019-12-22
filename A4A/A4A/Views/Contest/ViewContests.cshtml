@@ -14,34 +14,36 @@
     int id = 0;
     int.TryParse(Convert.ToString(ViewBag.ID), out id);
 }
+<br />
+<h2>🎯 Contests</h2>
 
-<h2>ViewContests</h2>
-<tr>
-    <th>
-        @Html.ActionLink("Contests", "ViewContests", new {id, UserName})
-    </th>
-    <th>
-        @Html.ActionLink("My Contests", "ViewMyContests", new {id, UserName})
-    </th>
-    <th>
-        @Html.ActionLink("Create Contest", "InsertContest", new {id, UserName})
-    </th>
-</tr>
+<p>
+	<br />
+	<button style="margin-right:6px;" class="btn btn-outline-primary" onclick="location.href='@Url.Action("InsertContest", "Contest", new {id, UserName})';return false;">Create a new contest &raquo;</button>
+	<button class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewMyContests", "Contest", new {id, UserName})';return false;">View my contests &raquo;</button>
+</p>
 
-<table id="dtBasicExample" class="table table-hover table-bordered " cellspacing="0" width="100%">
-    <tr>
+<table id="dtBasicExample" class="table table-hover table-bordered " cellspacing="0">
+    <tr class="table-primary">
         <th>
-            @Html.DisplayNameFor(model => model.ContestName)
+            @*@Html.DisplayNameFor(model => model.ContestName)*@
+			Contest Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ContestDate)
+            @*@Html.DisplayNameFor(model => model.ContestDate)*@
+			Contest Date
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ContestLength)
+            @*@Html.DisplayNameFor(model => model.ContestLength)*@
+			Contest Length
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ContestWriterName)
+            @*@Html.DisplayNameFor(model => model.ContestWriterName)*@
+			Contest Writer
         </th>
+		<th>
+			🔎Explore
+		</th>
 
     </tr>
 
@@ -68,3 +70,8 @@
     }
 
 </table>
+
+<br /><br /><br />
+<div>
+	@Html.ActionLink("Back to Home Page", "Index", "Home")
+</div>

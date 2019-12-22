@@ -15,7 +15,7 @@ namespace A4A.Controllers
     public class UserController : Controller
     {
         // GET: User
-        public ActionResult ViewAllUsers()
+        public ActionResult ViewAllUsers(int id = 0, string UserName = "")
         {
             DBController dbController = new DBController();
             DataTable dt = dbController.SelectUsers();
@@ -32,10 +32,11 @@ namespace A4A.Controllers
                 list.Add(User);
             }
 
+            ViewBag.id = id;
+            ViewBag.UserName = UserName;
             return View(list);
         }
-
-        public ActionResult ViewUser(int ID)
+        public ActionResult ViewUser(int ID, int IV = 0, string UserName = "",bool ShowFriends = false)
         {
             DBController dbController = new DBController();
             DataTable dt = dbController.SelectUser(ID);
@@ -45,6 +46,12 @@ namespace A4A.Controllers
             User.Lname = Convert.ToString(dt.Rows[0]["Lname"]);
             User.Email = Convert.ToString(dt.Rows[0]["Email"]);
             User.Rating = int.Parse(Convert.ToString(dt.Rows[0]["Rating"]));
+
+
+
+            ViewBag.ID = IV;
+            ViewBag.UserName = UserName;
+            ViewBag.ShowFriends = ShowFriends;
 
             return View(User);
         }
@@ -69,13 +76,6 @@ namespace A4A.Controllers
             return RedirectToAction("ViewAllUsers");
         }
 
-        //[HttpPost]
-        //public ActionResult Login(FormCollection form)
-        //{
-        //    string UserName = form.Get("UserName");
-        //    ViewBag.UserName = UserName;
-        //    return View();
-        //}
 
         public ActionResult Login()
         {
@@ -101,7 +101,83 @@ namespace A4A.Controllers
                 return RedirectToAction("Index", "Home", new {UserName = UserName, id = id});
             }
         }
+        public ActionResult Logout()
+        {
+            ViewBag.id = 0;
+            return RedirectToAction("Index", "Home");
+        }
 
+        public ActionResult Friends(int ID = 0, string UserName = "")
+        {
+            ViewBag.id = ID;
+            ViewBag.UserName = UserName;
+
+            DBController dbController = new DBController();
+            DataTable dt = dbController.SelectFriends(ID);
+            if (dt == null && ID == 0)
+            {
+
+            }
+            else if (dt == null)
+            {
+                return RedirectToAction("NoFriends", "User", new { id = ID, UserName = UserName });
+            }
+
+            List<UsersModel> list = new List<UsersModel>();
+            for (int i = 0; i < dt.Rows.Count; ++i)
+            {
+                UsersModel Friend = new UsersModel();
+
+                Friend.Name = Convert.ToString(dt.Rows[i]["Fname"]) + " " + Convert.ToString(dt.Rows[i]["Lname"]);
+
+                Friend.ID = int.Parse(Convert.ToString(dt.Rows[i]["UserID"]));
+                Friend.Rating = int.Parse(Convert.ToString(dt.Rows[i]["Rating"]));
+                list.Add(Friend);
+            }
+
+
+            return View(list);
+        }
+        public ActionResult NoFriends(int ID = 0, string UserName = "")
+        {
+            ViewBag.ID = ID;
+            ViewBag.UserName = UserName;
+            return View();
+        }
+
+        public ActionResult AddFriend(int ID = 0,string UserName="")
+        {
+            ViewBag.ID = ID;
+            ViewBag.UserName = UserName;
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddFriend(int UserID = 0, string UserName = "", string Email = "")
+        {
+            DBController db = new DBController();
+            int FriendID = db.Select_UserID_By_Email(Email);
+
+            if (FriendID == 0 ) // not found
+            {
+                //TODO uncorrect email or Password
+                return View();
+            }
+            else
+            {
+               
+               int ins = db.InsertFriend(UserID, FriendID);
+            
+                ViewBag.ID = UserID;
+                ViewBag.UserName = UserName;
+                
+                return RedirectToAction("ViewUser" ,"User" ,new {ID =FriendID ,IV =UserID , UserName = UserName});
+                //return RedirectToAction("ViewUser", "User", new {ID =FriendID , IV = FriendID ,UserName =UserName });
+            }
+
+
+        }
         public ActionResult Logout()
         {
             ViewBag.ID = 0;

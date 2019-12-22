@@ -1,60 +1,55 @@
 ﻿@model A4A.Models.AccountModel
 
 @{
-    ViewBag.Title = "ViewUser";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewBag.Title = "ViewUser";
+    if (ViewBag.ID == 0 || ViewBag.ID == null)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/User_LayoutPage1.cshtml";
+    }
 }
 
-<h2>ViewUser</h2>
+<br />
+<h2>👀 View User</h2>
+<br />
 
-<div>
-    <h4>AccountModel</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            Name
-        </dt>
+<table id="dtBasicExample" class="table table-hover table-bordered " cellspacing="0">
+	<tr class="table-primary">
+		<th style="font-style:inherit"> User Name</th>
+		<th> Email </th>
+		<th> Rating </th>
+		<th> Solve Problems </th>
+		<th> Binding Problems </th>
+	</tr>
+	<tr>
+		<td>
+			@Html.DisplayFor(model => model.Fname)
+			@Html.DisplayFor(model => model.Lname)
+		</td>
+		<td> @Html.DisplayFor(model => model.Email) </td>
+		<td> @Html.DisplayFor(model => model.Rating) </td>
+		<td> @Html.DisplayFor(model => model.Solved) </td>
+		<td> @Html.DisplayFor(model => model.Binding)</td>
+	</tr>
+	
+</table>
 
-        <dd>
-            @Html.DisplayFor(model => model.Fname) 
-            @Html.DisplayFor(model => model.Lname)
-        </dd>
+@{ 
+    string s = ViewBag.UserName;
+    bool ShowFriends = ViewBag.ShowFriends;
+    int IV = 0;
+    bool Done = int.TryParse(Convert.ToString(ViewBag.ID), out IV);
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Rating)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Rating)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Solved)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Solved)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Binding)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Binding)
-        </dd>
-
-    </dl>
-</div>
+}
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "ViewAllUsers")
+       @{ if (ShowFriends)
+            {
+           <span style="margin-right:15px;">@Html.ActionLink("Friends", "Friends", "User", new { ID = IV, UserName = s }, null)</span>
+            @Html.ActionLink("Add Friend", "AddFriend", "User", new { ID = IV, UserName = s, Email = "" }, null);
+            }
+        }
+
 </p>
