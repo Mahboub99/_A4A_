@@ -1,8 +1,7 @@
-﻿@model A4A.Models.BlogModel
-
+﻿
 @{
-    ViewBag.Title = "View Blog";
-    if (ViewBag.ID == 0)
+    ViewBag.Title = "EmptyBlogs";
+    if (ViewBag.ID == 0 || ViewBag.ID == null)
     {
         Layout = "~/Views/Shared/_Layout.cshtml";
     }
@@ -10,9 +9,12 @@
     {
         Layout = "~/Views/Shared/User_LayoutPage1.cshtml";
     }
+    string UserName = ViewBag.UserName;
+    int id = 0;
+    int.TryParse(Convert.ToString(ViewBag.ID), out id);
 }
 
-<h2>View Blog</h2>
+<h2>🧾 Empty Blogs</h2>
 
 <p>
     <br />
@@ -20,33 +22,4 @@
     <button style="margin-right:6px;" class="btn btn-outline-primary" onclick="location.href='@Url.Action("InsertBlog", "Blog", new {id = ViewBag.ID, UserName = ViewBag.UserName})';return false;">Add Blog &raquo;</button>
     <button class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewMyBlogs", "Blog", new {id = ViewBag.ID, UserName = ViewBag.UserName})';return false;">View My Blogs &raquo;</button>
 </p>
-<div>
-    <h4>BlogModel</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            Author
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.BlogWriterName)
-        </dd>
-
-        <dt>
-            Title
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BlogTitle)
-        </dd>
-
-        <dt>
-            Content
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BlogContent)
-        </dd>
-
-    </dl>
-</div>

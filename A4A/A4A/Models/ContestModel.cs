@@ -16,18 +16,16 @@ namespace A4A.Models
         public int ContestLength { get; set; }
         public int ContestWriterID { get; set; }
         public string ContestWriterName { get; set; }
-        //public IEnumerable<SelectListItem> AvailableProblems { get; set; }
-        //public IEnumerable<SelectListItem> Problem1 { get; set; }
-        //public IEnumerable<SelectListItem> Problem2 { get; set; }
-        //public IEnumerable<SelectListItem> Problem3 { get; set; }
-        //public IEnumerable<SelectListItem> Problem4 { get; set; }
-        //public IEnumerable<SelectListItem> Problem5 { get; set; }
-
-        public string AvailableProblems { get; set; }
+        
+        [Required(ErrorMessage = "This field is required")]
         public string Problem1 { get; set; }
+        [Required(ErrorMessage = "This field is required")]
         public string Problem2 { get; set; }
+        [Required(ErrorMessage = "This field is required")]
         public string Problem3 { get; set; }
+        [Required(ErrorMessage = "This field is required")]
         public string Problem4 { get; set; }
+        [Required(ErrorMessage = "This field is required")]
         public string Problem5 { get; set; }
 
     }

@@ -18,13 +18,13 @@
 <h2>Teams</h2>
 <tr>
     <th>
-        @Html.ActionLink("Teams", "ViewAllTeams", new { id, UserName })
+        @Html.ActionLink("Teams", "ViewAllTeams", new { id = id, UserName = UserName })
     </th>
     <th>
-        @Html.ActionLink("My Teams", "ViewMyTeams", new { id, UserName })
+        @Html.ActionLink("My Teams", "ViewMyTeams", new { id = id, UserName = UserName })
     </th>
     <th>
-        @Html.ActionLink("Create Team", "CreateTeam", new { id, UserName })
+        @Html.ActionLink("Create Team", "CreateTeam", new { id = id, UserName = UserName })
     </th>
 </tr>
 
@@ -74,7 +74,3 @@
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

@@ -86,5 +86,14 @@ namespace A4A.Controllers
         {
             return View();
         }
+        public ActionResult DeleteOrg(int OrgID, int id = 0, string UserName = "")
+        {
+            DBController db = new DBController();
+            db.DeleteOrg(OrgID);
+
+            ViewBag.Id = id;
+            ViewBag.UserName = UserName;
+            return RedirectToAction("ViewAllOrgs");
+        }
     }
 }

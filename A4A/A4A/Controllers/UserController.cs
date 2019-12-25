@@ -46,8 +46,8 @@ namespace A4A.Controllers
             User.Lname = Convert.ToString(dt.Rows[0]["Lname"]);
             User.Email = Convert.ToString(dt.Rows[0]["Email"]);
             User.Rating = int.Parse(Convert.ToString(dt.Rows[0]["Rating"]));
-
-
+            User.Binding = dbController.Binding(ID);
+            User.Solved = dbController.Solved(ID);
 
             ViewBag.ID = IV;
             ViewBag.UserName = UserName;
@@ -116,7 +116,7 @@ namespace A4A.Controllers
             DataTable dt = dbController.SelectFriends(ID);
             if (dt == null && ID == 0)
             {
-
+                return RedirectToAction("MustSignIn");
             }
             else if (dt == null)
             {
@@ -150,14 +150,27 @@ namespace A4A.Controllers
             ViewBag.ID = ID;
             ViewBag.UserName = UserName;
 
+            if (ID == null || ID == 0)
+            {
+                return RedirectToAction("MustSignIn");
+            }
+
             return View();
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult AddFriend(int UserID = 0, string UserName = "", string Email = "")
         {
             DBController db = new DBController();
             int FriendID = db.Select_UserID_By_Email(Email);
+            if (UserID == FriendID)
+            {
+                return RedirectToAction("CanNot", new {id = UserID, UserName = UserName});
+            }
+            
+            ViewBag.ID = UserID;
+            ViewBag.UserName = UserName;
 
             if (FriendID == 0 ) // not found
             {
@@ -166,23 +179,26 @@ namespace A4A.Controllers
             }
             else
             {
-               
-               int ins = db.InsertFriend(UserID, FriendID);
-            
-                ViewBag.ID = UserID;
-                ViewBag.UserName = UserName;
-                
+                db.InsertFriend(UserID, FriendID);
                 return RedirectToAction("ViewUser" ,"User" ,new {ID =FriendID ,IV =UserID , UserName = UserName});
-                //return RedirectToAction("ViewUser", "User", new {ID =FriendID , IV = FriendID ,UserName =UserName });
             }
-
-
         }
 
         public string GetType(int id)
         {
             DBController db = new DBController();
             return Convert.ToString(db.SelectTypeById(id));
+        }
+
+        public ActionResult CanNot(int id = 0, string UserName = "")
+        {
+            ViewBag.ID = id;
+            ViewBag.UserName = UserName;
+            return View();
+        }
+        public ActionResult MustSignIn()
+        {
+            return View();
         }
 
     }

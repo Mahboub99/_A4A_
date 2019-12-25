@@ -15,7 +15,7 @@ namespace A4A.Controllers
         {
             return RedirectToAction("ViewAllTeams");
         }
-        public ActionResult CreateTeam(int id, string UserName)
+        public ActionResult CreateTeam(int id = 0, string UserName = "")
         {
             ViewBag.id = id;
             ViewBag.UserName = UserName;
@@ -24,11 +24,16 @@ namespace A4A.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateTeam(TeamModel TM, int LeaderId, string UserName = "")
+        public ActionResult CreateTeam(TeamModel TM, int LeaderId = 0, string UserName = "")
         {
+            if (LeaderId == null || LeaderId == 0)
+            {
+                return RedirectToAction("MustSignIn");
+            }
+
             DBController db = new DBController();
 
-            TM.TeamID = db.Count_Teams() + 1;
+            TM.TeamID = db.Count_Teams() + 2;
             TM.LeaderID = LeaderId;
 
             db.InsertTeam(TM);
@@ -64,14 +69,15 @@ namespace A4A.Controllers
         }
         public ActionResult ViewMyTeams(int id = 0, string UserName = "")
         {
-            DBController dbController = new DBController();
-            DataTable dt = dbController.Select_Teams_of_Member(id);
-
-            if (dt == null && id == 0)
+            if (id == null || id == 0)
             {
                 return RedirectToAction("MustSignIn");
             }
-            else if (dt == null)
+
+            DBController dbController = new DBController();
+            DataTable dt = dbController.Select_Teams_of_Member(id);
+            
+            if (dt == null)
             {
                 return RedirectToAction("EmptyTeams");
             }
@@ -160,6 +166,16 @@ namespace A4A.Controllers
         public ActionResult MustSignIn()
         {
             return View();
+        }
+
+        public ActionResult DeleteTeam(int TeamID, int id = 0, string UserName = "")
+        {
+            DBController db = new DBController();
+            db.DeleteTeam(TeamID);
+
+            ViewBag.Id = id;
+            ViewBag.UserName = UserName;
+            return RedirectToAction("ViewAllTeams");
         }
     }
 }

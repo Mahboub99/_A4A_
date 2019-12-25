@@ -21,7 +21,7 @@
         @Html.ActionLink("Contests", "ViewGroupContests", new {GroupId = ViewBag.GroupId ,id = id, UserName = UserName})
     </th>
     <th>
-        @Html.ActionLink("Members", "ViewGroupMembers", new {GroupId = ViewBag.GroupId, id, UserName})
+        @Html.ActionLink("Members", "ViewGroupMembers", new {GroupId = ViewBag.GroupId, id = id, UserName = UserName})
     </th>
 </tr>
 
@@ -59,11 +59,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.ContestWriterName)
         </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
+        
     </tr>
 }
 

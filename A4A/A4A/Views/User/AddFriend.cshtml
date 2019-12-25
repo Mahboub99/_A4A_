@@ -16,14 +16,18 @@
 }
 
 <h2>AddFriend</h2>
-
+        <hr />
+<p>
+    <button class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewAllUsers", "User", new {id = IV, UserName  = s})';return false;">View All Users &raquo;</button>
+    <button style="margin-right:6px;" class="btn btn-outline-primary" onclick="location.href='@Url.Action("AddFriend", "User",new {ID = IV, UserName  = s})';return false;">Add Friend &raquo;</button>
+    <button class="btn btn-outline-primary" onclick="location.href='@Url.Action("Friends", "User", new {ID = IV, UserName  = s})';return false;">View My Friends &raquo;</button>
+</p>
 @using (Html.BeginForm("AddFriend", "User", new { UserID = IV, UserName = s}))
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
 
-        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -41,6 +45,3 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

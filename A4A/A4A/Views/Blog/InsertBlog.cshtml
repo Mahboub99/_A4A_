@@ -15,7 +15,8 @@
     int.TryParse(Convert.ToString(ViewBag.ID), out id);
 }
 
-<h2>Insert Blog</h2>
+<br/>
+<h2>🖍 Write Blog</h2>
 
 <p>
     <br />
@@ -29,74 +30,48 @@
     @Html.AntiForgeryToken()
     
 <div class="form-horizontal">
-    <h4>BlogModel</h4>
+    @*<h4>BlogModel</h4>*@
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @*<div class="form-group">
-        @Html.LabelFor(model => model.BlogID, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.BlogID, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.BlogID, "", new { @class = "text-danger" })
-        </div>
-    </div>*@
-
-    @*<div class="form-group">
-        @Html.LabelFor(model => model.BlogWriter, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.BlogWriter, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.BlogWriter, "", new { @class = "text-danger" })
-        </div>
-    </div>*@
-
+   
     <div class="form-group">
-        @Html.LabelFor(model => model.BlogTitle, htmlAttributes: new { @class = "control-label col-md-2" })
+   @*     @Html.LabelFor(model => model.BlogTitle, htmlAttributes: new { @class = "control-label col-md-2" })*@
+   <div class="col-md-10">
+       <label style="color:#000000;font-size:20px;">Title </label>
+       @Html.EditorFor(model => model.BlogTitle, new {htmlAttributes = new {@class = "form-control"}})
+       @Html.ValidationMessageFor(model => model.BlogTitle, "", new {@class = "text-danger"})
+   </div>
+    </div>
+    <div class="form-group">
+        
         <div class="col-md-10">
-            @Html.EditorFor(model => model.BlogTitle, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.BlogTitle, "", new { @class = "text-danger" })
+            <label style="color:#000000;font-size:20px;">Content</label>
+            <br/>
+            @Html.TextAreaFor(model => model.BlogContent, new {htmlAttributes = new {@class = "form-control"}})
+            @Html.ValidationMessageFor(model => model.BlogContent, "", new {@class = "text-danger"})
         </div>
     </div>
 
-    @*<div class="form-group">
-        @Html.LabelFor(model => model.BlogWriterName, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.BlogWriterName, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.BlogWriterName, "", new { @class = "text-danger" })
-        </div>
-    </div>*@
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.BlogContent, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.TextAreaFor(model => model.BlogContent, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.BlogContent, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    @*<div class="form-group">
-        @Html.LabelFor(model => model.GroupID, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.GroupID, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.GroupID, "", new { @class = "text-danger" })
-        </div>
-    </div>*@
-
+    
     <br />
     <div class="form-group">
 
         <div class="col-md-offset-2 col-md-10">
             @if (ViewBag.ID == 0)
             {
-                <input type="submit" value="Create" class="btn btn-primary" disabled />
+                <input type="submit" value="Create" class="btn btn-outline-primary" disabled />
                 <p>You have to log in to create a Blog</p>
             }
             else
             {
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-outline-primary" />
             }
         </div>
     </div>
 </div>
 }
+
+<br />
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

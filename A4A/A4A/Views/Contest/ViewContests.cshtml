@@ -1,4 +1,5 @@
-﻿@model IEnumerable<A4A.Models.ContestModel>
+﻿@using A4A.DataAccess
+@model IEnumerable<A4A.Models.ContestModel>
 
 @{
     ViewBag.Title = "ViewContests";
@@ -63,15 +64,19 @@
                 @Html.DisplayFor(modelItem => item.ContestWriterName)
             </td>
             <td>
-                @Html.ActionLink("View", "ContestProblems", "Contest", new { ContestID = item.ContestID }, null)
+                @Html.ActionLink("View", "ContestProblems", "Contest", new { ContestID = item.ContestID, id = id, UserName = UserName }, null)
             </td>
-
+            <td>
+                @{
+                    DBController db = new DBController();
+                    if (db.SelectTypeById(ViewBag.ID) == "Admin")
+                    {
+                        @Html.ActionLink("Delete", "DeleteContest", new { ContestID = item.ContestID, id = ViewBag.ID, UserName = ViewBag.UserName })
+                    }
+                }
+            </td>
         </tr>
     }
 
 </table>
 
-<br /><br /><br />
-<div>
-	@Html.ActionLink("Back to Home Page", "Index", "Home")
-</div>

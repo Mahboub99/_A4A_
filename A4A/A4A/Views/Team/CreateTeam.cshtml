@@ -24,21 +24,10 @@
 <p>
 	<br />
 	<button style="margin-right:6px;" class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewAllTeams", "Team", new { id, UserName })';return false;">All Teams &raquo;</button>
-	<button style="margin-right:6px;" class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewGroupTeams", "Team", new { id, UserName })';return false;">View My Teams &raquo;</button>
+	<button style="margin-right:6px;" class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewMyTeams", "Team", new { id, UserName })';return false;">View My Teams &raquo;</button>
 	@*<button style="margin-right:6px;" class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewMyGroups", "Group")';return false;">My Groups &raquo;</button>*@
 	@*<button class="btn btn-outline-primary" onclick="location.href='@Url.Action("CreateGroup", "Group")';return false;">Create Group &raquo;</button>*@
 </p>
-@*<tr>
-    <th>
-        @Html.ActionLink("Teams", "ViewAllTeams", new { id, UserName })
-    </th>
-    <th>
-        @Html.ActionLink("My Teams", "ViewMyTeams", new { id, UserName })
-    </th>
-    <th>
-        @Html.ActionLink("Create Team", "CreateTeam", new { id, UserName })
-    </th>
-</tr>*@
 
 @using (Html.BeginForm("CreateTeam", "Team", new { LeaderId = id, UserName = UserName }, FormMethod.Post))
 {
@@ -80,11 +69,6 @@
         </div>
     </div>
 }
-<br />
-<div>
-	@Html.ActionLink("Back to Home Page", "Index", "Home")
-</div>
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

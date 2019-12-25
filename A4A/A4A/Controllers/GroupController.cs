@@ -27,18 +27,21 @@ namespace A4A.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateGroup(GroupModel GM, int AdminID)
+        public ActionResult CreateGroup(GroupModel GM, int AdminID, int ID = 0, string UserName = "")
         {
             DBController db = new DBController();
 
             GM.GroupID = db.CountGroups() + 1;
             GM.AdminID = AdminID;
 
+            ViewBag.UserName = UserName;
+            ViewBag.ID = ID;
             db.InsertGroup(GM);
             return View();
         }
         public ActionResult ViewAllGroups(int id = 0, string UserName="")
         {
+            
             DBController dbController = new DBController();
             DataTable dt = dbController.SelectAllGroups();
 
@@ -59,6 +62,10 @@ namespace A4A.Controllers
         }
         public ActionResult ViewMyGroups(int id = 0, string UserName = "")
         {
+            if (id == 0)
+            {
+                return RedirectToAction("MustSignIn");
+            }
             DBController dbController = new DBController();
             DataTable dt = dbController.SelectMyGroups(id);
             if (dt == null && id == 0)
@@ -166,6 +173,16 @@ namespace A4A.Controllers
         public ActionResult MustSignIn()
         {
             return View();
+        }
+
+        public ActionResult DeleteGroup(int GroupID, int id = 0, string UserName = "")
+        {
+            DBController db = new DBController();
+            db.DeleteGroup(GroupID);
+
+            ViewBag.Id = id;
+            ViewBag.UserName = UserName;
+            return RedirectToAction("ViewAllGroups");
         }
     }
 }

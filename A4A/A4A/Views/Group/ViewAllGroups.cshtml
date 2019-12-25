@@ -1,4 +1,5 @@
-﻿@model IEnumerable<A4A.Models.GroupModel>
+﻿@using A4A.DataAccess
+@model IEnumerable<A4A.Models.GroupModel>
 
 @{
     ViewBag.Title = "ViewAllGroups";
@@ -20,20 +21,9 @@
 <p>
 	<br />
 	@*<button style="margin-right:6px;" class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewAllGroups", "Group")';return false;">Groups &raquo;</button>*@
-	<button style="margin-right:6px;"class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewMyGroups", "Group")';return false;">My Groups &raquo;</button>
-	<button class="btn btn-outline-primary" onclick="location.href='@Url.Action("CreateGroup", "Group")';return false;">Create Group &raquo;</button>
+	<button style="margin-right:6px;"class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewMyGroups", "Group", new {id = id, UserName = UserName}, null)';return false;">My Groups &raquo;</button>
+	<button class="btn btn-outline-primary" onclick="location.href='@Url.Action("CreateGroup", "Group", new {id = id, UserName = UserName}, null)';return false;">Create Group &raquo;</button>
 </p>
-@*<tr>
-    <th>
-        @Html.ActionLink("Groups", "ViewAllGroups", new {id, UserName})
-    </th>
-    <th>
-        @Html.ActionLink("My Groups", "ViewMyGroups", new {id, UserName})
-    </th>
-    <th>
-        @Html.ActionLink("Create Group", "CreateGroup", new {id, UserName})
-    </th>
-</tr>*@
 
 <table id="dtBasicExample" class="table table-hover table-bordered " cellspacing="0">
     <tr class="table-primary">
@@ -64,16 +54,17 @@
         </td>
         <td>
             @Html.ActionLink("View", "ViewGroupContests", new { GroupId = item.GroupID, id = id, UserName = UserName })
-            @Html.ActionLink("Edit", "Edit", new {/* id=item.PrimaryKey */}) |
-            @Html.ActionLink("Details", "Details", new {/* id=item.PrimaryKey */}) |
-            @Html.ActionLink("Delete", "Delete", new {/* id=item.PrimaryKey */})
+        </td>
+        <td>
+            @{
+                DBController db = new DBController();
+                if (db.SelectTypeById(ViewBag.ID) == "Admin")
+                {
+                    @Html.ActionLink("Delete", "DeleteGroup", new { GroupID = item.GroupID, ID = ViewBag.ID, UserName = ViewBag.UserName })
+                }
+            }
         </td>
     </tr>
 }
 
 </table>
-
-<br />
-<div>
-	@Html.ActionLink("Back to Home Page", "Index", "Home")
-</div>

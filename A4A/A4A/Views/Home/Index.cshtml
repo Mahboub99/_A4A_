@@ -1,17 +1,17 @@
 ﻿
 @{
-    ViewBag.Title = "Home Page";
-    if (ViewBag.ID == 0 || ViewBag.ID == null)
-    {
-        Layout = "~/Views/Shared/_Layout.cshtml";
-    }
-    else
-    {
-        Layout = "~/Views/Shared/User_LayoutPage1.cshtml";
-    }
-    string UserName = ViewBag.UserName;
-    int id = 0;
-    int.TryParse(Convert.ToString(ViewBag.ID), out id);
+	ViewBag.Title = "Home Page";
+	if (ViewBag.ID == 0 || ViewBag.ID == null)
+	{
+		Layout = "~/Views/Shared/_Layout.cshtml";
+	}
+	else
+	{
+		Layout = "~/Views/Shared/User_LayoutPage1.cshtml";
+	}
+	string UserName = ViewBag.UserName;
+	int id = 0;
+	int.TryParse(Convert.ToString(ViewBag.ID), out id);
 }
 
 <br />
@@ -25,7 +25,6 @@
 			the participant's skills are reflected by their rating and the former contests can be used to prepare.
 		</p>
 	</div>
-	<p><a href='@Url.Action("CreateUser", "User")' class="btn btn-outline-primary btn-lg">JOIN US &raquo;</a></p>
 </div>
 
 <div class="row">

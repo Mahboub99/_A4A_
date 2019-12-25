@@ -57,7 +57,7 @@ namespace A4A.DataAccess
             CM.ContestID = Count_Contests() + 1; ;
             Parameters.Add("@ContestID", CM.ContestID);
             Parameters.Add("@ContestName", CM.ContestName);
-            Parameters.Add("@ContestDate", CM.ContestDate);
+            Parameters.Add("@ContestDate", DateTime.Now.Date);
             Parameters.Add("@ContestLength", CM.ContestLength);
             Parameters.Add("@ContestWriterID", CM.ContestWriterID);
 
@@ -69,6 +69,8 @@ namespace A4A.DataAccess
         public int InsertProblem(ContestModel CM)
         {
             string StoredProcedureName = StoredProcedures.InsertProblem;
+            string StoredProcedureName2 = StoredProcedures.InsertContestProblem;
+
             List<string> Topics = new List<string>();
             Topics.Add("Math");
             Topics.Add("Graphs");
@@ -79,6 +81,8 @@ namespace A4A.DataAccess
             for (int i = 1; i <= 5; ++i)
             {
                 Dictionary<string, object> Parameters = new Dictionary<string, object>();
+                Dictionary<string, object> Parameters2 = new Dictionary<string, object>();
+
                 //int ContestID = int.Parse(Guid.NewGuid().ToString());
                 Parameters.Add("@ProblemWriter", CM.ContestWriterID);
                 Parameters.Add("@ProblemName", CM.ContestName + " P" + i.ToString());
@@ -109,6 +113,11 @@ namespace A4A.DataAccess
                 Parameters.Add("@ProblemDifficulty", 800+(i-1)*200);
                 Parameters.Add("@ProblemContest", CM.ContestID);
                 Parameters.Add("@ProblemID", problem);
+
+                Parameters2.Add("@ContestID", CM.ContestID);
+                Parameters2.Add("@ProblemID", problem);
+
+                done = dbMan.ExecuteNonQuery(StoredProcedureName2, Parameters2);
                 done = dbMan.ExecuteNonQuery(StoredProcedureName, Parameters);
             }
 
@@ -424,14 +433,19 @@ namespace A4A.DataAccess
             return dbMan.ExecuteReader(StoredProcedureName, Parameters);
         }
 
-        public int SelectTypeById(int UserID)
+        public string SelectTypeById(int UserID)
         {
+            if (UserID == null || UserID == 0)
+            {
+                return "";
+            }
+
             string StoredProcedureName = StoredProcedures.SelectTypeById;
 
             Dictionary<string, object> Parameters = new Dictionary<string, object>();
             Parameters.Add("@UserID", UserID);
 
-            return Convert.ToInt32(dbMan.ExecuteScalar(StoredProcedureName, Parameters));
+            return Convert.ToString(dbMan.ExecuteScalar(StoredProcedureName, Parameters));
         }
 
         public DataTable SelectGroupContests(int GroupID)
@@ -482,5 +496,79 @@ namespace A4A.DataAccess
             return dbMan.ExecuteReader(StoredProcedureName, Parameters);
         }
 
+        public int Binding(int UserID)
+        {
+            string StoredProcedureName = StoredProcedures.Binding;
+
+            Dictionary<string, object> Parameters = new Dictionary<string, object>();
+            Parameters.Add("@UserID", UserID);
+
+            return Convert.ToInt32(dbMan.ExecuteScalar(StoredProcedureName, Parameters));
+        }
+
+        public int Solved(int UserID)
+        {
+            string StoredProcedureName = StoredProcedures.Solved;
+
+            Dictionary<string, object> Parameters = new Dictionary<string, object>();
+            Parameters.Add("@UserID", UserID);
+
+            return Convert.ToInt32(dbMan.ExecuteScalar(StoredProcedureName, Parameters));
+        }
+
+        public int DeleteBlog(int BlogID)
+        {
+            string StoredProcedureName = StoredProcedures.DeleteBlog;
+
+            Dictionary<string, object> Parameters = new Dictionary<string, object>();
+            Parameters.Add("@BlogID", BlogID);
+
+            return Convert.ToInt32(dbMan.ExecuteScalar(StoredProcedureName, Parameters));
+        }
+        public int DeleteContest(int ContestID)
+        {
+            string StoredProcedureName = StoredProcedures.DeleteContest;
+
+            Dictionary<string, object> Parameters = new Dictionary<string, object>();
+            Parameters.Add("@ContestID", ContestID);
+
+            return Convert.ToInt32(dbMan.ExecuteScalar(StoredProcedureName, Parameters));
+        }
+        public int DeleteTeam(int TeamID)
+        {
+            string StoredProcedureName = StoredProcedures.DeleteTeam;
+
+            Dictionary<string, object> Parameters = new Dictionary<string, object>();
+            Parameters.Add("@TeamID", TeamID);
+
+            return Convert.ToInt32(dbMan.ExecuteScalar(StoredProcedureName, Parameters));
+        }
+        public int DeleteGroup(int GroupID)
+        {
+            string StoredProcedureName = StoredProcedures.DeleteGroup;
+
+            Dictionary<string, object> Parameters = new Dictionary<string, object>();
+            Parameters.Add("@GroupID", GroupID);
+
+            return Convert.ToInt32(dbMan.ExecuteScalar(StoredProcedureName, Parameters));
+        }
+        public int DeleteOrg(int OrgID)
+        {
+            string StoredProcedureName = StoredProcedures.DeleteOrg;
+
+            Dictionary<string, object> Parameters = new Dictionary<string, object>();
+            Parameters.Add("@OrgID", OrgID);
+
+            return Convert.ToInt32(dbMan.ExecuteScalar(StoredProcedureName, Parameters));
+        }
+        public int DeleteProblem(string ProblemID)
+        {
+            string StoredProcedureName = StoredProcedures.DeleteProblem;
+
+            Dictionary<string, object> Parameters = new Dictionary<string, object>();
+            Parameters.Add("@ProblemID", ProblemID);
+
+            return Convert.ToInt32(dbMan.ExecuteScalar(StoredProcedureName, Parameters));
+        }
     }
 }

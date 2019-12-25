@@ -18,13 +18,13 @@
 <h2>Teams</h2>
 <tr>
     <th>
-        @Html.ActionLink("Teams", "ViewAllTeams", new { id, UserName })
+        @Html.ActionLink("Teams", "ViewAllTeams", new { id = id, UserName = UserName }, null)
     </th>
     <th>
-        @Html.ActionLink("My Teams", "ViewMyTeams", new { id, UserName })
+        @Html.ActionLink("My Teams", "ViewMyTeams", new { id = id, UserName = UserName }, null)
     </th>
     <th>
-        @Html.ActionLink("Create Team", "CreateTeam", new { id, UserName })
+        @Html.ActionLink("Create Team", "CreateTeam", new { id = id, UserName = UserName }, null)
     </th>
 </tr>
 
@@ -51,11 +51,7 @@
         <td>
             @Html.ActionLink("View", "ViewTeam", "Team", new { TeamID = item.TeamID, id = id, UserName = UserName }, null)
         </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
+        
     </tr>
 }
 

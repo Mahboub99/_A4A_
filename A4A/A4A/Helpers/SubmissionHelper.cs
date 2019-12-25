@@ -60,7 +60,7 @@ namespace A4A.Helpers
 
     public class SubmissionHelper
     {
-        public int ParseSubmission(string SubmissionJson)
+        public int ParseSubmission(string SubmissionJson, int UserID, int ContestID)
         {            
             bool isLastSubmission = false;
             int LastSubmission = 0;
@@ -76,9 +76,7 @@ namespace A4A.Helpers
                     {
                         
                         SubmissionID = s.Id,
-                        
-                        //TODO (we must get the ContestantID from Our DataBase)
-                        ContestantID = 2,
+                        ContestantID = UserID,
 
                         SubmissionVerdict = s.Verdict,
                         SubmissionMemory = s.MemoryConsumedBytes,

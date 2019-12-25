@@ -72,14 +72,9 @@
             @Html.DisplayFor(modelItem => item.ContestWriterName)
         </td>
         <td>
-            @Html.ActionLink("View", "ContestProblems", "Contest", new { ContestID = item.ContestID }, null)
+            @Html.ActionLink("View", "ContestProblems", "Contest", new { ContestID = item.ContestID, id= id, UserName = UserName }, null)
         </td>
     </tr>
 }
 
 </table>
-
-<br /><br /><br />
-<div>
-	@Html.ActionLink("Back to Home Page", "Index", "Home")
-</div>

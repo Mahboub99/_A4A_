@@ -1,4 +1,5 @@
-﻿@model IEnumerable<A4A.Models.OrgModel>
+﻿@using A4A.DataAccess
+@model IEnumerable<A4A.Models.OrgModel>
 
 @{
     ViewBag.Title = "ViewAllOrgs";
@@ -33,16 +34,15 @@
             @Html.DisplayFor(modelItem => item.OrgName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @{
+                DBController db = new DBController();
+                if (db.SelectTypeById(ViewBag.ID) == "Admin")
+                {
+                    @Html.ActionLink("Delete", "DeleteOrg", new { OrgID = item.OrgID, id = ViewBag.ID, UserName = ViewBag.UserName })
+                }
+            }
         </td>
     </tr>
 }
 
 </table>
-
-<br /><br /><br />
-<div>
-	@Html.ActionLink("Back to Home Page", "Index", "Home")
-</div>

@@ -46,9 +46,6 @@ namespace A4A.Controllers
                 ProblemID = ProblemID,
             };
 
-            //Automate au = new Automate();
-            //ParseSubmission(au.SubmissionJsonFile());
-
             ViewBag.ID = id;
             ViewBag.UserName = UserName;
             return View(Problem);
@@ -97,14 +94,23 @@ namespace A4A.Controllers
             }
             else
             {
-                ContestID = int.Parse(ProblemID.Substring(0, ProblemID.Length - 1));
+                ContestID = int.Parse(ProblemID.Substring(0, ProblemID.Length - 1)); 
             }
             Automate Judge = new Automate();
             Judge.OpenCodeforces(Problem.ProblemCode, ProblemID);
             string SubmissionJson = Judge.SubmissionJsonFile("A4A_A4A", ContestID);
             Helpers.SubmissionHelper helper = new Helpers.SubmissionHelper();
-            int SubmissionID = helper.ParseSubmission(SubmissionJson);
+            int SubmissionID = helper.ParseSubmission(SubmissionJson, id, Problem.ProblemContestID);
             return RedirectToAction("ViewSubmission", new { SubmissionID = SubmissionID, id = id, UserName = UserName });
+        }
+        public ActionResult DeleteProblem(string ProblemID, int id = 0, string UserName = "")
+        {
+            DBController db = new DBController();
+            db.DeleteProblem(ProblemID);
+
+            ViewBag.Id = id;
+            ViewBag.UserName = UserName;
+            return RedirectToAction("ProblemSet");
         }
     }
 }

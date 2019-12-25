@@ -41,6 +41,11 @@ namespace A4A.Controllers
 
         public ActionResult ViewMyContests(int id = 0, string UserName = "") 
         {
+            if (id == 0)
+            {
+                return RedirectToAction("MustSignIn");
+            }
+
             DBController dbController = new DBController();
             DataTable dt = dbController.SelectMyContests(id);
             List<ContestModel> list = new List<ContestModel>();
@@ -69,7 +74,7 @@ namespace A4A.Controllers
             return View(list);
         }
 
-        public ActionResult ContestProblems(int ContestID)
+        public ActionResult ContestProblems(int ContestID, int id = 0, string UserName = "")
         {
             DBController dbController = new DBController();
             DataTable dt = dbController.SelectContestProblems(ContestID);
@@ -77,6 +82,7 @@ namespace A4A.Controllers
             for (int i = 0; i < dt.Rows.Count; ++i)
             {
                 ProblemModel problem = new ProblemModel();
+                problem.ProblemID = Convert.ToString(dt.Rows[i]["ProblemId"]);
                 problem.ProblemName = Convert.ToString(dt.Rows[i]["ProblemName"]);
                 problem.ProblemTopic = Convert.ToString(dt.Rows[i]["ProblemTopic"]);
                 problem.ProblemLink = Convert.ToString(dt.Rows[i]["ProblemLink"]);
@@ -84,6 +90,8 @@ namespace A4A.Controllers
                 list.Add(problem);
             }
 
+            ViewBag.ID = id;
+            ViewBag.UserName = UserName;
             return View(list);
         }
 
@@ -92,12 +100,17 @@ namespace A4A.Controllers
         {
             CM.ContestWriterID = id;
             DBController dbController = new DBController();
-            int InsertionVerdict = dbController.InsertContest(CM);
+            dbController.InsertContest(CM);
             return RedirectToAction("ViewContests", new { id, UserName });
         }
 
         public ActionResult InsertContest(int id, string UserName)
         {
+            if (id == 0)
+            {
+                return RedirectToAction("MustSignIn");
+            }
+
             ContestModel CM = new ContestModel();
             DBController dbController = new DBController();
             DataTable dt = dbController.GetAvailableProblems();
@@ -112,12 +125,25 @@ namespace A4A.Controllers
             ViewBag.id = id;
             ViewBag.UserName = UserName;
             return View(CM);
-
         }
 
         public ActionResult EmptyContests()
         {
             return View();
+        }
+
+        public ActionResult MustSignIn()
+        {
+            return View();
+        }
+        public ActionResult DeleteContest(int ContestID, int id = 0, string UserName = "")
+        {
+            DBController db = new DBController();
+            db.DeleteContest(ContestID);
+
+            ViewBag.Id = id;
+            ViewBag.UserName = UserName;
+            return RedirectToAction("ViewContests");
         }
     }
 }

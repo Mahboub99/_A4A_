@@ -19,23 +19,12 @@
 
 <p>
 	<br />
-	<button style="margin-right:6px;" class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewAllGroups", "Group", new {id, UserName})';return false;">View All Group &raquo;</button>
-	<button style="margin-right:6px;" class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewMyGroups", "Group", new {id, UserName})';return false;">View My Group &raquo;</button>
+	<button style="margin-right:6px;" class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewAllGroups", "Group", new {id = id, UserName = UserName})';return false;">View All Group &raquo;</button>
+	<button style="margin-right:6px;" class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewMyGroups", "Group", new {id = id, UserName = UserName})';return false;">View My Group &raquo;</button>
 </p>
 
-@*<tr>
-    <th>
-        @Html.ActionLink("Groups", "ViewAllGroups", new {id, UserName})
-    </th>
-    <th>
-        @Html.ActionLink("My Groups", "ViewMyGroups", new {id, UserName})
-    </th>
-    <th>
-        @Html.ActionLink("Create Group", "CreateGroup", new {id, UserName})
-    </th>
-</tr>*@
 
-@using (Html.BeginForm("CreateGroup", "Group", new { AdminID = id }, FormMethod.Post))
+@using (Html.BeginForm("CreateGroup", "Group", new { AdminID = id, id = id, UserName = UserName }, FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     
@@ -53,14 +42,6 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.AdminID, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.AdminID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.AdminID, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -68,10 +49,6 @@
     </div>
 }
 
-<br /><br /><br />
-<div>
-	@Html.ActionLink("Back to Home Page", "Index", "Home")
-</div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

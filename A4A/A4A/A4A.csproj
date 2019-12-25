@@ -209,12 +209,29 @@
     <Content Include="Views\Org\ViewGroupOrgs.cshtml" />
     <Content Include="Views\Team\CreateTeam.cshtml" />
     <Content Include="Views\Team\ViewAllTeams.cshtml" />
-    <Content Include="Views\Team\ViewGroupTeams.cshtml" />
     <Content Include="Views\Shared\User_LayoutPage1.cshtml" />
     <Content Include="Views\Blog\ViewAllBlogs.cshtml" />
     <Content Include="Views\Blog\ViewBlog.cshtml" />
     <Content Include="Views\Blog\ViewMyBlogs.cshtml" />
     <Content Include="Views\Blog\InsertBlog.cshtml" />
+    <Content Include="Views\Shared\MustSignIn.cshtml" />
+    <Content Include="Views\User\AddFriend.cshtml" />
+    <Content Include="Views\User\Friends.cshtml" />
+    <Content Include="Views\User\NoFriends.cshtml" />
+    <Content Include="Views\User\MustSignIn.cshtml" />
+    <Content Include="Views\Team\EmptyTeams.cshtml" />
+    <Content Include="Views\Team\MustSignIn.cshtml" />
+    <Content Include="Views\Team\ViewMyTeams.cshtml" />
+    <Content Include="Views\Team\ViewTeam.cshtml" />
+    <Content Include="Views\Group\EmptyGroups.cshtml" />
+    <Content Include="Views\Group\MustSignIn.cshtml" />
+    <Content Include="Views\Group\ViewGroupContests.cshtml" />
+    <Content Include="Views\Group\ViewGroupMembers.cshtml" />
+    <Content Include="Views\Contest\MustSignIn.cshtml" />
+    <Content Include="Views\Contest\EmptyContests.cshtml" />
+    <Content Include="Views\Blog\EmptyBlogs.cshtml" />
+    <Content Include="Views\Blog\MustSignIn.cshtml" />
+    <Content Include="Views\User\CanNot.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

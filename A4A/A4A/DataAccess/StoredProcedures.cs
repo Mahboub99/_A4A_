@@ -15,8 +15,11 @@ namespace A4A.DataAccess
         public static string Count_Users = "Count_Users";
         public static string Check_Email_And_Password = "Check_Email_And_Password";
         public static string Friends = "User_Friends";
-        public static string Select_UserID_By_Email = "Select_UserID_By_Email";
+        public static string Select_UserID_By_Email = "Select_Id_by_Email";
         public static string InsertFriends = "InsertFriends";
+        public static string Binding = "Binding";
+        public static string Solved = "Solved";
+        public static string User_Friends = "User_Friends";
 
 
         public static string LoadProblems = "selectAllOfProblems";
@@ -72,6 +75,7 @@ namespace A4A.DataAccess
         public static string DeleteContest = "DeleteContest";
         public static string DeleteGroup = "DeleteGroup";
         public static string DeleteOrg = "DeleteOrg";
+        public static string DeleteTeam = "DeleteTeam";
         //public static string DeleteUser = "DeleteUser"
     }
 }
