@@ -98,6 +98,8 @@ namespace A4A.Controllers
                 //view of user (home page)
                 DataRow dr = db.SelectUserNameByID(id).Rows[0];
                 string UserName = Convert.ToString(dr["Fname"]) + Convert.ToString(dr["Lname"]);
+                Session["ID"] = id;
+                Session["UserName"] = UserName;
                 return RedirectToAction("Index", "Home", new {UserName = UserName, id = id});
             }
         }
