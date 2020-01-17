@@ -11,39 +11,41 @@ namespace A4A.Controllers
 {
     public class GroupController : Controller
     {
-        public ActionResult CreateGroup()
+        public ActionResult Index()
         {
-            int ID = Convert.ToInt16(Session["ID"]);
-
-            if (ID == 0)
+            return RedirectToAction("ViewAllGroups");
+        }
+        public ActionResult CreateGroup(int id = 0, string UserName = "")
+        {
+            if (id == 0)
             {
                 return RedirectToAction("MustSignIn");
             }
-
+            ViewBag.id = id;
+            ViewBag.UserName = UserName;
             return View();
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateGroup(GroupModel GM, int AdminID)
+        public ActionResult CreateGroup(GroupModel GM, int AdminID, int ID = 0, string UserName = "")
         {
             DBController db = new DBController();
 
             GM.GroupID = db.CountGroups() + 1;
             GM.AdminID = AdminID;
 
+            ViewBag.UserName = UserName;
+            ViewBag.ID = ID;
             db.InsertGroup(GM);
-
             return View();
         }
-
-        public ActionResult ViewAllGroups()
+        public ActionResult ViewAllGroups(int id = 0, string UserName="")
         {
+            
             DBController dbController = new DBController();
             DataTable dt = dbController.SelectAllGroups();
 
             List<GroupModel> Groups = new List<GroupModel>();
-
             for (int i = 0; i < dt.Rows.Count; ++i)
             {
                 GroupModel group = new GroupModel();
@@ -54,22 +56,19 @@ namespace A4A.Controllers
                 Groups.Add(group);
             }
 
+            ViewBag.id = id;
+            ViewBag.UserName = UserName;
             return View(Groups);
         }
-
-        public ActionResult ViewMyGroups()
+        public ActionResult ViewMyGroups(int id = 0, string UserName = "")
         {
-            int ID = Convert.ToInt16(Session["ID"]);
-
-            if (ID == 0)
+            if (id == 0)
             {
                 return RedirectToAction("MustSignIn");
             }
-
             DBController dbController = new DBController();
-            DataTable dt = dbController.SelectMyGroups(ID);
-
-            if (ID == 0)
+            DataTable dt = dbController.SelectMyGroups(id);
+            if (dt == null && id == 0)
             {
                 return RedirectToAction("MustSignIn");
             }
@@ -77,9 +76,7 @@ namespace A4A.Controllers
             {
                 return RedirectToAction("EmptyGroups");
             }
-
             List<GroupModel> MyGroups = new List<GroupModel>();
-
             for (int i = 0; i < dt.Rows.Count; ++i)
             {
                 GroupModel group = new GroupModel();
@@ -89,10 +86,12 @@ namespace A4A.Controllers
                 MyGroups.Add(group);
             }
 
+            ViewBag.id = id;
+            ViewBag.UserName = UserName;
             return View(MyGroups);
         }
 
-        public ActionResult ViewGroupContests(int GroupId)
+        public ActionResult ViewGroupContests(int GroupId, int id = 0, string UserName = "")
         {
             DBController db = new DBController();
             DataTable dt = db.SelectGroupContests(GroupId);
@@ -108,17 +107,19 @@ namespace A4A.Controllers
                     ContestDate = Convert.ToDateTime(dt.Rows[i]["ContestDate"]),
                     ContestWriterID = Convert.ToInt32(dt.Rows[i]["ContestWriter"])
                 };
-                CM.ContestWriterName = Convert.ToString(db.SelectUserNameByID(CM.ContestWriterID).Rows[0]["Fname"])
-                                     + " "
-                                     + Convert.ToString(db.SelectUserNameByID(CM.ContestWriterID).Rows[0]["Lname"]);
+                CM.ContestWriterName = Convert.ToString(db.SelectUserNameByID(CM.ContestWriterID).Rows[0]["Fname"]) +
+                                       " " +
+                                       Convert.ToString(db.SelectUserNameByID(CM.ContestWriterID).Rows[0]["Lname"]);
                 Contests.Add(CM);
             }
 
             ViewBag.GroupId = GroupId;
+            ViewBag.id = id;
+            ViewBag.UserName = UserName;
             return View(Contests);
         }
 
-        public ActionResult ViewGroupMembers(int GroupId)
+        public ActionResult ViewGroupMembers(int GroupId, int id = 0, string UserName = "")
         {
             DBController db = new DBController();
             DataTable dt = db.SelectGroupMembers(GroupId);
@@ -139,26 +140,27 @@ namespace A4A.Controllers
             }
 
             ViewBag.GroupId = GroupId;
+            ViewBag.id = id;
+            ViewBag.UserName = UserName;
             return View(Members);
         }
 
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
+
             return View();
         }
-
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
+
             return View();
         }
-
         public ActionResult GroupOptions()
         {
             return View();
-        }
-
+        }      
         public ActionResult SuccessfulCreationOfGroup()
         {
             return View();
@@ -168,17 +170,18 @@ namespace A4A.Controllers
         {
             return View();
         }
-
         public ActionResult MustSignIn()
         {
             return View();
         }
 
-        public ActionResult DeleteGroup(int GroupID)
+        public ActionResult DeleteGroup(int GroupID, int id = 0, string UserName = "")
         {
             DBController db = new DBController();
             db.DeleteGroup(GroupID);
 
+            ViewBag.Id = id;
+            ViewBag.UserName = UserName;
             return RedirectToAction("ViewAllGroups");
         }
     }

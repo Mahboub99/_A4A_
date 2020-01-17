@@ -2,9 +2,7 @@
 
 @{
     ViewBag.Title = "ViewGroupContests";
-    int ID = Convert.ToInt16(Session["ID"]);
-
-    if (ID == 0)
+    if (ViewBag.ID == 0 || ViewBag.ID == null)
     {
         Layout = "~/Views/Shared/_Layout.cshtml";
     }
@@ -12,15 +10,18 @@
     {
         Layout = "~/Views/Shared/User_LayoutPage1.cshtml";
     }
+    string UserName = ViewBag.UserName;
+    int id = 0;
+    int.TryParse(Convert.ToString(ViewBag.ID), out id);
 }
 
 <h2>View Group Contests</h2>
 <tr>
     <th>
-        @Html.ActionLink("Contests", "ViewGroupContests", new { GroupId = ViewBag.GroupId })
+        @Html.ActionLink("Contests", "ViewGroupContests", new {GroupId = ViewBag.GroupId ,id = id, UserName = UserName})
     </th>
     <th>
-        @Html.ActionLink("Members", "ViewGroupMembers", new { GroupId = ViewBag.GroupId })
+        @Html.ActionLink("Members", "ViewGroupMembers", new {GroupId = ViewBag.GroupId, id = id, UserName = UserName})
     </th>
 </tr>
 
