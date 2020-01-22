@@ -41,15 +41,16 @@ A4A is a competitive programming website to manage competitive programming regul
 We are not a real judge, actually we are a virtual judge not a real judge, we grab problems from other regular online judges like CodeForces, HackerRank, UVA, SPOJ .. etc and simulate submissions to other online judges and provide the user with the verdict besides adding more additional features like Creating Contests, Groups, Teams and Organizations, Writing blogs and share it with CP community.
 
 ## 📷 Screenshots 
-<div name="demo" align="center" width=1189px>
+<div name="demo" align="center">
   <p align="center">
-    <img src="https://github.com/aashrafh/A4A/blob/master/Demo/img-demo-1.png" alt="A4A">
-    <img src="https://github.com/aashrafh/A4A/blob/master/Demo/img-demo-2.png" alt="A4A">
-    <img src="https://github.com/aashrafh/A4A/blob/master/Demo/img-demo-3.png" alt="A4A">
-    <img src="https://github.com/aashrafh/A4A/blob/master/Demo/img-demo-4.png" alt="A4A">
-    <img src="https://github.com/aashrafh/A4A/blob/master/Demo/img-demo-5.png" alt="A4A">
-    <img src="https://github.com/aashrafh/A4A/blob/master/Demo/img-demo-6.png" alt="A4A">
-    <img src="https://github.com/aashrafh/A4A/blob/master/Demo/img-demo-7.png" alt="A4A">
+    <img src="https://github.com/aashrafh/A4A/blob/master/Demo/img-demo-1.png" alt="A4A" width=1000px>
+    <img src="https://github.com/aashrafh/A4A/blob/master/Demo/img-demo-2.png" alt="A4A" width=1000px>
+    <img src="https://github.com/aashrafh/A4A/blob/master/Demo/img-demo-3.png" alt="A4A" width=1000px>
+    <img src="https://github.com/aashrafh/A4A/blob/master/Demo/img-demo-4.png" alt="A4A" width=1000px>
+    <img src="https://github.com/aashrafh/A4A/blob/master/Demo/img-demo-5.png" alt="A4A" width=1000px>
+    <img src="https://github.com/aashrafh/A4A/blob/master/Demo/img-demo-6.png" alt="A4A" width=1000px>
+    <img src="https://github.com/aashrafh/A4A/blob/master/Demo/img-demo-7.png" alt="A4A" width=1000px>
+    <img src="https://github.com/aashrafh/A4A/blob/master/Demo/img-demo-8.png" alt="A4A" width=1000px>
   </p>
   </div>
 
