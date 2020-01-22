@@ -7,19 +7,19 @@
 
 <p align="center">
   <a href="https://github.com/aashrafh/A4A/graphs/contributors" alt="Contributors">
-        <img src="https://img.shields.io/github/contributors/aashrafh/SpaceTrippers" /></a>
+        <img src="https://img.shields.io/github/contributors/aashrafh/A4A" /></a>
   
-   <a href="https://github.com/aashrafh/SpaceTrippers/issues" alt="Issues">
-        <img src="https://img.shields.io/github/issues/aashrafh/SpaceTrippers" /></a>
+   <a href="https://github.com/aashrafh/A4A/issues" alt="Issues">
+        <img src="https://img.shields.io/github/issues/aashrafh/A4A" /></a>
   
-  <a href="https://github.com/aashrafh/SpaceTrippers/network" alt="Forks">
-        <img src="https://img.shields.io/github/forks/aashrafh/SpaceTrippers" /></a>
+  <a href="https://github.com/aashrafh/A4A/network" alt="Forks">
+        <img src="https://img.shields.io/github/forks/aashrafh/A4A" /></a>
         
-  <a href="https://github.com/aashrafh/SpaceTrippers/stargazers" alt="Stars">
-        <img src="https://img.shields.io/github/stars/aashrafh/SpaceTrippers" /></a>
+  <a href="https://github.com/aashrafh/A4A/stargazers" alt="Stars">
+        <img src="https://img.shields.io/github/stars/aashrafh/A4A" /></a>
         
-  <a href="https://github.com/aashrafh/SpaceTrippers/blob/master/LICENSE" alt="License">
-        <img src="https://img.shields.io/github/license/aashrafh/SpaceTrippers" /></a>
+  <a href="https://github.com/aashrafh/A4A/blob/master/LICENSE" alt="License">
+        <img src="https://img.shields.io/github/license/aashrafh/A4A" /></a>
 </p>
 
 
