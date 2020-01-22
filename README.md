@@ -65,5 +65,6 @@ We are not a real judge, actually we are a virtual judge not a real judge, we gr
 
 ## ⛏️ Built Using <a name = "tech"></a>
 - [C#](https://docs.microsoft.com/en-us/dotnet/csharp/) - Object-oriented language that enables developers to build .NET applications.
+- [ASP.NET MVC](https://dotnet.microsoft.com/apps/aspnet/mvc) - A design pattern for achieving a clean separation of concerns.
 - [SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-2019) - Relational database management system developed by Microsoft.
 - [Selenium](https://selenium.dev/) -  Portable framework for testing web applications.
